@@ -1,0 +1,363 @@
+FORMAT: 1A
+HOST: http://www.google.com
+
+# Texas Senate Bills API
+This documents our RESTful API for our Texas Senate Bill Database.  We separated our HTML returns and our JSON returns by prepending /api, similar
+to Facebook's graph API. Example: API endpoint for '/people' would be '/api/people'.
+POST requests are used to create, while PUT requests are used to update endpoints.
+
+# Root page [/]
+Team information for the Texas Senate Bill Database.
+##Get entry point [GET]
++ Response 200 (application/JSON)
+
+    + Body 
+        
+            {
+                
+            }
+
+#Group Senators
+## Senator Data [/api/senators]
+A collection of all of the senators in the database
+### Get all of the senators [GET]
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "name": "Jane Nelson",
+                "party": "Republican",
+                "occupation": "Businesswoman, former teacher",
+                "legistlative_experience": "Disaster Relief",
+                "district": "12",
+                "twitter": "https://twitter.com/SenJaneNelson",
+                "facebook": "https://www.facebook.com/SenatorJaneNelson",
+                "picture": "none",
+                "committees": [1,2]
+            }
+        ]
+        
+### Create a new senator entry [POST]
++ Request (application/json)
+
+        [
+            {
+                "name": "Jane Nelson",
+                "party": "Republican",
+                "occupation": "Businesswoman, former teacher",
+                "legistlative_experience": "Disaster Relief",
+                "district": "12",
+                "twitter": "https://twitter.com/SenJaneNelson",
+                "facebook": "https://www.facebook.com/SenatorJaneNelson",
+                "picture": "none",
+                "committees": [1,2]
+            }
+        ]
+
++ Response 201 (application/json)
+
+        { 
+            "id": 1 
+        }
+        
+##Senator Data [/api/senators/{id}]
+A specific senator, where id is the database primary key for that senator
+
+###Get a senator[GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "id": 1,
+                "name": "Jane Nelson",
+                "party": "Republican",
+                "occupation": "Businesswoman, former teacher",
+                "legistlative_experience": "Disaster Relief",
+                "district": "12",
+                "twitter": "https://twitter.com/SenJaneNelson",
+                "facebook": "https://www.facebook.com/SenatorJaneNelson",
+                "picture": "none",
+                "committees": [1,2]
+            }
+
+###Update an existing senator [PUT]
++ Request (application/json)
+    
+        {
+            "id": 1,
+            "name": "Jane Nelson",
+            "party": "Republican",
+            "occupation": "Businesswoman, former teacher",
+            "legistlative_experience": "Disaster Relief",
+            "district": "12",
+            "twitter": "https://twitter.com/SenJaneNelson",
+            "facebook": "https://www.facebook.com/SenatorJaneNelson",
+            "picture": "none",
+            "committees": [1,2]
+        }
++ Response 204
+
+###Delete an existing senator [DELETE]
++ Response 204
+
+##Senator's committees [/api/senators/{id}/committees]
+All of the committees of which a senator is a member 
+###List all committees [GET]
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "name": "Health & Human Services",
+                "chair": 1,
+                "vice_chair": [2],
+                "description": "NONE",
+                "appointment_Date": "2013-01-08"
+            }, 
+            {
+                "id": 2,
+                "name": "Finance",
+                "chair": 3,
+                "vice_chair": [4],
+                "description": "NONE",
+                "appointment_Date": "2013-01-08"
+            }
+        ]
+        
+##Senator's Bills [/api/senators/{id}/bills]
+All of the Bills that this senator has authored
+###List the bills [GET]
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "name": "SB 63",
+                "author": [1],
+                "legislative_session": "83(R)",
+                "date_proposed": "11/12/2012",
+                "date_signed": "6/14/2013",
+                "date_effective": "6/14/2013",
+                "status": "Signed into law",
+                "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
+                "primary_committee": 1,
+                "Description": "Relating to consent to the immunization of certain children."
+            }
+        ]
+
+#Group Bills
+## Bill Data [/api/bills]
+A collection of all of the bills in the database
+### Get all the bills [GET]
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "name": "SB 63",
+                "author": [1],
+                "legislative_session": "83(R)",
+                "date_proposed": "11/12/2012",
+                "date_signed": "6/14/2013",
+                "date_effective": "6/14/2013",
+                "status": "Signed into law",
+                "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
+                "primary_committee": 1,
+                "Description": "Relating to consent to the immunization of certain children."
+            }
+        ]
+        
+### Create a new bill entry [POST]
++ Request (application/json)
+
+        [
+            {
+                "name": "SB 63",
+                "author": [1],
+                "legislative_session": "83(R)",
+                "date_proposed": "11/12/2012",
+                "date_signed": "6/14/2013",
+                "date_effective": "6/14/2013",
+                "status": "Signed into law",
+                "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
+                "primary_committee": 1,
+                "Description": "Relating to consent to the immunization of certain children."
+            }
+        ]
+
++ Response 201 (application/json)
+
+        { 
+            "id": 1 
+        }
+        
+##Bill Data [/api/bills/{id}]
+A specific bill, where id is the database primary key for that bill
+
+###Get a bill[GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "id": 1,
+                "name": "SB 63",
+                "author": [1],
+                "legislative_session": "83(R)",
+                "date_proposed": "11/12/2012",
+                "date_signed": "6/14/2013",
+                "date_effective": "6/14/2013",
+                "status": "Signed into law",
+                "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
+                "primary_committee": 1,
+                "Description": "Relating to consent to the immunization of certain children."
+            }
+
+###Update an existing bill [PUT]
++ Request (application/json)
+    
+        {
+                "id": 1,
+                "name": "SB 63",
+                "author": [1],
+                "legislative_session": "83(R)",
+                "date_proposed": "11/12/2012",
+                "date_signed": "6/14/2013",
+                "date_effective": "6/14/2013",
+                "status": "Signed into law",
+                "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
+                "primary_committee": 1,
+                "Description": "Relating to consent to the immunization of certain children."
+            }
++ Response 204
+
+###Delete an existing bill [DELETE]
++ Response 204
+
+        
+##Bill's authors [/api/bills/{id}/authors]
+A list of all the authors (senators) of the bill 
+###List the senators [GET]
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "name": "Jane Nelson",
+                "party": "Republican",
+                "occupation": "Businesswoman, former teacher",
+                "legistlative_experience": "Disaster Relief",
+                "district": "12",
+                "twitter": "https://twitter.com/SenJaneNelson",
+                "facebook": "https://www.facebook.com/SenatorJaneNelson",
+                "picture": "none",
+                "committees": [1,2]
+            }
+        ]
+
+#Group Committees
+## Committee Collection [/api/committees]
+A collection of all of the committees in the database
+### Get all of the committees [GET]
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "name": "Health & Human Services",
+                "chair": 1,
+                "vice_chair": [2],
+                "description": "NONE",
+                "appointment_Date": "2013-01-08"
+            }
+        ]
+
+### Create a new committee entry [POST]
++ Request (application/json)
+
+        {
+            "name": "Health & Human Services",
+            "chair": 1,
+            "vice_chair": [2],
+            "description": "NONE",
+            "appointment_Date": "2013-01-08"
+        }
+
++ Response 201 (application/json)
+
+        { 
+            "id": 1 
+        }
+
+##Committee Data [/api/committees/{id}]
+A specific committee, where id is the database primary key for that committee
+
+###Get a committee[GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "id": 1,
+                "name": "Health & Human Services",
+                "chair": 1,
+                "vice_chair": [2],
+                "description": "NONE",
+                "appointment_Date": "2013-01-08"
+            }
+
+###Update an existing committee [PUT]
++ Request (application/json)
+    
+        {
+            "id": 1,
+            "name": "Health & Human Services",
+            "chair": 1,
+            "vice_chair": [2],
+            "description": "NONE",
+            "appointment_Date": "2013-01-08"
+        }
++ Response 204
+
+###Delete an existing committee [DELETE]
++ Response 204
+
+##Committee Members [/api/committees/{id}/senators]
+All of the senators that are members of this committee
+###List all Senators [GET]
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "name": "Jane Nelson",
+                "party": "Republican",
+                "occupation": "Businesswoman, former teacher",
+                "legistlative_experience": "Disaster Relief",
+                "district": "12",
+                "twitter": "https://twitter.com/SenJaneNelson",
+                "facebook": "https://www.facebook.com/SenatorJaneNelson",
+                "picture": "none",
+                "committees": [1,2]
+            }
+        ]
+
+##Committee Bills [/api/committees/{id}/bills]
+All of the Bills that this committee was the primary committee for
+###List the bills [GET]
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "name": "SB 63",
+                "author": [1],
+                "legislative_session": "83(R)",
+                "date_proposed": "11/12/2012",
+                "date_signed": "6/14/2013",
+                "date_effective": "6/14/2013",
+                "status": "Signed into law",
+                "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
+                "primary_committee": 1,
+                "Description": "Relating to consent to the immunization of certain children."
+            }
+        ]
