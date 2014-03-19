@@ -9,8 +9,8 @@ class Senator(models.Model):
   committees = models.ManyToManyField('Committee', through="Membership")
   photo = models.ImageField(upload_to='senators/%Y/%m')
   bills = models.ManyToManyField('Bill')
-  twitter = models.URLField
-  facebook = models.URLField
+  twitter = models.URLField()
+  facebook = models.URLField()
 
   def __str__(self):
     return self.name
