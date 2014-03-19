@@ -1,0 +1,11 @@
+{% block content %}
+    {% if latest_bills_list %}
+    <ul>
+    {% for bill in latest_bills_list %}
+        <li><a href="/bills/{{ bill.id }}/">{{ bill.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Bills are available.</p>
+{% endif %}
+{% endblock %}
