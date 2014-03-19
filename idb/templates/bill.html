@@ -1,9 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+{% block content %}
+    {% if bill_info %}
+    <ul>
+    {% for detail in bill_info %}
+        {% for k,v in detail.items %}
+            <li>{{ k }}: {{  v }}</li>
+        {% endfor %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Bills are available.</p>
+{% endif %}
+{% endblock %}
