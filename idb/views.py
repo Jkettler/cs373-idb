@@ -45,9 +45,19 @@ class SenatorView(TemplateView):
 
 class BillView(TemplateView):
     template_name = "bill.html"
+    def get_context_data(self, **kwargs):
+        context = super(BillView, self).get_context_data(**kwargs)
+        query = Bill.objects.filter(id=str(self.args[0])).values()
+        context['bill_info'] = list(query)
+        return context
 
 class CommitteeView(TemplateView):
     template_name = "committee.html"
+    def get_context_data(self, **kwargs):
+        context = super(CommitteeView, self).get_context_data(**kwargs)
+        query = Committee.objects.filter(id=str(self.args[0])).values()
+        context['com_info'] = list(query)
+        return context
 
 # class SenatorList(ListView):
 #     model = Senator

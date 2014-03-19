@@ -1,9 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+{% block content %}
+    {% if com_info %}
+    <ul>
+    {% for detail in com_info %}
+        {% for k,v in detail.items %}
+            <li>{{ k }}: {{  v }}</li>
+        {% endfor %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Committees are available.</p>
+{% endif %}
+{% endblock %}
