@@ -8,6 +8,11 @@ class Senator(models.Model):
   district = models.IntegerField(blank=True, null=True)
   committees = models.ManyToManyField('Committee', through="Membership")
   photo = models.ImageField(upload_to='senators/%Y/%m')
+  bills = models.ManyToManyField('Bill')
+  twitter = models.URLField
+  facebook = models.URLField
+
+>>>>>>> Stashed changes
 
   def __str__(self):
     return self.name
