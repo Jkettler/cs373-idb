@@ -134,7 +134,7 @@ All of the Bills that this senator has authored
                 "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
                 "primary_committee": 1,
                 "Description": "Relating to consent to the immunization of certain children."
-                "voters": [1,2]
+                "votes": [1: "AYE",2: "NAY"]
             }
         ]
 
@@ -157,7 +157,7 @@ A collection of all of the bills in the database
                 "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
                 "primary_committee": 1,
                 "Description": "Relating to consent to the immunization of certain children."
-                "voters": [1,2]
+                "votes": [1: "AYE",2: "NAY"]
             }
         ]
         
@@ -176,7 +176,7 @@ A collection of all of the bills in the database
                 "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
                 "primary_committee": 1,
                 "Description": "Relating to consent to the immunization of certain children."
-                "voters": [1,2]
+                "votes": [1: "AYE",2: "NAY"]
             }
         ]
 
@@ -205,7 +205,7 @@ A specific bill, where id is the database primary key for that bill
                 "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
                 "primary_committee": 1,
                 "Description": "Relating to consent to the immunization of certain children."
-                "voters": [1,2]
+                "votes": [1: "AYE",2: "NAY"]
             }
 
 ###Update an existing bill [PUT]
@@ -223,7 +223,7 @@ A specific bill, where id is the database primary key for that bill
                 "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
                 "primary_committee": 1,
                 "Description": "Relating to consent to the immunization of certain children."
-                "voters": [1,2]
+                "votes": [1: "AYE",2: "NAY"]
         }
 + Response 204
 
@@ -231,9 +231,29 @@ A specific bill, where id is the database primary key for that bill
 + Response 204
 
         
-##Bill's authors [/api/bills/{id}/authors]
-A list of all the authors (senators) of the bill 
+##Bill's voters [/api/bills/{id}/senators]
+A list of all the senators that voted on the bill 
 ###List the senators [GET]
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "name": "Jane Nelson",
+                "party": "Republican",
+                "occupation": "Businesswoman, former teacher",
+                "legistlative_experience": "Disaster Relief",
+                "district": "12",
+                "twitter": "https://twitter.com/SenJaneNelson",
+                "facebook": "https://www.facebook.com/SenatorJaneNelson",
+                "picture": "none",
+                "committees": [1,2]
+            }
+        ]
+        
+##Bill's authors [/api/bills/{id}/authors]
+A list of all the senators that authored the bill 
+###List the authors [GET]
 + Response 200 (application/json)
 
         [
@@ -359,6 +379,6 @@ All of the Bills that this committee was the primary committee for
                 "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
                 "primary_committee": 1,
                 "Description": "Relating to consent to the immunization of certain children."
-                "voters": [1,2]
+                "votes": [1: "AYE",2: "NAY"]
             }
         ]
