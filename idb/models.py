@@ -11,6 +11,7 @@ class Senator(models.Model):
   bills = models.ManyToManyField('Bill')
   twitter = models.URLField()
   facebook = models.URLField()
+  map = models.TextField(blank=True)
 
   def __str__(self):
     return self.name
@@ -19,7 +20,6 @@ class Committee(models.Model):
   name = models.CharField(max_length=70)
   description = models.TextField(blank=True)
   appointment_date = models.DateField(null=True, blank=True)
-
   chair = models.ForeignKey(Senator, related_name='committee_chair_set', blank=True, null=True)
   vice_chair = models.ForeignKey(Senator, related_name='committee_vice_chair_set', blank=True, null=True)
   senators = models.ManyToManyField(Senator, through="Membership")
