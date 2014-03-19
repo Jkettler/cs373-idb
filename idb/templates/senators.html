@@ -1,0 +1,11 @@
+{% block content %}
+    {% if latest_senators_list %}
+    <ul>
+    {% for senator in latest_senators_list %}
+        <li><a href="/senators/{{ senator.id }}/">{{ senator.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Senators are available.</p>
+{% endif %}
+{% endblock %}

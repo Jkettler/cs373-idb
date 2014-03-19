@@ -1,15 +1,15 @@
 from django.db import models
 
 class Senator(models.Model):
-  full_name = models.CharField(max_length=70)
+  name = models.CharField(max_length=70)
   party     = models.CharField(max_length=70)
   occupation = models.CharField(max_length=200, blank=True)
   legislative_experience = models.CharField(max_length=200, blank=True)
   district = models.IntegerField(blank=True, null=True)
-  committees = models.ForeignKey('Committee')
+  committees = models.ManyToManyField('Committee', through="Membership")
 
   def __str__(self):
-    return self.full_name
+    return self.name
 
 class Committee(models.Model):
   name = models.CharField(max_length=70)

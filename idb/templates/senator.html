@@ -1,0 +1,13 @@
+{% block content %}
+    {% if senator_bio %}
+    <ul>
+    {% for detail in senator_bio %}
+        {% for k,v in detail.items %}
+            <li>{{ k }}: {{  v }}</li>
+        {% endfor %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Senators are available.</p>
+{% endif %}
+{% endblock %}

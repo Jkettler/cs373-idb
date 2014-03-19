@@ -1,0 +1,11 @@
+{% block content %}
+    {% if latest_committees_list %}
+    <ul>
+    {% for senator in latest_committees_list %}
+        <li><a href="/senators/{{ committee.id }}/">{{ committee.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Committees are available.</p>
+{% endif %}
+{% endblock %}
