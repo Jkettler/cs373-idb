@@ -6,7 +6,8 @@ class Senator(models.Model):
   occupation = models.CharField(max_length=200, blank=True)
   legislative_experience = models.CharField(max_length=200, blank=True)
   district = models.IntegerField(blank=True, null=True)
-
+  committees = models.ManyToManyField(Committee)
+  
   def __str__(self):
     return self.full_name
 
