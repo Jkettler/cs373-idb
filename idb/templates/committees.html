@@ -1,8 +1,9 @@
+{% extends "base.html" %}
 {% block content %}
     {% if latest_committees_list %}
     <ul>
-    {% for senator in latest_committees_list %}
-        <li><a href="/senators/{{ committee.id }}/">{{ committee.name }}</a></li>
+    {% for committee in latest_committees_list %}
+        <li><a href="/committees/{{ committee.id }}/">{{ committee.name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
