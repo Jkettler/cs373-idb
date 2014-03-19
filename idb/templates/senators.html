@@ -1,12 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
+  <div class="col-sm-4">
+    <h3>Search</h3>
+  </div>
+  <div class="col-sm-8">
     {% if latest_senators_list %}
-    <ul>
-    {% for senator in latest_senators_list %}
-        <li><a href="/senators/{{ senator.id }}/">{{ senator.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No Senators are available.</p>
-{% endif %}
+      <ul class="media-list">
+      {% for senator in latest_senators_list %}
+          <li class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="{{ senator.photo.url }}" alt="">
+            </a>
+            <div class="media-body">
+              <a href="/senators/{{ senator.id }}/" class="media-heading"><h4>{{ senator.name }}</h4></a>
+            </div>
+          </li>
+      {% endfor %}
+      </ul>
+    {% else %}
+        <p>No Senators are available.</p>
+    {% endif %}
+  </div>
 {% endblock %}

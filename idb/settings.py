@@ -85,3 +85,6 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
     BASE_DIR + '/idb/'
 )
+
+MEDIA_ROOT = 'media/'
+MEDIA_URL = '/media/'
