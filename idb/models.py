@@ -12,8 +12,6 @@ class Senator(models.Model):
   twitter = models.URLField
   facebook = models.URLField
 
->>>>>>> Stashed changes
-
   def __str__(self):
     return self.name
 
