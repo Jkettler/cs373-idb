@@ -2,10 +2,11 @@
 {% load cloudinary %}
 {% block content %}
     {% if senator %}
-    <img src="{%  cloudinary_url senator.twitter type="twitter_name" width="200" height="200" %}.jpg">
+    <div class=" row-fluid senator">
+    <img class="img" src="{%  cloudinary_url senator.twitter type="twitter_name" width="200" height="200" %}.jpg">
     <ul class="list-unstyled">
         <li>Senator Name: {{ senator.name }}</li>
-        <li>Political Party: {{ senator.political_party }}</li>
+        <li>Political Party: {{ senator.party }}</li>
         <li>Occupation: {{ senator.occupation }}</li>
         <li>Legislative Experience: {{ senator.legislative_experience }}</li>
         <li>District: {{ senator.district }}</li>
@@ -40,4 +41,5 @@
 {% else %}
     <p>No Senators are available.</p>
 {% endif %}
+    </div>
 {% endblock %}

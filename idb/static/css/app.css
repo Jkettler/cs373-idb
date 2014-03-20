@@ -1,14 +1,40 @@
+body {
+   position:relative;
+   height: 100%;
+   background-color:#CBD7E8;
 
+}
+body:after {
+    content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../img/texas.svg.png') no-repeat center 8em;
+    opacity : 0.08;
+    z-index: -1000;
+
+}
+a:link {color:#7E82E8}
+a:visited {color:#E8504E}
+a:hover {color:#7E82E8}
+a:hover:visited {color:#E8504E}
+
+.senator img.img{
+      display: block;
+      margin-right: auto;
+      margin-left: auto;
+}
 
 #footer {
-  width: 100%;
-  height: 60px;
   background-color: #f5f5f5;
   position: relative;
   bottom: 0;
-  margin-top: 200px;
+  margin-top: 35em;
 }
 
 #footer .text-muted {
-  margin-top: 20px;
+  margin-top: 1em;
 }
