@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% load cloudinary %}
 {% block content %}
     {% if senator %}
+    <img src="{%  cloudinary_url senator.twitter type="twitter_name" width="200" height="200" %}.jpg">
     <ul class="list-unstyled">
         <li>Senator Name: {{ senator.name }}</li>
         <li>Political Party: {{ senator.political_party }}</li>
