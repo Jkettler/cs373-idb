@@ -9,8 +9,8 @@
         <li>Occupation: {{ senator.occupation }}</li>
         <li>Legislative Experience: {{ senator.legislative_experience }}</li>
         <li>District: {{ senator.district }}</li>
-        <li>Twitter: {{ senator.twitter }}</li>
-        <li>Facebook: {{ senator.facebook }}</li>
+        <li>Twitter: <a href="http://twitter.com/{{ senator.twitter }}">@{{ senator.twitter }}</a></li>
+        <li>Facebook: <a href="{{ senator.facebook }}">{{ senator.facebook }}</a></li>
         <li>Bills:
             <ul class="">
                 {% if bills %}
