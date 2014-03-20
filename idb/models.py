@@ -6,7 +6,8 @@ class Senator(models.Model):
   occupation = models.CharField(max_length=200, blank=True)
   legislative_experience = models.CharField(max_length=200, blank=True)
   district = models.IntegerField(blank=True, null=True)
-  committees = models.ManyToManyField('Committee', through="Membership")
+  committees = models.ManyToManyField('Committee', blank=True)
+  bills = models.ManyToManyField('Bill', related_name='bill_set', blank=True)
   twitter = models.CharField(max_length=15)
   facebook = models.URLField()
   map = models.TextField(blank=True)
@@ -20,14 +21,10 @@ class Committee(models.Model):
   appointment_date = models.DateField(null=True, blank=True)
   chair = models.ForeignKey(Senator, related_name='committee_chair_set', blank=True, null=True)
   vice_chair = models.ForeignKey(Senator, related_name='committee_vice_chair_set', blank=True, null=True)
-  senators = models.ManyToManyField(Senator, through="Membership")
+  senators = models.ManyToManyField(Senator, related_name='senator_set', blank=True)
 
   def __str__(self):
     return self.name
-
-class Membership(models.Model):
-    group = models.ForeignKey(Committee)
-    person = models.ForeignKey(Senator)
 
 class Bill(models.Model):
   name = models.CharField(max_length=70)

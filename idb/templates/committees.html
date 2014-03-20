@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+    <div class="col-sm-8">
     {% if latest_committees_list %}
     <ul>
     {% for committee in latest_committees_list %}
@@ -9,4 +10,5 @@
 {% else %}
     <p>No Committees are available.</p>
 {% endif %}
+    </div>
 {% endblock %}

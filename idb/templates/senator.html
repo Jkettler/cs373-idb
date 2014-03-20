@@ -1,12 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
-    {% if senator_bio %}
-    <ul>
-    {% for detail in senator_bio %}
-        {% for k,v in detail.items %}
-            <li>{{ k }}: {{  v }}</li>
-        {% endfor %}
-    {% endfor %}
+    {% if senator %}
+    <ul class="list-unstyled">
+        <li>Senator Name: {{ senator.name }}</li>
+        <li>Political Party: {{ senator.political_party }}</li>
+        <li>Occupation: {{ senator.occupation }}</li>
+        <li>Legislative Experience: {{ senator.legislative_experience }}</li>
+        <li>District: {{ senator.district }}</li>
+        <li>Twitter: {{ senator.twitter }}</li>
+        <li>Facebook: {{ senator.facebook }}</li>
+        <li>Vice-Chair: <a href="/senator/{{ committee.vice_chair.id }}/"> {{ committee.vice_chair }}</a></li>
+        <li>Bills:
+            <ul class="">
+                {% if bills %}
+                    {% for bill in bills %}
+                        <li class=""><a href="/bill/{{ bill.id }}/"> {{ bill.name }}</a></li>
+                    {% endfor %}
+                {% else %}
+                    There are no bills associated with this senator.
+                {% endif %}
+            </ul>
+        </li>
+        <li>Committees:
+            <ul class="">
+                {% if committees %}
+                    {% for committee in committees %}
+                        <li class=""><a href="/committee/{{ committee.id }}/"> {{ committee.name }}</a></li>
+                    {% endfor %}
+                {% else %}
+                    {{ senator.name }} is not in any committees.
+                {% endif %}
+            </ul>
+        </li>
     </ul>
 {% else %}
     <p>No Senators are available.</p>

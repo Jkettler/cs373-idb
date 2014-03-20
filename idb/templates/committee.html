@@ -1,12 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-    {% if com_info %}
-    <ul>
-    {% for detail in com_info %}
-        {% for k,v in detail.items %}
-            <li>{{ k }}: {{  v }}</li>
-        {% endfor %}
-    {% endfor %}
+    {% if committee %}
+    <ul class="list-unstyled">
+            <li>Committee Name: {{ committee.name }}</li>
+            <li>Description: {{ committee.description }}</li>
+            <li>Appointment Date: {{ committee.appointment_date }}</li>
+            <li>Chair: <a href="/senators/{{ committee.chair.id }}/"> {{ committee.chair }}</a></li>
+            <li>Vice-Chair: <a href="/senators/{{ committee.vice_chair.id }}/"> {{ committee.vice_chair }}</a></li>
+            <li>Members:
+                <ul class="">
+                    {% if senator_set %}
+                        {% for member in senator_set %}
+                            <li class=""><a href="/senators/{{ member.id }}/"> {{ member.name }}</a></li>
+                        {% endfor %}
+                    {% else %}
+                        There are no senators in this committee.
+                    {% endif %}
+                </ul>
+            </li>
     </ul>
 {% else %}
     <p>No Committees are available.</p>

@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
+    <div class="col-sm-8">
     {% if latest_bills_list %}
-    <ul>
+    <ul class="list-unstyled">
     {% for bill in latest_bills_list %}
         <li><a href="/bills/{{ bill.id }}/">{{ bill.name }}</a></li>
     {% endfor %}
@@ -9,4 +10,5 @@
 {% else %}
     <p>No Bills are available.</p>
 {% endif %}
+    </div>
 {% endblock %}
