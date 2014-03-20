@@ -10,8 +10,8 @@
         <li>Date Effective: {{ bill.date_effective }}</li>
         <li>Status: {{ bill.status }}</li>
         <li>Description: {{ bill.description }}</li>
-        <li>Author: <a href="/senator/{{ bill.author.id }}/"> {{ bill.author.name }}</a></li>
-        <li>Primary Committee: <a href="/committee/{{ bill.primary_committee.id }}/"> {{ bill.primary_committee.name }}</a></li>
+        <li>Author: <a href="/senators/{{ bill.author.id }}/"> {{ bill.author.name }}</a></li>
+        <li>Primary Committee: <a href="/committees/{{ bill.primary_committee.id }}/"> {{ bill.primary_committee.name }}</a></li>
         <li>Voters:
             <ul class="">
                 {% if voters %}
