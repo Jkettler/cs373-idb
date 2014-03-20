@@ -3,13 +3,12 @@
   <div class="col-sm-8">
     {% if bill %}
       <ul class="list-unstyled">
-        <li>Bill Name: {{ bill.name }}</li>
+        <li>Name: {{ bill.name }} (<a href="{{ bill.url }}">link</a>)</li>
         <li>Legislative Session: {{ bill.legislative_session }}</li>
         <li>Date Proposed: {{ bill.date_proposed }}</li>
         <li>Date Signed: {{ bill.date_signed }}</li>
         <li>Date Effective: {{ bill.date_effective }}</li>
         <li>Status: {{ bill.status }}</li>
-        <li>URL: {{ bill.url }}</li>
         <li>Description: {{ bill.description }}</li>
         <li>Author: <a href="/senator/{{ bill.author.id }}/"> {{ bill.author.name }}</a></li>
         <li>Primary Committee: <a href="/committee/{{ bill.primary_committee.id }}/"> {{ bill.primary_committee.name }}</a></li>
