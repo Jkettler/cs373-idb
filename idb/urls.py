@@ -16,4 +16,5 @@ urlpatterns = patterns('',
     url(r'^committees/$', views.committees, name="committees"),
     url(r'^bills/(\d+)/$', views.BillView.as_view()),
     url(r'^bills/$', views.bills, name="bills"),
+    url(r'^about/$', views.about, name="about"),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -6,7 +6,10 @@ from django.template import RequestContext, loader
 from django.db.models import F
 
 def index(request):
-    return render(request, 'index.html') 
+    return render(request, 'index.html')
+
+def about(request):
+    return render(request, 'about.html')
 
 def bills(request):
     latest_bills_list = Bill.objects.order_by('-date_proposed')
