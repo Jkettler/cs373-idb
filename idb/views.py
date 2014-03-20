@@ -1,9 +1,8 @@
 from django.views.generic import TemplateView
-from django.shortcuts import render
 from idb.models import Senator, Committee, Bill
 from django.http import HttpResponse
 from django.template import RequestContext, loader
-from django.db.models import F
+
 
 def index(request):
     template = loader.get_template('index.html')
@@ -11,7 +10,9 @@ def index(request):
     return HttpResponse(template.render(context))
 
 def about(request):
-    return render(request, 'about.html')
+    template = loader.get_template('about.html')
+    context = RequestContext(request)
+    return HttpResponse(template.render(context))
 
 def bills(request):
     latest_bills_list = Bill.objects.order_by('-date_proposed')

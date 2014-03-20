@@ -2,7 +2,7 @@
 {% block content %}
     <div class="col-sm-8">
     {% if latest_committees_list %}
-    <ul>
+    <ul class="list-unstyled">
     {% for committee in latest_committees_list %}
         <li><a href="/committees/{{ committee.id }}/">{{ committee.name }}</a></li>
     {% endfor %}
