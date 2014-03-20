@@ -23,7 +23,7 @@ def bills(request):
     return HttpResponse(template.render(context))
 
 def senators(request):
-    latest_senators_list = Senator.objects.order_by('-name')
+    latest_senators_list = Senator.objects.order_by('name')
     template = loader.get_template('senators.html')
     context = RequestContext(request, {
         'latest_senators_list': latest_senators_list,
@@ -31,7 +31,7 @@ def senators(request):
     return HttpResponse(template.render(context))
 
 def committees(request):
-    latest_committees_list = Committee.objects.order_by('-name')
+    latest_committees_list = Committee.objects.order_by('name')
     template = loader.get_template('committees.html')
     context = RequestContext(request, {
         'latest_committees_list': latest_committees_list,
