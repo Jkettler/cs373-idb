@@ -1,11 +1,8 @@
-from django.forms import model_to_dict
 from django.views.generic import TemplateView
 from django.shortcuts import render
 from idb.models import Senator, Committee, Bill
 from django.http import HttpResponse
 from django.template import RequestContext, loader
-import json
-from django.core.serializers.json import DjangoJSONEncoder
 
 def index(request):
     return render(request, 'index.html') 

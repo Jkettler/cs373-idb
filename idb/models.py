@@ -7,9 +7,7 @@ class Senator(models.Model):
   legislative_experience = models.CharField(max_length=200, blank=True)
   district = models.IntegerField(blank=True, null=True)
   committees = models.ManyToManyField('Committee', through="Membership")
-  photo = models.ImageField(upload_to='senators/%Y/%m')
-  bills = models.ManyToManyField('Bill')
-  twitter = models.URLField()
+  twitter = models.CharField(max_length=15)
   facebook = models.URLField()
   map = models.TextField(blank=True)
 

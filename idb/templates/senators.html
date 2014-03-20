@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load cloudinary %}
 {% block content %}
   <div class="col-sm-4 well">
   </div>
@@ -7,9 +8,9 @@
       <ul class="media-list">
       {% for senator in latest_senators_list %}
           <li class="media">
-            <a class="pull-left" href="#">
-              <img class="media-object" src="{{ senator.photo.url }}" alt="">
-            </a>
+            <a class="pull-left">
+              <img src="{%  cloudinary_url senator.twitter type="twitter_name" %}.jpg">
+              </a>
             <div class="media-body">
               <a href="/senators/{{ senator.id }}/" class="media-heading"><h4>{{ senator.name }}</h4></a>
             </div>

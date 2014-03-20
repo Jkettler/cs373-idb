@@ -8,9 +8,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import dj_database_url
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
@@ -36,7 +40,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
     'idb',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -73,7 +79,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Cloudinary settings for Django. Add to your settings file.
+CLOUDINARY = {
+  'cloud_name': 'hv3gbmb9w',
+  'api_key': '527626233556762',
+  'api_secret': 'l4rV_3wSUwCFO9cGPxLZDcCMPLc',
+}
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 STATIC_ROOT = 'staticfiles'
@@ -88,3 +103,4 @@ TEMPLATE_DIRS = (
 
 MEDIA_ROOT = 'media/'
 MEDIA_URL = '/media/'
+
