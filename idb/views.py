@@ -6,7 +6,9 @@ from django.template import RequestContext, loader
 from django.db.models import F
 
 def index(request):
-    return render(request, 'index.html')
+    template = loader.get_template('index.html')
+    context = RequestContext(request)
+    return HttpResponse(template.render(context))
 
 def about(request):
     return render(request, 'about.html')
