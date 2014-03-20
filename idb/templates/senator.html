@@ -15,7 +15,7 @@
             <ul class="">
                 {% if bills %}
                     {% for bill in bills %}
-                        <li class=""><a href="/bill/{{ bill.id }}/"> {{ bill.name }}</a></li>
+                        <li class=""><a href="/bills/{{ bill.id }}/"> {{ bill.name }}</a></li>
                     {% endfor %}
                 {% else %}
                     There are no bills associated with this senator.
@@ -26,7 +26,7 @@
             <ul class="">
                 {% if committees %}
                     {% for committee in committees %}
-                        <li class=""><a href="/committee/{{ committee.id }}/"> {{ committee.name }}</a></li>
+                        <li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }}</a></li>
                     {% endfor %}
                 {% else %}
                     {{ senator.name }} is not in any committees.
