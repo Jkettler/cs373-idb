@@ -31,7 +31,8 @@
                 {% endif %}
             </ul>
         </li>
-        <li>Map: {{ senator.map }}</li>
+        <li>Office Headquarters:
+        <p> {{ senator.map |safe }}</p></li>
 
     </ul>
 {% else %}
