@@ -28,6 +28,10 @@ a:hover:visited {color:#E8504E}
       margin-left: auto;
 }
 
+.senator li {
+    margin-bottom: 0.5em;
+}
+
 #idb-navbar li{
     padding-right:1em;
     /*margin-left:1em;*/
