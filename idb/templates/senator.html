@@ -2,12 +2,10 @@
 {% load cloudinary %}
 {% block content %}
 
-
-		<div class=" row-fluid senator">
-            <div class="col-sm-12" style="text-align: center; padding-bottom: 35px;">
-                <h1>{{ senator.name }}</h1>
-				<img class="img" src="{%  cloudinary_url senator.twitter type="twitter_name" width="250" height="250" %}.jpg">
-            </div>
+    <div class=" row-fluid senator">
+        <div class="col-sm-12" style="text-align: center; padding-bottom: 35px;">
+            <h1>{{ senator.name }}</h1>
+            <img class="img" src="{%  cloudinary_url senator.twitter type="twitter_name" width="250" height="250" %}.jpg">
         </div>
         <div class="row-fluid">
             <div class="col-sm-5 col-sm-offset-1">
@@ -25,21 +23,21 @@
                                 {% endfor %}
                             </ul>
                         </li>
-					{% endif %}
-					{% if committees %}
-						<li>Committees:
-							<ul class="">
-								{% for committee in committees %}
-									<li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }}</a></li>
-								{% endfor %}
-							</ul>
-						</li>
-					{% endif %}
-				   
-				</ul>
-				<div style="float: left;">Contact Office:
-					<div class="col-sm-12"> {{ senator.map |safe }}</p></div>
-				</div>
+                    {% endif %}
+                    {% if committees %}
+                        <li>Committees:
+                            <ul class="">
+                                {% for committee in committees %}
+                                    <li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
+
+                </ul>
+                <div style="float: left;">Contact Office:
+                    <div class="col-sm-12"> {{ senator.map |safe }}</p></div>
+                </div>
 
 
                 </ul>
@@ -49,12 +47,13 @@
                 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
             </div>
         </div>
-        <div class="col-sm-12 back-button">
-            <a href="/senators/">
-                <button type="button" class="btn btn-primary">
+    </div>
+    <div class="col-sm-12 back-button">
+        <a href="/senators/">
+            <button type="button" class="btn btn-primary">
                 <span class="glyphicon glyphicon-arrow-left"></span>
                 Back to Senators
-                </button>
-            </a>
-        </div>
+            </button>
+        </a>
+    </div>
 {% endblock %}
