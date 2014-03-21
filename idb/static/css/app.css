@@ -25,6 +25,11 @@ a:hover:visited {color:#E8504E}
 a:hover {
     text-decoration: none;
 }
+
+.row-fluid.senator .col-sm-12 {
+	text-align: center; 
+	padding-bottom: 35px;
+}
 .senator img.img{
       display: block;
       margin-right: auto;
@@ -33,6 +38,10 @@ a:hover {
 
 .senator li, .bill li, .committee li {
     margin-bottom: 0.5em;
+}
+
+.senatorMap {
+	float: left;
 }
 
 .senators .name {

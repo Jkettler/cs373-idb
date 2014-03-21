@@ -2,9 +2,8 @@
 {% load cloudinary %}
 {% block content %}
 
-
-		<div class=" row-fluid senator">
-            <div class="col-sm-12" style="text-align: center; padding-bottom: 35px;">
+		<div class="row-fluid senator">
+            <div class="col-sm-12">
                 <h1>{{ senator.name }}</h1>
 				<img class="img" src="{%  cloudinary_url senator.twitter type="twitter_name" width="250" height="250" %}.jpg">
             </div>
@@ -19,7 +18,7 @@
                     <li>Facebook: <a href="{{ senator.facebook }}">{{ senator.facebook }}</a></li>
                     {% if bills %}
                         <li>Bills:
-                            <ul class="">
+                            <ul>
                                 {% for bill in bills %}
                                     <li class=""><a href="/bills/{{ bill.id }}/"> {{ bill.name }}</a></li>
                                 {% endfor %}
@@ -37,7 +36,7 @@
 					{% endif %}
 				   
 				</ul>
-				<div style="float: left;">Contact Office:
+				<div class="senatorMap">Contact Office:
 					<div class="col-sm-12"> {{ senator.map |safe }}</p></div>
 				</div>
 
