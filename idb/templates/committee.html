@@ -11,12 +11,12 @@
                 <li>
 					<div>Chair: 
 						<div><a href="/senators/{{ committee.chair.id }}/"> {{ committee.chair }}</a></div>
-					<img class="img" src="{%  cloudinary_url committee.chair.twitter type="twitter_name" width="100" height="100" %}.jpg">
+						<img class="img" src="{%  cloudinary_url committee.chair.twitter type="twitter_name" width="100" height="100" %}.jpg">
 					</div>
 				</li>
                 <li>
 					<div>Vice-Chair: <a href="/senators/{{ committee.vice_chair.id }}/"> {{ committee.vice_chair }}</a></div>
-					<img class="img" src="{%  cloudinary_url committee.vice_chair.twitter type="twitter_name" width="100" height="100" %}.jpg">
+						<img class="img" src="{%  cloudinary_url committee.vice_chair.twitter type="twitter_name" width="100" height="100" %}.jpg">
 					</div>
 				</li>
                 <li>Members:
@@ -24,9 +24,8 @@
                         {% if senator_set %}
                             {% for member in senator_set %}
                                 <li class="">
-									<div> <a href="/senators/{{ member.id }}/"> {{ member.name }}</a>
+									<div> <a href="/senators/{{ member.id }}/"> {{ member.name }}</a></div>
 									<img class="img" src="{%  cloudinary_url member.twitter type="twitter_name" width="100" height="100" %}.jpg">
-									</div>
 								</li>
                             {% endfor %}
                         {% else %}
