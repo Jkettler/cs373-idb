@@ -28,13 +28,13 @@ a:hover:visited {color:#E8504E}
       margin-left: auto;
 }
 
-.senator li {
+.senator li, .bill li, .committee li {
     margin-bottom: 0.5em;
 }
 
-#idb-navbar li{
-    padding-right:1em;
-    /*margin-left:1em;*/
+.navbar-header:first-child a{
+    background-color: darkgray;
+    color: white;
 }
 
 .navbar-brand {
@@ -50,4 +50,8 @@ a:hover:visited {color:#E8504E}
 
 #footer .text-muted {
   margin-top: 1em;
+}
+
+.back-button {
+    margin-top: 2em;
 }
