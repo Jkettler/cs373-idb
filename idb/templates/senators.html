@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 {% load cloudinary %}
 {% block content %}
-  <div class="col-sm-8">
-    {% if latest_senators_list %}
-      <ul class="media-list">
-      {% for senator in latest_senators_list %}
-          <li class="media">
-            <a class="pull-left">
-              <img src="{%  cloudinary_url senator.twitter type="twitter_name" %}.jpg">
-              </a>
-            <div class="media-body">
-              <a href="/senators/{{ senator.id }}/" class="media-heading"><h4>{{ senator.name }}</h4></a>
-            </div>
-          </li>
-      {% endfor %}
-      </ul>
-    {% else %}
-        <p>No Senators are available.</p>
-    {% endif %}
-  </div>
+    <div class="col-sm-12 senators">
+        {% if latest_senators_list %}
+            {% for senator in latest_senators_list %}
+                <div class="col-sm-4 senator-grid">
+                    <div class="photo">
+                        <a class="pull-left">
+                            <img src="{%  cloudinary_url senator.twitter type="twitter_name" %}.jpg">
+                        </a>
+                    </div>
+                    <div class="name">
+                        <a href="/senators/{{ senator.id }}/" class="media-heading">{{ senator.name }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No Senators are available.</p>
+        {% endif %}
+    </div>
 {% endblock %}
