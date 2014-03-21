@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {% load cloudinary %}
 {% block content %}
-    {% if senator %}
-        <div class=" row-fluid senator">
+    <div class="senator">
         <img class="img" src="{%  cloudinary_url senator.twitter type="twitter_name" width="200" height="200" %}.jpg">
         <div class="row-fluid">
             <div class="col-sm-12">
@@ -10,43 +9,49 @@
             </div>
         </div>
         <div class="row-fluid">
-        <div class="col-sm-5 col-sm-offset-1">
-            <ul class="list-unstyled">
-                <li>Political Party: {{ senator.party }}</li>
-                <li>Occupation: {{ senator.occupation }}</li>
-                <li>Legislative Experience: {{ senator.legislative_experience }}</li>
-                <li>District: {{ senator.district }}</li>
-                <li>Facebook: <a href="{{ senator.facebook }}">{{ senator.facebook }}</a></li>
-                {% if bills %}
-                    <li>Bills:
-                        <ul class="">
-                            {% for bill in bills %}
-                                <li class=""><a href="/bills/{{ bill.id }}/"> {{ bill.name }}</a></li>
-                            {% endfor %}
-                        </ul>
+            <div class="col-sm-5 col-sm-offset-1">
+                <ul class="list-unstyled">
+                    <li>Political Party: {{ senator.party }}</li>
+                    <li>Occupation: {{ senator.occupation }}</li>
+                    <li>Legislative Experience: {{ senator.legislative_experience }}</li>
+                    <li>District: {{ senator.district }}</li>
+                    <li>Facebook: <a href="{{ senator.facebook }}">{{ senator.facebook }}</a></li>
+                    {% if bills %}
+                        <li>Bills:
+                            <ul class="">
+                                {% for bill in bills %}
+                                    <li class=""><a href="/bills/{{ bill.id }}/"> {{ bill.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                    {% if committees %}
+                        <li>Committees:
+                            <ul class="">
+                                {% for committee in committees %}
+                                    <li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                    <li>Contact Office:
+                        <div class="col-sm-12"> {{ senator.map |safe }}</div>
                     </li>
-                {% endif %}
-                {% if committees %}
-                    <li>Committees:
-                        <ul class="">
-                            {% for committee in committees %}
-                                <li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                {% endif %}
-                <li>Contact Office:
-                    <div class="col-sm-12"> {{ senator.map |safe }}</p></div></li>
 
-            </ul>
+                </ul>
+            </div>
+            <div class="col-sm-6">
+                <a class="twitter-timeline" href="https://twitter.com/{{ senator.twitter }}" data-widget-id="446782772338651138" data-screen-name="{{ senator.twitter }}">Tweets by @{{ senator.twitter }}</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            </div>
         </div>
-        <div class="col-sm-6">
-            <a class="twitter-timeline" href="https://twitter.com/{{ senator.twitter }}" data-widget-id="446782772338651138" data-screen-name="{{ senator.twitter }}">Tweets by @{{ senator.twitter }}</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </div>
+        <div class="col-sm-12 back-button">
+            <a href="/senators/">
+                <button type="button" class="btn btn-primary">
+                <span class="glyphicon glyphicon-arrow-left"></span>
+                Back to Senators
+                </button>
+            </a>
         </div>
-    {% else %}
-        <p>Something went wrong.</p>
-    {% endif %}
-</div>
-</div>
 {% endblock %}

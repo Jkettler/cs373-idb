@@ -1,42 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="col-sm-8">
-        {% if bill %}
-            <div class=" row-fluid bill">
-                <div class="row-fluid">
-                    <div class="col-sm-12">
-                        <h1>{{ bill.name }}</h1>
-                    </div>
-                    <div class="row-fluid">
-                        <div class="col-sm-11 col-sm-offset-1">
-                            <ul class="list-unstyled">
-                                <li>Name: {{ bill.name }} {% if bill.url %}(<a href="{{ bill.url }}">link</a>){% endif %}</li>
-                                <li>Legislative Session: {{ bill.legislative_session }}</li>
-                                <li>Date Proposed: {{ bill.date_proposed }}</li>
-                                <li>Date Signed: {{ bill.date_signed }}</li>
-                                <li>Date Effective: {{ bill.date_effective }}</li>
-                                <li>Status: {{ bill.status }}</li>
-                                <li>Description: {{ bill.description }}</li>
-                                <li>Author: <a href="/senators/{{ bill.author.id }}/"> {{ bill.author.name }}</a></li>
-                                <li>Primary Committee: <a href="/committees/{{ bill.primary_committee.id }}/"> {{ bill.primary_committee.name }}</a></li>
-                                <li>Voters:
-                                    <ul class="">
-                                        {% if voters %}
-                                            {% for voter in voters %}
-                                                <li class=""><a href="/senators/{{ voter.id }}/"> {{ voter.name }}</a></li>
-                                            {% endfor %}
-                                        {% else %}
-                                            Nobody has voted for this bill.
-                                        {% endif %}
-                                    </ul>
-                                </li>
+    <div class="col-sm-12">
+        <div class=" row-fluid bill">
+            <div class="col-sm-12">
+                <h1>{{ bill.name }}</h1>
+            </div>
+            <div class="row-fluid">
+                <div class="col-sm-11 col-sm-offset-1">
+                    <ul class="list-unstyled">
+                        <li>Name: {{ bill.name }} {% if bill.url %}(<a href="{{ bill.url }}">link</a>){% endif %}</li>
+                        <li>Legislative Session: {{ bill.legislative_session }}</li>
+                        <li>Date Proposed: {{ bill.date_proposed }}</li>
+                        <li>Date Signed: {{ bill.date_signed }}</li>
+                        <li>Date Effective: {{ bill.date_effective }}</li>
+                        <li>Status: {{ bill.status }}</li>
+                        <li>Description: {{ bill.description }}</li>
+                        <li>Author: <a href="/senators/{{ bill.author.id }}/"> {{ bill.author.name }}</a></li>
+                        <li>Primary Committee: <a href="/committees/{{ bill.primary_committee.id }}/"> {{ bill.primary_committee.name }}</a></li>
+                        <li>Voters:
+                            <ul class="">
+                                {% if voters %}
+                                    {% for voter in voters %}
+                                        <li class=""><a href="/senators/{{ voter.id }}/"> {{ voter.name }}</a></li>
+                                    {% endfor %}
+                                {% else %}
+                                    Nobody has voted for this bill.
+                                {% endif %}
                             </ul>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        {% else %}
-            <p>No Bills are available.</p>
-        {% endif %}
-    </div>
+        </div>
+            <div class="col-sm-11 back-button">
+                <a href="/bills/"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back to Bills</button></a>
+            </div>
+        </div>
 {% endblock %}
