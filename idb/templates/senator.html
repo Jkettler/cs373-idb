@@ -17,17 +17,15 @@
                 <li>Legislative Experience: {{ senator.legislative_experience }}</li>
                 <li>District: {{ senator.district }}</li>
                 <li>Facebook: <a href="{{ senator.facebook }}">{{ senator.facebook }}</a></li>
-                <li>Bills:
-                    <ul class="">
-                        {% if bills %}
+                {% if bills %}
+                    <li>Bills:
+                        <ul class="">
                             {% for bill in bills %}
                                 <li class=""><a href="/bills/{{ bill.id }}/"> {{ bill.name }}</a></li>
                             {% endfor %}
-                        {% else %}
-                            There are no bills associated with this senator.
-                        {% endif %}
-                    </ul>
-                </li>
+                        </ul>
+                    </li>
+                {% endif %}
                 {% if committees %}
                     <li>Committees:
                         <ul class="">
