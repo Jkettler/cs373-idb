@@ -18,9 +18,9 @@ body:after {
 
 }
 a:link {color:#7E82E8}
-a:visited {color:#E8504E}
+a:visited {color: #7E82E8}
 a:hover {color:#7E82E8}
-a:hover:visited {color:#E8504E}
+a:hover:visited {color:#7E82E8}
 
 a:hover {
     text-decoration: none;
