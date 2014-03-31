@@ -22,7 +22,7 @@ A collection of all of the senators in the database
                 "district": "12",
                 "twitter": "https://twitter.com/SenJaneNelson",
                 "facebook": "https://www.facebook.com/SenatorJaneNelson",
-                "picture": "none",
+                "picture": "null",
                 "committees": [1,2]
             }
         ]
@@ -30,19 +30,17 @@ A collection of all of the senators in the database
 ### Create a new senator entry [POST]
 + Request (application/json)
 
-        [
-            {
-                "name": "Jane Nelson",
-                "party": "Republican",
-                "occupation": "Businesswoman, former teacher",
-                "legistlative_experience": "Disaster Relief",
-                "district": "12",
-                "twitter": "https://twitter.com/SenJaneNelson",
-                "facebook": "https://www.facebook.com/SenatorJaneNelson",
-                "picture": "none",
-                "committees": [1,2]
-            }
-        ]
+        {
+            "name": "Jane Nelson",
+            "party": "Republican",
+            "occupation": "Businesswoman, former teacher",
+            "legistlative_experience": "Disaster Relief",
+            "district": "12",
+            "twitter": "https://twitter.com/SenJaneNelson",
+            "facebook": "https://www.facebook.com/SenatorJaneNelson",
+            "picture": "null",
+            "committees": [1,2]
+        }
 
 + Response 201 (application/json)
 
@@ -66,7 +64,7 @@ A specific senator, where id is the database primary key for that senator
                 "district": "12",
                 "twitter": "https://twitter.com/SenJaneNelson",
                 "facebook": "https://www.facebook.com/SenatorJaneNelson",
-                "picture": "none",
+                "picture": "null",
                 "committees": [1,2]
             }
 
@@ -82,7 +80,7 @@ A specific senator, where id is the database primary key for that senator
             "district": "12",
             "twitter": "https://twitter.com/SenJaneNelson",
             "facebook": "https://www.facebook.com/SenatorJaneNelson",
-            "picture": "none",
+            "picture": "null",
             "committees": [1,2]
         }
 + Response 204
@@ -101,7 +99,7 @@ All of the committees of which a senator is a member
                 "name": "Health & Human Services",
                 "chair": 1,
                 "vice_chair": [2],
-                "description": "NONE",
+                "description": "null",
                 "appointment_Date": "2013-01-08",
                 "senators": [1]
             }, 
@@ -110,7 +108,7 @@ All of the committees of which a senator is a member
                 "name": "Finance",
                 "chair": 3,
                 "vice_chair": [4],
-                "description": "NONE",
+                "description": "null",
                 "appointment_Date": "2013-01-08",
                 "senators": [1,2]
             }
@@ -125,7 +123,7 @@ All of the Bills that this senator has authored
             {
                 "id": 1,
                 "name": "SB 63",
-                "author": [1],
+                "authors": [1],
                 "legislative_session": "83(R)",
                 "date_proposed": "11/12/2012",
                 "date_signed": "6/14/2013",
@@ -148,7 +146,7 @@ A collection of all of the bills in the database
             {
                 "id": 1,
                 "name": "SB 63",
-                "author": [1],
+                "authors": [1],
                 "legislative_session": "83(R)",
                 "date_proposed": "11/12/2012",
                 "date_signed": "6/14/2013",
@@ -164,21 +162,19 @@ A collection of all of the bills in the database
 ### Create a new bill entry [POST]
 + Request (application/json)
 
-        [
-            {
-                "name": "SB 63",
-                "author": [1],
-                "legislative_session": "83(R)",
-                "date_proposed": "11/12/2012",
-                "date_signed": "6/14/2013",
-                "date_effective": "6/14/2013",
-                "status": "Signed into law",
-                "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
-                "primary_committee": 1,
-                "Description": "Relating to consent to the immunization of certain children.",
-                "votes": {"1": "AYE","2": "NAY"}
-            }
-        ]
+        {
+            "name": "SB 63",
+            "authors": [1],
+            "legislative_session": "83(R)",
+            "date_proposed": "11/12/2012",
+            "date_signed": "6/14/2013",
+            "date_effective": "6/14/2013",
+            "status": "Signed into law",
+            "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
+            "primary_committee": 1,
+            "Description": "Relating to consent to the immunization of certain children.",
+            "votes": {"1": "AYE","2": "NAY"}
+        }
 
 + Response 201 (application/json)
 
@@ -196,7 +192,7 @@ A specific bill, where id is the database primary key for that bill
             {
                 "id": 1,
                 "name": "SB 63",
-                "author": [1],
+                "authors": [1],
                 "legislative_session": "83(R)",
                 "date_proposed": "11/12/2012",
                 "date_signed": "6/14/2013",
@@ -214,7 +210,7 @@ A specific bill, where id is the database primary key for that bill
         {
                 "id": 1,
                 "name": "SB 63",
-                "author": [1],
+                "authors": [1],
                 "legislative_session": "83(R)",
                 "date_proposed": "11/12/2012",
                 "date_signed": "6/14/2013",
@@ -224,6 +220,7 @@ A specific bill, where id is the database primary key for that bill
                 "primary_committee": 1,
                 "Description": "Relating to consent to the immunization of certain children.",
                 "votes": {"1": "AYE","2": "NAY"}
+
         }
 + Response 204
 
@@ -246,7 +243,7 @@ A list of all the senators that voted on the bill
                 "district": "12",
                 "twitter": "https://twitter.com/SenJaneNelson",
                 "facebook": "https://www.facebook.com/SenatorJaneNelson",
-                "picture": "none",
+                "picture": "null",
                 "committees": [1,2]
             }
         ]
@@ -266,7 +263,7 @@ A list of all the senators that authored the bill
                 "district": "12",
                 "twitter": "https://twitter.com/SenJaneNelson",
                 "facebook": "https://www.facebook.com/SenatorJaneNelson",
-                "picture": "none",
+                "picture": "null",
                 "committees": [1,2]
             }
         ]
@@ -283,7 +280,7 @@ A collection of all of the committees in the database
                 "name": "Health & Human Services",
                 "chair": 1,
                 "vice_chair": [2],
-                "description": "NONE",
+                "description": "null",
                 "appointment_Date": "2013-01-08",
                 "senators": [1]
             }
@@ -296,7 +293,7 @@ A collection of all of the committees in the database
                 "name": "Health & Human Services",
                 "chair": 1,
                 "vice_chair": [2],
-                "description": "NONE",
+                "description": "null",
                 "appointment_Date": "2013-01-08",
                 "senators": [1]
         }
@@ -319,7 +316,7 @@ A specific committee, where id is the database primary key for that committee
                 "name": "Health & Human Services",
                 "chair": 1,
                 "vice_chair": [2],
-                "description": "NONE",
+                "description": "null",
                 "appointment_Date": "2013-01-08",
                 "senators": [1]
             }
@@ -332,7 +329,7 @@ A specific committee, where id is the database primary key for that committee
             "name": "Health & Human Services",
             "chair": 1,
             "vice_chair": [2],
-            "description": "NONE",
+            "description": "null",
             "appointment_Date": "2013-01-08",
             "senators": [1]
         }
@@ -356,7 +353,7 @@ All of the senators that are members of this committee
                 "district": "12",
                 "twitter": "https://twitter.com/SenJaneNelson",
                 "facebook": "https://www.facebook.com/SenatorJaneNelson",
-                "picture": "none",
+                "picture": "null",
                 "committees": [1,2]
             }
         ]
@@ -370,7 +367,7 @@ All of the Bills that this committee was the primary committee for
             {
                 "id": 1,
                 "name": "SB 63",
-                "author": [1],
+                "authors": [1],
                 "legislative_session": "83(R)",
                 "date_proposed": "11/12/2012",
                 "date_signed": "6/14/2013",
