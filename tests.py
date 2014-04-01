@@ -25,7 +25,7 @@ class tests (unittest.TestCase) :
 		      "district": "12",
 		      "twitter": "https://twitter.com/SenJaneNelson",
 		      "facebook": "https://www.facebook.com/SenatorJaneNelson",
-		      "picture": "none",
+		      "picture": "null",
 		      "committees": [1,2]
 		  }
 		]
@@ -36,8 +36,7 @@ class tests (unittest.TestCase) :
 
 	def test_senators_post(self) : 
 		connection = http.client.HTTPConnection("cs373idb2.apiary-mock.com")
-		values = json.dumps([
-		  {
+		values = json.dumps({
 		      "name": "Jane Nelson",
 		      "party": "Republican",
 		      "occupation": "Businesswoman, former teacher",
@@ -45,10 +44,9 @@ class tests (unittest.TestCase) :
 		      "district": "12",
 		      "twitter": "https://twitter.com/SenJaneNelson",
 		      "facebook": "https://www.facebook.com/SenatorJaneNelson",
-		      "picture": "none",
+		      "picture": "null",
 		      "committees": [1,2]
-		  }
-		])
+		  })
 		headers = {"Content-Type": "application/json"}
 		connection.request("POST", "/api/senators", values, headers)
 		response = connection.getresponse()
@@ -72,7 +70,7 @@ class tests (unittest.TestCase) :
 		    "district": "12",
 		    "twitter": "https://twitter.com/SenJaneNelson",
 		    "facebook": "https://www.facebook.com/SenatorJaneNelson",
-		    "picture": "none",
+		    "picture": "null",
 		    "committees": [1,2]
 		}	
 		self.assertTrue(response.status == 200)
@@ -92,7 +90,7 @@ class tests (unittest.TestCase) :
 		      "district": "12",
 		      "twitter": "https://twitter.com/SenJaneNelson",
 		      "facebook": "https://www.facebook.com/SenatorJaneNelson",
-		      "picture": "none",
+		      "picture": "null",
 		      "committees": [1,2]
 			}
 		])
@@ -123,7 +121,7 @@ class tests (unittest.TestCase) :
 		        "name": "Health & Human Services",
 		        "chair": 1,
 		        "vice_chair": [2],
-		        "description": "NONE",
+		        "description": "null",
 		        "appointment_Date": "2013-01-08",
 		        "senators": [1]
 		    }, 
@@ -132,7 +130,7 @@ class tests (unittest.TestCase) :
 		        "name": "Finance",
 		        "chair": 3,
 		        "vice_chair": [4],
-		        "description": "NONE",
+		        "description": "null",
 		        "appointment_Date": "2013-01-08",
 		        "senators": [1,2]
 		    }
@@ -151,7 +149,7 @@ class tests (unittest.TestCase) :
 		    {
 		        "id": 1,
 		        "name": "SB 63",
-		        "author": [1],
+		        "authors": [1],
 		        "legislative_session": "83(R)",
 		        "date_proposed": "11/12/2012",
 		        "date_signed": "6/14/2013",
@@ -160,8 +158,8 @@ class tests (unittest.TestCase) :
 		        "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
 		        "primary_committee": 1,
 		        "Description": "Relating to consent to the immunization of certain children.",
-		        "votes": {"1": "AYE","2": "NAY"}
-		    }
+                "votes": {"1": "AYE", "2": "NAY"}
+            }
 		]
 		self.assertTrue(response.status == 200)
 		self.assertTrue(json.loads(response.read().decode("utf-8"))== desired_body)
@@ -195,7 +193,7 @@ class tests (unittest.TestCase) :
 		    {
 		        "id": 1,
 		        "name": "SB 63",
-		        "author": [1],
+		        "authors": [1],
 		        "legislative_session": "83(R)",
 		        "date_proposed": "11/12/2012",
 		        "date_signed": "6/14/2013",
@@ -204,7 +202,7 @@ class tests (unittest.TestCase) :
 		        "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
 		        "primary_committee": 1,
 		        "Description": "Relating to consent to the immunization of certain children.",
-		        "votes": {"1": "AYE", "2": "NAY"}
+                "votes": {"1": "AYE", "2": "NAY"}
 		    }
 		]
 		self.assertTrue(response.status == 200)
@@ -214,10 +212,10 @@ class tests (unittest.TestCase) :
 
 	def test_bills_post(self) : 
 		connection = http.client.HTTPConnection("cs373idb2.apiary-mock.com")
-		values = json.dumps([
+		values = json.dumps(
 		    {
 		        "name": "SB 63",
-		        "author": [1],
+		        "authors": [1],
 		        "legislative_session": "83(R)",
 		        "date_proposed": "11/12/2012",
 		        "date_signed": "6/14/2013",
@@ -226,9 +224,9 @@ class tests (unittest.TestCase) :
 		        "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
 		        "primary_committee": 1,
 		        "Description": "Relating to consent to the immunization of certain children.",
-		        "votes": {1: "AYE",2: "NAY"}
-		    }
-		])
+                "votes": {"1": "AYE", "2": "NAY"}		    
+            }
+		)
 		headers = {"Content-Type": "application/json"}
 		connection.request("POST", "/api/bills", values, headers)
 		response = connection.getresponse()
@@ -246,7 +244,7 @@ class tests (unittest.TestCase) :
 		desired_body = {
 		    "id": 1,
 		    "name": "SB 63",
-		    "author": [1],
+		    "authors": [1],
 		    "legislative_session": "83(R)",
 		    "date_proposed": "11/12/2012",
 		    "date_signed": "6/14/2013",
@@ -267,7 +265,7 @@ class tests (unittest.TestCase) :
 		values = json.dumps({
 		        "id": 1,
 		        "name": "SB 63",
-		        "author": [1],
+		        "authors": [1],
 		        "legislative_session": "83(R)",
 		        "date_proposed": "11/12/2012",
 		        "date_signed": "6/14/2013",
@@ -276,8 +274,8 @@ class tests (unittest.TestCase) :
 		        "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
 		        "primary_committee": 1,
 		        "Description": "Relating to consent to the immunization of certain children.",
-		        "votes": {1: "AYE",2: "NAY"}
-		})
+                "votes": {"1": "AYE", "2": "NAY"}		
+            })
 		headers = {"Content-Type": "application/json"}
 		connection.request("PUT", "/api/bills/{id}", values)
 		response = connection.getresponse()
@@ -309,7 +307,7 @@ class tests (unittest.TestCase) :
 		        "district": "12",
 		        "twitter": "https://twitter.com/SenJaneNelson",
 		        "facebook": "https://www.facebook.com/SenatorJaneNelson",
-		        "picture": "none",
+		        "picture": "null",
 		        "committees": [1,2]
 		    }
 		]
@@ -332,7 +330,7 @@ class tests (unittest.TestCase) :
 		        "district": "12",
 		        "twitter": "https://twitter.com/SenJaneNelson",
 		        "facebook": "https://www.facebook.com/SenatorJaneNelson",
-		        "picture": "none",
+		        "picture": "null",
 		        "committees": [1,2]
 		    }
 		]
@@ -364,7 +362,7 @@ class tests (unittest.TestCase) :
 		        "name": "Health & Human Services",
 		        "chair": 1,
 		        "vice_chair": [2],
-		        "description": "NONE",
+		        "description": "null",
 		        "appointment_Date": "2013-01-08",
 		        "senators": [1]
 		    }
@@ -380,7 +378,7 @@ class tests (unittest.TestCase) :
 	        "name": "Health & Human Services",
 	        "chair": 1,
 	        "vice_chair": [2],
-	        "description": "NONE",
+	        "description": "null",
 	        "appointment_Date": "2013-01-08",
 	        "senators": [1]
 		})
@@ -403,7 +401,7 @@ class tests (unittest.TestCase) :
 		    "name": "Health & Human Services",
 		    "chair": 1,
 		    "vice_chair": [2],
-		    "description": "NONE",
+		    "description": "null",
 		    "appointment_Date": "2013-01-08",
 		    "senators": [1]
 		}	
@@ -419,7 +417,7 @@ class tests (unittest.TestCase) :
 		    "name": "Health & Human Services",
 		    "chair": 1,
 		    "vice_chair": [2],
-		    "description": "NONE",
+		    "description": "null",
 		    "appointment_Date": "2013-01-08",
 		    "senators": [1]
 		})
@@ -454,7 +452,7 @@ class tests (unittest.TestCase) :
 		        "district": "12",
 		        "twitter": "https://twitter.com/SenJaneNelson",
 		        "facebook": "https://www.facebook.com/SenatorJaneNelson",
-		        "picture": "none",
+		        "picture": "null",
 		        "committees": [1,2]
 		    }
 		]
@@ -472,7 +470,7 @@ class tests (unittest.TestCase) :
 		    {
 		        "id": 1,
 		        "name": "SB 63",
-		        "author": [1],
+		        "authors": [1],
 		        "legislative_session": "83(R)",
 		        "date_proposed": "11/12/2012",
 		        "date_signed": "6/14/2013",
@@ -481,7 +479,7 @@ class tests (unittest.TestCase) :
 		        "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
 		        "primary_committee": 1,
 		        "Description": "Relating to consent to the immunization of certain children.",
-		        "votes": {"1": "AYE", "2": "NAY"}
+                "votes": {"1": "AYE", "2": "NAY"}
 		    }
 		]
 		self.assertTrue(response.status == 200)
