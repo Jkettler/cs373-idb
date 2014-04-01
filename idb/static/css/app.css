@@ -100,3 +100,18 @@ a:hover {
 .alignMid{
 	text-align: center; 
 }
+
+.membersList{
+  background-color: rgba(214, 245, 255, 1);
+  width: 100%;
+  border: 2px solid;
+  border-radius: 25px;
+}
+
+.topContainer {
+  padding-top: 20px;
+}
+
+.memberContainer{
+  padding-bottom: 10px;
+}
