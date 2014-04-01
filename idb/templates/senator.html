@@ -4,20 +4,19 @@
 
 
 	<div class="senator">
-		<div class="col-sm-12">
-			<h1>{{ senator.name }}</h1>
-			<img class="img" src="{%  cloudinary_url senator.twitter type="twitter_name" width="250" height="250" %}.jpg">
+		<div class="col-sm-12 senatorName">
+			<h1><b>{{ senator.name }}</b></h1>
+			<img class="img-circle" src="{%  cloudinary_url senator.twitter type="twitter_name" width="250" height="250" %}.jpg">
 		</div>
 		<div class="data">
 			<div class="col-sm-5 col-sm-offset-1">
 				<ul class="list-unstyled">
-					<li>Political Party: {{ senator.party }}</li>
-					<li>Occupation: {{ senator.occupation }}</li>
-					<li>Legislative Experience: {{ senator.legislative_experience }}</li>
-					<li>District: {{ senator.district }}</li>
-					<li>Facebook: <a href="{{ senator.facebook }}">{{ senator.facebook }}</a></li>
+					<li><b>Political Party:</b> {{ senator.party }}</li>
+					<li><b>Occupation:</b>  {{ senator.occupation }}</li>
+					<li><b>Legislative Experience:</b>  {{ senator.legislative_experience }}</li>
+					<li><b>District:</b>  {{ senator.district }}</li>
 					{% if bills %}
-						<li>Bills:
+						<li><b>Bills:</b> 
 							<ul>
 								{% for bill in bills %}
 									<li class=""><a href="/bills/{{ bill.id }}/"> {{ bill.name }}</a></li>
@@ -27,7 +26,7 @@
 
 					{% endif %}
 					{% if committees %}
-						<li>Committees:
+						<li><b>Committees:</b> 
 							<ul class="">
 								{% for committee in committees %}
 									<li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }}</a></li>
@@ -35,19 +34,24 @@
 							</ul>
 						</li>
 					{% endif %}
-				   
-				</ul>
-				<div class="senatorMap">Contact Office:
-					<div class="col-sm-12"> {{ senator.map |safe }}</p></div>
-				</div>
-
-				</ul>
+				</ul>			
 			</div>
-			<div class="col-sm-6">
-				<a class="twitter-timeline" href="https://twitter.com/{{ senator.twitter }}" data-widget-id="446782772338651138" data-screen-name="{{ senator.twitter }}">Tweets by @{{ senator.twitter }}</a>
-				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			<div class="senatorMap">	
+				<span><h4> <b>Contact the Senator: </b> </h4></span>
+				<b>Mailing Address:</b>
+				<div class="col-sm-12"> {{ senator.map |safe }}</p></div>
+			</div>
+			<div>
+				<div><h2 style="text-align: center"> <b>Social Media </b> </h2></div>
+				<div class="col-sm-6 twitterFeed">
+					<a  class="twitter-timeline" href="https://twitter.com/{{ senator.twitter }}" data-widget-id="446782772338651138" data-screen-name="{{ senator.twitter }}">Tweets by @{{ senator.twitter }}</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				</div>
+				<div class="fb-like-box fbFeed" data-href="{{ senator.facebook }}" data-width="500" data-height="600" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>
 			</div>
 		</div>
+
+		
     </div>
     <div class="col-sm-12 back-button">
         <a href="/senators/">
@@ -57,4 +61,16 @@
             </button>
         </a>
     </div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
 {% endblock %}
+
