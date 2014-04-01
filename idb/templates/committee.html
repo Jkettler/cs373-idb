@@ -3,38 +3,46 @@
 {% block content %}
     <div class="committee">
         <div class="col-sm-12 alignMid">
-            <h1>{{ committee.name }}</h1>
+            <h1><b>{{ committee.name }}</b></h1>
         </div>
         <div class="col-sm-11 col-sm-offset-1">
             <ul class="list-unstyled">
                 <li>Description: {{ committee.description }}</li>
-                <li>Appointment Date: {{ committee.appointment_date }}</li>
-                <li>
-					<div>Chair: 
-						<div><a href="/senators/{{ committee.chair.id }}/"> {{ committee.chair }}</a></div>
-						<img class="img" src="{%  cloudinary_url committee.chair.twitter type="twitter_name" width="100" height="100" %}.jpg">
+            </ul>
+            <div class="membersList row">
+                <div class="col-xs-12 topContainer">
+                    <div class=" alignMid col-xs-4"><b>Chair</b> 
+						<div><img class="img-circle" src="{%  cloudinary_url committee.chair.twitter type="twitter_name" width="100" height="100" %}.jpg"></div>
+                        <a href="/senators/{{ committee.chair.id }}/"> {{ committee.chair }}</a>
+				    </div>
+                    <div class="col-xs-4">&nbsp;</div>
+					<div class="alignMid col-xs-4" ><b>Vice-Chair</b> 
+						<div><img class="img-circle" src="{%  cloudinary_url committee.vice_chair.twitter type="twitter_name" width="100" height="100" %}.jpg"></div>
+                        <a href="/senators/{{ committee.vice_chair.id }}/"> {{ committee.vice_chair }}</a>
 					</div>
-				</li>
-                <li>
-					<div>Vice-Chair: 
-						<div><a href="/senators/{{ committee.vice_chair.id }}/"> {{ committee.vice_chair }}</a></div>
-						<img class="img" src="{%  cloudinary_url committee.vice_chair.twitter type="twitter_name" width="100" height="100" %}.jpg">
-					</div>
-				</li>
-                <li>Members:
-                    <ul class="">
+                </div>
+
+                <div class="col-xs-12">
+                    <div class="alignMid"><h4><b>Members</b></h4></div>
+                    <div class="list-unstyled">
                         {% if senator_set %}
                             {% for member in senator_set %}
-                                <li class="">
-									<div> <a href="/senators/{{ member.id }}/"> {{ member.name }}</a></div>
-									<img class="img" src="{%  cloudinary_url member.twitter type="twitter_name" width="100" height="100" %}.jpg">
-								</li>
+                            <div class=" col-xs-6 memberContainer">
+                                <div class="alignMid">
+									<div><img class="img-circle" src="{%  cloudinary_url member.twitter type="twitter_name" width="100" height="100" %}.jpg"></div>
+                                     <a href="/senators/{{ member.id }}/"> {{ member.name }}</a>
+								</div>
+                            </div>
                             {% endfor %}
                         {% else %}
                             There are no senators in this committee.
                         {% endif %}
-                    </ul>
-                </li>
+                    </div>
+         
+                </div>
+            </div>
+            <ul class="list-unstyled">
+                <li>Appointment Date: {{ committee.appointment_date }}</li>
             </ul>
         </div>
         <div class="col-sm-12 back-button">
@@ -42,3 +50,23 @@
         </div>
     </div>
 {% endblock %}
+
+<tr>
+                <td><div class="newcmte"><span class="newcmte">Chair</span><br><img style="width: 112px; height: 150px" src="http://www.vandeputte.senate.state.tx.us/assets/photos/vandeputte.jpg" alt="Sen. Van de Putte"><br><a href="http://www.vandeputte.senate.state.tx.us/">Leticia Van de Putte</a></div></td>
+                <td>&nbsp;</td>
+                <td><div class="newcmte"><span class="newcmte">Vice-Chair</span><br><img style="width: 112px; height: 150px" src="http://www.senate.state.tx.us/75r/senate/members/dist22/assets/photos/birdwell.jpg" alt="Sen. Birdwell"><br><a href="http://www.birdwell.senate.state.tx.us/">Brian Birdwell</a></div></td>
+        </tr>
+        <tr>
+                <td colspan="3" style=""><span class="newcmte">Members</span></td>
+        </tr>
+        <tr>
+                <td><div class="newcmte"><img style="width: 112px; height: 150px" src="http://www.campbell.senate.state.tx.us/assets/photos/campbell.jpg" alt="Sen. Campbell"><br><a href="http://www.campbell.senate.state.tx.us/">Donna Campbell</a></div></td>
+                <td><div class="newcmte"><img style="width: 112px; height: 150px" src="http://www.davis.senate.state.tx.us/assets/photos/davis.jpg" alt="Sen. Davis"><br><a href="http://www.davis.senate.state.tx.us/">Wendy Davis</a></div></td>
+                <td><div class="newcmte"><img style="width: 112px; height: 150px" src="http://www.senate.state.tx.us/75r/senate/members/dist29/assets/photos/Rodriguez81-1078D-014.jpg" alt="Sen. Rodriguez"><br><a href="http://www.rodriguez.senate.state.tx.us/">José Rodríguez</a></div></td>
+        </tr>
+        <tr>
+
+               <td style="text-align: right; vertical-align: top"><p class="newcmte2"><b>Staff:</b></p></td>
+                <td style="text-align: left"><p class="newcmte2"><b>Committee Director:</b> Bill Wilson<br><!--<br /><b>Committee Clerk:</b> Cinda Johnson--></p></td>
+                <td style="vertical-align: top; text-align: center; padding-left: 10%;"><p class="newcmte"><b>Phone:</b> (512) 463-2211<br><b>Fax:</b> (512) 463-7683<br>201 East 14th St.,<br>Sam Houston Building, Suite 345<br>Austin, TX 78701</p></td>
+        </tr>
