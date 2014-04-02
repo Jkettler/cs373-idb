@@ -1,0 +1,10 @@
+.twitterFeed { width: 100%; }
+
+.fbFeed { padding: 0; }
+
+.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe { width: 100% !important; }
+
+.senatorMap { width: 100%; } 
+.senatorMap iframe { width: 100% !important; }
+
+.col-xs-4 { width: 100% !important; }
