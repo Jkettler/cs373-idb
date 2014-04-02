@@ -120,7 +120,7 @@ class tests (unittest.TestCase) :
 		        "id": 1,
 		        "name": "Health & Human Services",
 		        "chair": 1,
-		        "vice_chair": [2],
+		        "vice_chair": 2,
 		        "description": "null",
 		        "appointment_Date": "2013-01-08",
 		        "senators": [1]
@@ -129,7 +129,7 @@ class tests (unittest.TestCase) :
 		        "id": 2,
 		        "name": "Finance",
 		        "chair": 3,
-		        "vice_chair": [4],
+		        "vice_chair": 4,
 		        "description": "null",
 		        "appointment_Date": "2013-01-08",
 		        "senators": [1,2]
@@ -361,7 +361,7 @@ class tests (unittest.TestCase) :
 		        "id": 1,
 		        "name": "Health & Human Services",
 		        "chair": 1,
-		        "vice_chair": [2],
+		        "vice_chair": 2,
 		        "description": "null",
 		        "appointment_Date": "2013-01-08",
 		        "senators": [1]
@@ -377,7 +377,7 @@ class tests (unittest.TestCase) :
 		values = json.dumps({
 	        "name": "Health & Human Services",
 	        "chair": 1,
-	        "vice_chair": [2],
+	        "vice_chair": 2,
 	        "description": "null",
 	        "appointment_Date": "2013-01-08",
 	        "senators": [1]
@@ -400,7 +400,7 @@ class tests (unittest.TestCase) :
 		    "id": 1,
 		    "name": "Health & Human Services",
 		    "chair": 1,
-		    "vice_chair": [2],
+		    "vice_chair": 2,
 		    "description": "null",
 		    "appointment_Date": "2013-01-08",
 		    "senators": [1]
@@ -416,7 +416,7 @@ class tests (unittest.TestCase) :
 		    "id": 1,
 		    "name": "Health & Human Services",
 		    "chair": 1,
-		    "vice_chair": [2],
+		    "vice_chair": 2,
 		    "description": "null",
 		    "appointment_Date": "2013-01-08",
 		    "senators": [1]

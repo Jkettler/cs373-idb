@@ -11,10 +11,10 @@
 		<div class="data">
 			<div class="col-sm-5 col-sm-offset-1">
 				<ul class="list-unstyled">
-					<li><b>Political Party:</b> {{ senator.party }}</li>
-					<li><b>Occupation:</b>  {{ senator.occupation }}</li>
-					<li><b>Legislative Experience:</b>  {{ senator.legislative_experience }}</li>
 					<li><b>District:</b>  {{ senator.district }}</li>
+					<li><b>Political Party:</b> {{ senator.party }}</li>
+					<li><b>Legislative Experience:</b>  {{ senator.legislative_experience }}</li>
+					<li><b>Occupation:</b>  {{ senator.occupation }}</li>
 					{% if bills %}
 						<li><b>Bills:</b> 
 							<ul>
@@ -26,7 +26,7 @@
 
 					{% endif %}
 					{% if committees %}
-						<li><b>Committees:</b> 
+						<li><b>83rd Session Committee Membership:</b> 
 							<ul class="">
 								{% for committee in committees %}
 									<li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }}</a></li>
@@ -42,12 +42,12 @@
 				<div class="col-sm-12"> {{ senator.map |safe }}</p></div>
 			</div>
 			<div>
-				<div><h2 style="text-align: center"> <b>Social Media </b> </h2></div>
+				<div><h2 class="alignMid"> <b>Social Media </b> </h2></div>
 				<div class="col-sm-6 twitterFeed">
 					<a  class="twitter-timeline" href="https://twitter.com/{{ senator.twitter }}" data-widget-id="446782772338651138" data-screen-name="{{ senator.twitter }}">Tweets by @{{ senator.twitter }}</a>
 					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 				</div>
-				<div class="fb-like-box fbFeed" data-href="{{ senator.facebook }}" data-width="500" data-height="600" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>
+				<div class="fb-like-box fbFeed col-sm-6" data-href="{{ senator.facebook }}" data-width="500" data-height="600" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>
 			</div>
 		</div>
 
