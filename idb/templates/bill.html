@@ -1,33 +1,47 @@
 {% extends "base.html" %}
+{% load cloudinary %}
 {% block content %}
     <div class="col-sm-12">
         <div class="bill">
             <div class="col-sm-12 alignMid">
-                <h1>{{ bill.name }}</h1>
+                <h1><b>{{ bill.name }}</b></h1>
             </div>
             <div class="col-sm-11 col-sm-offset-1">
-                <ul class="list-unstyled">
-                    <li>Name: {{ bill.name }} {% if bill.url %}(<a href="{{ bill.url }}">link</a>){% endif %}</li>
-                    <li>Legislative Session: {{ bill.legislative_session }}</li>
-                    <li>Date Proposed: {{ bill.date_proposed }}</li>
-                    <li>Date Signed: {{ bill.date_signed }}</li>
-                    <li>Date Effective: {{ bill.date_effective }}</li>
-                    <li>Status: {{ bill.status }}</li>
-                    <li>Description: {{ bill.description }}</li>
-                    <li>Author: <a href="/senators/{{ bill.author.id }}/"> {{ bill.author.name }}</a></li>
-                    <li>Primary Committee: <a href="/committees/{{ bill.primary_committee.id }}/"> {{ bill.primary_committee.name }}</a></li>
+                <div class="alignMid" style="float: right"><b>Author:</b>
+                    <div><img class="img-rounded" src="{%  cloudinary_url bill.author.twitter type="twitter_name" width="150" height="150" %}.jpg"></div>
+                    <a href="/senators/{{ bill.author.id }}/"> {{ bill.author.name }}</a>
+               </div>
+                <ul class="list-unstyled topContainer">
+                    <li><b>Legislative Session: </b>{{ bill.legislative_session }}</li>
+                    <li><b>Primary Committee: </b><a href="/committees/{{ bill.primary_committee.id }}/"> {{ bill.primary_committee.name }}</a></li>
+                    <li><b>Status: </b>{{ bill.status }} <span class="glyphicon glyphicon-ok"></span></li>
+                    <li><b>Summary: </b>{{ bill.description }}</li>
+                    
+                    
+
+                    
+                    {% if voters %}
                     <li>Voters:
                         <ul class="">
-                            {% if voters %}
                                 {% for voter in voters %}
                                     <li class=""><a href="/senators/{{ voter.id }}/"> {{ voter.name }}</a></li>
                                 {% endfor %}
-                            {% else %}
-                                Nobody has voted for this bill.
-                            {% endif %}
                         </ul>
+                    {% endif %}
                     </li>
                 </ul>
+                <table class="table billDates">
+                       <tr class="alignMid ">
+                            <td class="bg-primary"> <div><b>Date Proposed:</b></div> {{ bill.date_proposed }}</td>
+                            <td><span class="glyphicon glyphicon-arrow-right arrow-right"></span></td>
+                            <td class="bg-primary"> <div><b>Date Signed:</b></div>  {{ bill.date_signed }}</td>
+                            <td><span class="glyphicon glyphicon-arrow-right arrow-right"></span></td>
+                            <td class="bg-primary"> <div><b>Date Effective:</b></div>  {{ bill.date_effective }}</td>
+                        </tr>
+                </table>
+                <div>
+                    {% if bill.url %}<b>Want more information about this bill? </b><a href="{{ bill.url }}">Click here</a>{% endif %}
+                </div>
             </div>
         </div>
         <div class="col-sm-11 back-button">
