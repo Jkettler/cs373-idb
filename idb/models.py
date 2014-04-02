@@ -43,7 +43,7 @@ class Bill(models.Model):
 
   description = models.TextField(blank=True)
   author = models.ForeignKey(Senator, related_name='authored_bill_set', blank=True, null=True)
-  primary_committee = models.ForeignKey(Committee, blank=True, null=True)
+  primary_committee = models.ForeignKey(Committee, related_name='originating_committee_set' blank=True, null=True)
   voters = models.ManyToManyField(Senator, through='Vote', related_name='voted_bill_set', blank=True)
 
   def __str__(self):
