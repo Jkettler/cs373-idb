@@ -48,9 +48,8 @@ class SenatorView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(SenatorView, self).get_context_data(**kwargs)
         senator = Senator.objects.get(id=str(self.args[0]))
-        committees =  Committee.objects.all()
         context['senator'] = senator
-        context['bills'] = senator.senator_set.all()
+        context['bills'] = senator.bills
         context['committees'] = senator.senator_set.all()
         return context
 
@@ -61,6 +60,7 @@ class BillView(TemplateView):
         context = super(BillView, self).get_context_data(**kwargs)
         bill = Bill.objects.get(id=str(self.args[0]))
         context['bill'] = bill
+        context['authors'] = bill.bill_set.all()
         context['voters'] = bill.voters.all()
         return context
 
@@ -73,4 +73,5 @@ class CommitteeView(TemplateView):
         committee = Committee.objects.get(id=str(self.args[0]))
         context['committee'] = committee
         context['senator_set'] = committee.senators.all()
+        context['bills'] = committee.originating_committee_set.all()
         return context

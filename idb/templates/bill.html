@@ -7,18 +7,21 @@
                 <h1><b>{{ bill.name }}</b></h1>
             </div>
             <div class="col-sm-11 col-sm-offset-1">
-                <div class="alignMid" style="float: right"><b>Author:</b>
-                    <div><img class="img-rounded" src="{%  cloudinary_url bill.author.twitter type="twitter_name" width="150" height="150" %}.jpg"></div>
-                    <a href="/senators/{{ bill.author.id }}/"> {{ bill.author.name }}</a>
+                {% if authors %}
+                <div class="alignMid" style="float: right"><b>Author(s):</b>
+                    
+                     {% for author in authors %}
+                        <div><img class="img-rounded" src="{%  cloudinary_url author.twitter type="twitter_name" width="150" height="150" %}.jpg"></div>
+                        <div class="authors"><a href="/senators/{{ bill.author.id }}/"> {{ author.name }}</a></div>
+                    {% endfor %}
+                    
                </div>
+               {% endif %}
                 <ul class="list-unstyled topContainer">
                     <li><b>Legislative Session: </b>{{ bill.legislative_session }}</li>
                     <li><b>Primary Committee: </b><a href="/committees/{{ bill.primary_committee.id }}/"> {{ bill.primary_committee.name }}</a></li>
                     <li><b>Status: </b>{{ bill.status }} <span class="glyphicon glyphicon-ok"></span></li>
                     <li><b>Summary: </b>{{ bill.description }}</li>
-                    
-                    
-
                     
                     {% if voters %}
                     <li>Voters:
