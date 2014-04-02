@@ -66,6 +66,15 @@ WSGI_APPLICATION = 'idb.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3'))
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'latest.dump',
+#         'USER': 'jameskettler',
+#         'HOST': 'localhost',
+#         'PORT': '5000'
+#     }
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/

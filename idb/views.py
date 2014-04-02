@@ -9,10 +9,12 @@ def index(request):
     context = RequestContext(request)
     return HttpResponse(template.render(context))
 
+
 def about(request):
     template = loader.get_template('about.html')
     context = RequestContext(request)
     return HttpResponse(template.render(context))
+
 
 def bills(request):
     latest_bills_list = Bill.objects.order_by('-date_proposed')
@@ -22,6 +24,7 @@ def bills(request):
     })
     return HttpResponse(template.render(context))
 
+
 def senators(request):
     latest_senators_list = Senator.objects.order_by('name')
     template = loader.get_template('senators.html')
@@ -29,6 +32,7 @@ def senators(request):
         'latest_senators_list': latest_senators_list,
     })
     return HttpResponse(template.render(context))
+
 
 def committees(request):
     latest_committees_list = Committee.objects.order_by('name')
@@ -38,14 +42,15 @@ def committees(request):
     })
     return HttpResponse(template.render(context))
 
+
 class SenatorView(TemplateView):
     template_name = "senator.html"
     def get_context_data(self, **kwargs):
         context = super(SenatorView, self).get_context_data(**kwargs)
         senator = Senator.objects.get(id=str(self.args[0]))
         context['senator'] = senator
-        context['bills'] = senator.bills.all()
-        context['committees'] = senator.committees.all()
+        context['bills'] = senator.senator_set.all()
+        context['committees'] = senator.senator_set.all()
         return context
 
 
@@ -57,6 +62,7 @@ class BillView(TemplateView):
         context['bill'] = bill
         context['voters'] = bill.voters.all()
         return context
+
 
 class CommitteeView(TemplateView):
     template_name = "committee.html"
