@@ -6,6 +6,7 @@ class Senator(models.Model):
   occupation = models.CharField(max_length=200, blank=True)
   legislative_experience = models.CharField(max_length=200, blank=True)
   district = models.IntegerField(blank=True, null=True)
+  bills = models.ManyToManyField('Bill', related_name='bill_set', blank=True)
   twitter = models.CharField(max_length=50, blank=True)
   facebook = models.URLField(blank=True)
   map = models.TextField(blank=True)
@@ -24,14 +25,6 @@ class Committee(models.Model):
   def __str__(self):
     return self.name
 
-  def membertype(self,sen):
-    if (self.chair == sen):
-      return " - Chair"
-    elif (self.vice_chair == sen):
-      return " - Vice Chair"
-    else:
-      return ""
-
 class Bill(models.Model):
   name = models.CharField(max_length=70)
   legislative_session = models.CharField(max_length=70, blank=True)
@@ -40,9 +33,7 @@ class Bill(models.Model):
   date_effective = models.DateField(blank=True, null=True)
   status = models.CharField(max_length=70, blank=True)
   url = models.CharField(max_length=200, blank=True)
-
   description = models.TextField(blank=True)
-  author = models.ForeignKey(Senator, related_name='authored_bill_set', blank=True, null=True)
   primary_committee = models.ForeignKey(Committee, blank=True, null=True)
   voters = models.ManyToManyField(Senator, through='Vote', related_name='voted_bill_set', blank=True)
 

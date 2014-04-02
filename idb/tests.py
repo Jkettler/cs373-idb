@@ -15,6 +15,3 @@ class SenateTestCase(unittest.TestCase):
         self.assertEqual(str(self.bill),"SB 21")
     def testCommittee(self):
         self.assertEqual(str(self.committee),"Economic Development")
-    def testMemberType(self):
-        self.committee.chair = self.senator
-        self.assertEqual(self.committee.membertype(self.senator)," - Chair")
