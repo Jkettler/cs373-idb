@@ -16,7 +16,7 @@
 					<li><b>Legislative Experience:</b>  {{ senator.legislative_experience }}</li>
 					<li><b>Occupation:</b>  {{ senator.occupation }}</li>
 					{% if bills %}
-						<li><b>Bills:</b> 
+						<li><b>Bills Authored:</b> 
 							<ul>
 								{% for bill in bills %}
 									<li class=""><a href="/bills/{{ bill.id }}/"> {{ bill.name }}</a></li>
@@ -29,7 +29,14 @@
 						<li><b>83rd Session Committee Membership:</b> 
 							<ul class="">
 								{% for committee in committees %}
-									<li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }}</a></li>
+									<li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }} </a>
+										{% if committee.chair.name == senator.name %} 
+											- Chair
+										{% endif %} 
+										{% if committee.vice_chair.name == senator.name %} 
+											- Vice-Chair
+										{% endif %}
+									</li>
 								{% endfor %}
 							</ul>
 						</li>

@@ -7,4 +7,5 @@ psycopg2==2.5.2
 pystache==0.5.3
 static==1.0.2
 pillow==2.3.1
--e git://github.com/Jkettler/pycloudinary.git#egg=cloudinary
+-e git://github.com/cloudinary/pycloudinary#egg=cloudinary
+South==0.8.4
