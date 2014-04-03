@@ -45,6 +45,7 @@ def committees(request):
 
 class SenatorView(TemplateView):
     template_name = "senator.html"
+    
     def get_context_data(self, **kwargs):
         context = super(SenatorView, self).get_context_data(**kwargs)
         senator = Senator.objects.get(id=str(self.args[0]))
@@ -58,6 +59,7 @@ class SenatorView(TemplateView):
 
 class BillView(TemplateView):
     template_name = "bill.html"
+
     def get_context_data(self, **kwargs):
         context = super(BillView, self).get_context_data(**kwargs)
         bill = Bill.objects.get(id=str(self.args[0]))
