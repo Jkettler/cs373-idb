@@ -23,11 +23,11 @@ class tests (unittest.TestCase) :
 		      "occupation": "Businesswoman, former teacher",
 		      "legistlative_experience": "Disaster Relief",
 		      "district": "12",
-		      "twitter": "https://twitter.com/SenJaneNelson",
+		      "twitter": "SenJaneNelson",
 		      "facebook": "https://www.facebook.com/SenatorJaneNelson",
-		      "picture": "null",
-		      "committees": [1,2]
-		  }
+			  "photo_url": "null",
+              "map": "null"		  
+          }
 		]
 		self.assertTrue(response.status == 200)
 		self.assertTrue(json.loads(response.read().decode("utf-8")) == desired_body)
@@ -42,11 +42,11 @@ class tests (unittest.TestCase) :
 		      "occupation": "Businesswoman, former teacher",
 		      "legistlative_experience": "Disaster Relief",
 		      "district": "12",
-		      "twitter": "https://twitter.com/SenJaneNelson",
+		      "twitter": "SenJaneNelson",
 		      "facebook": "https://www.facebook.com/SenatorJaneNelson",
-		      "picture": "null",
-		      "committees": [1,2]
-		  })
+			  "photo_url": "null",
+              "map": "null"		  
+        })
 		headers = {"Content-Type": "application/json"}
 		connection.request("POST", "/api/senators", values, headers)
 		response = connection.getresponse()
@@ -68,10 +68,10 @@ class tests (unittest.TestCase) :
 		    "occupation": "Businesswoman, former teacher",
 		    "legistlative_experience": "Disaster Relief",
 		    "district": "12",
-		    "twitter": "https://twitter.com/SenJaneNelson",
+		    "twitter": "SenJaneNelson",
 		    "facebook": "https://www.facebook.com/SenatorJaneNelson",
-		    "picture": "null",
-		    "committees": [1,2]
+		    "photo_url": "null",
+            "map": "null"
 		}	
 		self.assertTrue(response.status == 200)
 		self.assertTrue(json.loads(response.read().decode("utf-8")) == desired_body)
@@ -88,11 +88,11 @@ class tests (unittest.TestCase) :
 		      "occupation": "Businesswoman, former teacher",
 		      "legistlative_experience": "Disaster Relief",
 		      "district": "12",
-		      "twitter": "https://twitter.com/SenJaneNelson",
+		      "twitter": "SenJaneNelson",
 		      "facebook": "https://www.facebook.com/SenatorJaneNelson",
-		      "picture": "null",
-		      "committees": [1,2]
-			}
+			  "photo_url": "null",
+              "map": "null"			
+            }
 		])
 		headers = {"Content-Type": "application/json"}
 		connection.request("PUT", "/api/senators/{id}", values)
@@ -158,7 +158,7 @@ class tests (unittest.TestCase) :
 		        "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
 		        "primary_committee": 1,
 		        "Description": "Relating to consent to the immunization of certain children.",
-                "votes": {"1": "AYE", "2": "NAY"}
+                "voters": [2, 3]
             }
 		]
 		self.assertTrue(response.status == 200)
@@ -202,7 +202,7 @@ class tests (unittest.TestCase) :
 		        "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
 		        "primary_committee": 1,
 		        "Description": "Relating to consent to the immunization of certain children.",
-                "votes": {"1": "AYE", "2": "NAY"}
+                "voters": [2, 3]
 		    }
 		]
 		self.assertTrue(response.status == 200)
@@ -224,7 +224,7 @@ class tests (unittest.TestCase) :
 		        "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
 		        "primary_committee": 1,
 		        "Description": "Relating to consent to the immunization of certain children.",
-                "votes": {"1": "AYE", "2": "NAY"}		    
+                "voters": [2, 3]	    
             }
 		)
 		headers = {"Content-Type": "application/json"}
@@ -253,7 +253,7 @@ class tests (unittest.TestCase) :
 		    "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
 		    "primary_committee": 1,
 		    "Description": "Relating to consent to the immunization of certain children.",
-		    "votes": {"1": "AYE", "2": "NAY"}
+		    "voters": [2, 3]
 		}	
 		self.assertTrue(response.status == 200)
 		self.assertTrue(json.loads(response.read().decode("utf-8")) == desired_body)
@@ -274,7 +274,7 @@ class tests (unittest.TestCase) :
 		        "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
 		        "primary_committee": 1,
 		        "Description": "Relating to consent to the immunization of certain children.",
-                "votes": {"1": "AYE", "2": "NAY"}		
+                "voters": [2, 3]	
             })
 		headers = {"Content-Type": "application/json"}
 		connection.request("PUT", "/api/bills/{id}", values)
@@ -305,10 +305,10 @@ class tests (unittest.TestCase) :
 		        "occupation": "Businesswoman, former teacher",
 		        "legistlative_experience": "Disaster Relief",
 		        "district": "12",
-		        "twitter": "https://twitter.com/SenJaneNelson",
+		        "twitter": "SenJaneNelson",
 		        "facebook": "https://www.facebook.com/SenatorJaneNelson",
-		        "picture": "null",
-		        "committees": [1,2]
+		        "photo_url": "null",
+            	"map": "null"
 		    }
 		]
 		self.assertTrue(response.status == 200)
@@ -328,10 +328,10 @@ class tests (unittest.TestCase) :
 		        "occupation": "Businesswoman, former teacher",
 		        "legistlative_experience": "Disaster Relief",
 		        "district": "12",
-		        "twitter": "https://twitter.com/SenJaneNelson",
+		        "twitter": "SenJaneNelson",
 		        "facebook": "https://www.facebook.com/SenatorJaneNelson",
-		        "picture": "null",
-		        "committees": [1,2]
+				"photo_url": "null",
+            	"map": "null"
 		    }
 		]
 		self.assertTrue(response.status == 200)
@@ -450,10 +450,10 @@ class tests (unittest.TestCase) :
 		        "occupation": "Businesswoman, former teacher",
 		        "legistlative_experience": "Disaster Relief",
 		        "district": "12",
-		        "twitter": "https://twitter.com/SenJaneNelson",
+		        "twitter": "SenJaneNelson",
 		        "facebook": "https://www.facebook.com/SenatorJaneNelson",
-		        "picture": "null",
-		        "committees": [1,2]
+		        "photo_url": "null",
+           		"map": "null"
 		    }
 		]
 		self.assertTrue(response.status == 200)
@@ -469,17 +469,17 @@ class tests (unittest.TestCase) :
 		desired_body = [
 		    {
 		        "id": 1,
-		        "name": "SB 63",
-		        "authors": [1],
-		        "legislative_session": "83(R)",
-		        "date_proposed": "11/12/2012",
-		        "date_signed": "6/14/2013",
-		        "date_effective": "6/14/2013",
-		        "status": "Signed into law",
-		        "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
-		        "primary_committee": 1,
-		        "Description": "Relating to consent to the immunization of certain children.",
-                "votes": {"1": "AYE", "2": "NAY"}
+                "name": "SB 63",
+                "authors": [1],
+                "legislative_session": "83(R)",
+                "date_proposed": "11/12/2012",
+                "date_signed": "6/14/2013",
+                "date_effective": "6/14/2013",
+                "status": "Signed into law",
+                "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
+                "primary_committee": 1,
+                "Description": "Relating to consent to the immunization of certain children.",
+                "voters": [1, 2]
 		    }
 		]
 		self.assertTrue(response.status == 200)
