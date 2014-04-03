@@ -32,9 +32,10 @@
 									<li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }} </a>
 										{% if committee.chair.name == senator.name %} 
 											- Chair
-										{% endif %} 
-										{% if committee.vice_chair.name == senator.name %} 
+										{% elif committee.vice_chair.name == senator.name %} 
 											- Vice-Chair
+										{% else %} 
+											- Member
 										{% endif %}
 									</li>
 								{% endfor %}
@@ -43,7 +44,7 @@
 					{% endif %}
 				</ul>			
 			</div>
-			<div class="senatorMap">	
+			<div class="senatorMap col-sm-6">	
 				<span><h4> <b>Contact the Senator: </b> </h4></span>
 				<b>Mailing Address:</b>
 				<div class="col-sm-12"> {{ senator.map |safe }}</p></div>
