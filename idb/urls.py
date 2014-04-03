@@ -25,5 +25,6 @@ urlpatterns = patterns('',
     url(r'^bills/(\d+)/$', views.BillView.as_view()),
     url(r'^bills/$', views.bills, name="bills"),
     url(r'^about/$', views.about, name="about"),
+    url(r'^api/senators/(?P<senator_id>\d+)/bills/$', views.Senators_Bills),
 	url(r'^', include(idb_api.urls)),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

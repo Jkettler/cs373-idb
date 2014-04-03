@@ -10,15 +10,14 @@ class SenatorResource(ModelResource):
         queryset = Senator.objects.all()
         resource_name = 'senators'
         authorization = Authorization()
+        allowed_methods = ['get','post','put','delete']
 
 class BillResource(ModelResource):
     class Meta:
-        senators = fields.
         resource_name = 'bills'
         queryset = Bill.objects.all()
         authorization = Authorization()
         allowed_methods = ['get','post','put','delete']
-
 
 class CommitteeResource(ModelResource):
     class Meta:

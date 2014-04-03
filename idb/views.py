@@ -2,6 +2,8 @@ from django.views.generic import TemplateView
 from idb.models import Senator, Committee, Bill
 from django.http import HttpResponse
 from django.template import RequestContext, loader
+from tastypie.serializers import Serializer
+import json
 
 
 def index(request):
@@ -42,6 +44,13 @@ def committees(request):
     })
     return HttpResponse(template.render(context))
 
+def Senators_Bills(request, senator_id):
+    sen_bills = Senator.objects.get(id=senator_id).bills.all()
+    s = Serializer()
+    #bills = s.to_json([Bill.objects.get(id=bill.id) for bill in sen_bills])
+    bills = json.dumps([json.dumps(Bill.objects.get(id=bill.id).__dict__) for bill in sen_bills])    
+
+    return HttpResponse(bills)
 
 class SenatorView(TemplateView):
     template_name = "senator.html"
@@ -49,7 +58,7 @@ class SenatorView(TemplateView):
         context = super(SenatorView, self).get_context_data(**kwargs)
         senator = Senator.objects.get(id=str(self.args[0]))
         context['senator'] = senator
-        context['bills'] = senator.bills
+        context['bills'] = senator.bills.all()
         context['committees'] = senator.senator_set.all()
         return context
 
