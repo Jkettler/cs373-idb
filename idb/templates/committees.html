@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="col-sm-8">
     {% if latest_committees_list %}
-    <ul class="list-unstyled">
-    {% for committee in latest_committees_list %}
-        <li><a href="/committees/{{ committee.id }}/">{{ committee.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No Committees are available.</p>
-{% endif %}
-    </div>
+     	{% for committee in latest_committees_list %}
+        <div class="buttonList">
+		        <a class="comitButton" href="/committees/{{ committee.id }}/">
+		        	<button type="button" class="btn btn-primary btn-sm"><b>{{ committee.name }}</b></button>
+		        </a>
+    	</div>
+    	{% endfor %}
+	{% else %}
+   		<p>No Committees are available.</p>
+	{% endif %}
 {% endblock %}
