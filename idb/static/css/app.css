@@ -58,6 +58,10 @@ a:hover {
 	float: left;
 }
 
+.socialMedia {
+  padding-top:20px;
+}
+
 .senators .name {
     padding: 1.5em 0 0 2em;
     font-size: 18px;
@@ -119,6 +123,8 @@ a:hover {
 .billDates {
   width: 70%;
 }
+
+
 .billDates td {
   border-top: 0px !important;
   border-radius: 25px;
@@ -132,4 +138,35 @@ a:hover {
 
 .authors {
   padding-bottom: 10px;
+}
+
+.bills {
+  background-color: rgba(214, 245, 255, 1);
+  border: 1px solid;
+  border-radius: 25px;
+}
+
+.comitButton button{
+  width: 300px;
+  white-space: normal; 
+}
+.comitButton a:link{
+  color: white !important;
+}
+
+.buttonList {
+  padding-bottom: 7px;
+  border-radius: 25px !important;
+}
+
+.buttonList button {
+  border-radius: 25px !important;
+}
+
+.billButton button{
+  width: 150px;
+  white-space: normal; 
+}
+.billButton a:link{
+  color: white !important;
 }

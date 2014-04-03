@@ -12,13 +12,13 @@
             <div class="membersList row box-shadow">
                 <div class="col-xs-12 topContainer">
                     <div class=" alignMid col-xs-4"><b>Chair</b> 
-						<div><img class="img-circle" src="{%  cloudinary_url committee.chair.twitter type="twitter_name" width="100" height="100" %}.jpg"></div>
-                        <a href="/senators/{{ committee.chair.id }}/"> {{ committee.chair }}</a>
+						<a href="/senators/{{ committee.chair.id }}/"> <div><img class="img-circle" src="{%  cloudinary_url committee.chair.twitter type="twitter_name" width="100" height="100" %}.jpg"></div>
+                        {{ committee.chair }}</a>
 				    </div>
                     <div class="col-xs-4">&nbsp;</div>
 					<div class="alignMid col-xs-4" ><b>Vice-Chair</b> 
-						<div><img class="img-circle" src="{%  cloudinary_url committee.vice_chair.twitter type="twitter_name" width="100" height="100" %}.jpg"></div>
-                        <a href="/senators/{{ committee.vice_chair.id }}/"> {{ committee.vice_chair }}</a>
+						<a href="/senators/{{ committee.vice_chair.id }}/"><div><img class="img-circle" src="{%  cloudinary_url committee.vice_chair.twitter type="twitter_name" width="100" height="100" %}.jpg"></div>
+                         {{ committee.vice_chair }}</a>
 					</div>
                 </div>
 
@@ -29,8 +29,8 @@
                             {% for member in senator_set %}
                             <div class=" col-xs-6 memberContainer">
                                 <div class="alignMid">
-									<div><img class="img-circle" src="{%  cloudinary_url member.twitter type="twitter_name" width="100" height="100" %}.jpg"></div>
-                                     <a href="/senators/{{ member.id }}/"> {{ member.name }}</a>
+									<a href="/senators/{{ member.id }}/"> <div><img class="img-circle" src="{%  cloudinary_url member.twitter type="twitter_name" width="100" height="100" %}.jpg"></div>
+                                     {{ member.name }}</a>
 								</div>
                             </div>
                             {% endfor %}
@@ -38,7 +38,18 @@
                             There are no senators in this committee.
                         {% endif %}
                     </div>
-         
+
+                </div>
+
+            </div>
+            <div class="col-xs-12">
+                {% if bills %}
+                <div>Bills originating in this committee: </div>
+                <div class="col-xs-2 bills">
+                        {% for bill in bills %}
+                            <div><a href="/bills/{{ bill.id }}/"> {{ bill.name }}</a></div>
+                        {% endfor %}
+                {% endif %}
                 </div>
             </div>
             <!-- <ul class="list-unstyled">

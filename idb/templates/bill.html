@@ -11,8 +11,8 @@
                 <div class="alignMid" style="float: right"><b>Author(s):</b>
                     
                      {% for author in authors %}
-                        <div><img class="img-rounded" src="{%  cloudinary_url author.twitter type="twitter_name" width="150" height="150" %}.jpg"></div>
-                        <div class="authors"><a href="/senators/{{ bill.author.id }}/"> {{ author.name }}</a></div>
+                        <a href="/senators/{{ author.id }}/"><div><img class="img-rounded" src="{%  cloudinary_url author.twitter type="twitter_name" width="150" height="150" %}.jpg"></div>
+                        <div class="authors"> {{ author.name }}</div></a>
                     {% endfor %}
                     
                </div>
@@ -27,7 +27,7 @@
                     <li>Voters:
                         <ul class="">
                                 {% for voter in voters %}
-                                    <li class=""><a href="/senators/{{ voter.id }}/"> {{ voter.name }}</a></li>
+                                    <li class=""><a href="/senators/{{ voter.id }}/"> {{ voter.name }} </a></li>
                                 {% endfor %}
                         </ul>
                     {% endif %}

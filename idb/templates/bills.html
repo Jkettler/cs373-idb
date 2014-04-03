@@ -1,14 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="col-sm-8">
-    {% if latest_bills_list %}
-    <ul class="list-unstyled">
-    {% for bill in latest_bills_list %}
-        <li><a href="/bills/{{ bill.id }}/">{{ bill.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No Bills are available.</p>
-{% endif %}
-    </div>
+
+	{% if latest_bills_list %}
+	    {% for bill in latest_bills_list %}
+		    <div class="buttonList">
+				<a class="billButton" href="/bills/{{ bill.id }}/">
+					<button type="button" class="btn btn-danger btn-sm"><b>{{ bill.name }}</b></button>
+				</a>
+		    </div>
+	    {% endfor %}
+	{% else %}
+	    <p>No Bills are available.</p>
+	{% endif %}
+
 {% endblock %}
+
+
+
