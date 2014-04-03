@@ -8,8 +8,27 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Removing M2M table for field bills on 'Senator'
-        db.delete_table(db.shorten_name('idb_senator_bills'))
+        # Deleting field 'Bill.author'
+        db.delete_column('idb_bill', 'author_id')
+
+        # Removing M2M table for field owners on 'Bill'
+        db.delete_table(db.shorten_name('idb_bill_owners'))
+
+        # Adding M2M table for field authors on 'Bill'
+        m2m_table_name = db.shorten_name('idb_bill_authors')
+        db.create_table(m2m_table_name, (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('bill', models.ForeignKey(orm['idb.bill'], null=False)),
+            ('senator', models.ForeignKey(orm['idb.senator'], null=False))
+        ))
+        db.create_unique(m2m_table_name, ['bill_id', 'senator_id'])
+
+
+    def backwards(self, orm):
+        # Adding field 'Bill.author'
+        db.add_column('idb_bill', 'author',
+                      self.gf('django.db.models.fields.related.ForeignKey')(null=True, to=orm['idb.Senator'], blank=True),
+                      keep_default=False)
 
         # Adding M2M table for field owners on 'Bill'
         m2m_table_name = db.shorten_name('idb_bill_owners')
@@ -20,25 +39,14 @@ class Migration(SchemaMigration):
         ))
         db.create_unique(m2m_table_name, ['bill_id', 'senator_id'])
 
-
-    def backwards(self, orm):
-        # Adding M2M table for field bills on 'Senator'
-        m2m_table_name = db.shorten_name('idb_senator_bills')
-        db.create_table(m2m_table_name, (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('senator', models.ForeignKey(orm['idb.senator'], null=False)),
-            ('bill', models.ForeignKey(orm['idb.bill'], null=False))
-        ))
-        db.create_unique(m2m_table_name, ['senator_id', 'bill_id'])
-
-        # Removing M2M table for field owners on 'Bill'
-        db.delete_table(db.shorten_name('idb_bill_owners'))
+        # Removing M2M table for field authors on 'Bill'
+        db.delete_table(db.shorten_name('idb_bill_authors'))
 
 
     models = {
         'idb.bill': {
             'Meta': {'object_name': 'Bill'},
-            'author': ('django.db.models.fields.related.ForeignKey', [], {'null': 'True', 'to': "orm['idb.Senator']", 'blank': 'True'}),
+            'authors': ('django.db.models.fields.related.ManyToManyField', [], {'null': 'True', 'related_name': "'bill_set'", 'symmetrical': 'False', 'blank': 'True', 'to': "orm['idb.Senator']"}),
             'date_effective': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
             'date_proposed': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
             'date_signed': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
@@ -46,21 +54,20 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'legislative_session': ('django.db.models.fields.CharField', [], {'max_length': '70', 'blank': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '70'}),
-            'owners': ('django.db.models.fields.related.ManyToManyField', [], {'null': 'True', 'related_name': "'parent_set'", 'symmetrical': 'False', 'to': "orm['idb.Senator']", 'blank': 'True'}),
-            'primary_committee': ('django.db.models.fields.related.ForeignKey', [], {'null': 'True', 'related_name': "'originating_committee_set'", 'to': "orm['idb.Committee']", 'blank': 'True'}),
+            'primary_committee': ('django.db.models.fields.related.ForeignKey', [], {'null': 'True', 'related_name': "'originating_committee_set'", 'blank': 'True', 'to': "orm['idb.Committee']"}),
             'status': ('django.db.models.fields.CharField', [], {'max_length': '70', 'blank': 'True'}),
             'url': ('django.db.models.fields.CharField', [], {'max_length': '200', 'blank': 'True'}),
-            'voters': ('django.db.models.fields.related.ManyToManyField', [], {'through': "orm['idb.Vote']", 'related_name': "'voted_bill_set'", 'symmetrical': 'False', 'to': "orm['idb.Senator']", 'blank': 'True'})
+            'voters': ('django.db.models.fields.related.ManyToManyField', [], {'through': "orm['idb.Vote']", 'related_name': "'voted_bill_set'", 'symmetrical': 'False', 'blank': 'True', 'to': "orm['idb.Senator']"})
         },
         'idb.committee': {
             'Meta': {'object_name': 'Committee'},
             'appointment_date': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
-            'chair': ('django.db.models.fields.related.ForeignKey', [], {'null': 'True', 'related_name': "'committee_chair_set'", 'to': "orm['idb.Senator']", 'blank': 'True'}),
+            'chair': ('django.db.models.fields.related.ForeignKey', [], {'null': 'True', 'related_name': "'committee_chair_set'", 'blank': 'True', 'to': "orm['idb.Senator']"}),
             'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '70'}),
-            'senators': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'senator_set'", 'symmetrical': 'False', 'to': "orm['idb.Senator']", 'blank': 'True'}),
-            'vice_chair': ('django.db.models.fields.related.ForeignKey', [], {'null': 'True', 'related_name': "'committee_vice_chair_set'", 'to': "orm['idb.Senator']", 'blank': 'True'})
+            'senators': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'senator_set'", 'symmetrical': 'False', 'blank': 'True', 'to': "orm['idb.Senator']"}),
+            'vice_chair': ('django.db.models.fields.related.ForeignKey', [], {'null': 'True', 'related_name': "'committee_vice_chair_set'", 'blank': 'True', 'to': "orm['idb.Senator']"})
         },
         'idb.senator': {
             'Meta': {'object_name': 'Senator'},
