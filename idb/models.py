@@ -59,7 +59,8 @@ class Vote(models.Model):
 
 class Picture(models.Model):
 
-    link = models.ForeignKey(Senator, blank=True, null=True)
+    parent = models.ForeignKey(Senator, blank=True, null=True)
+    link = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.link
