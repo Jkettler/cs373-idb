@@ -58,6 +58,10 @@ a:hover {
 	float: left;
 }
 
+.socialMedia {
+  padding-top:20px;
+}
+
 .senators .name {
     padding: 1.5em 0 0 2em;
     font-size: 18px;
