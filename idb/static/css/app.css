@@ -175,11 +175,12 @@ a:hover {
   padding: 0;
   height: 5.3em;
   line-height: 5.2em;
+  color: black;
 }
 .voteWell .name {
-  line-height: 1.8em;
+  line-height: 1.7em;
   font-weight: 500;
-  font-size: 1.4em;
+  font-size: 1.3em;
 }
 .voteWell i {
   line-height: 2.5em;
