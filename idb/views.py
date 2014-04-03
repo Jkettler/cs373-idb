@@ -64,6 +64,7 @@ class BillView(TemplateView):
         context['bill'] = bill
         context['authors'] = bill.authors.all()
         context['voters'] = bill.voters.all()
+        context['votes'] = bill.vote_set.all()
         return context
 
 

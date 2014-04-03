@@ -6,32 +6,12 @@
             <div class="col-sm-12 alignMid">
                 <h1><b>{{ bill.name }}</b></h1>
             </div>
-            <div class="col-sm-11 col-sm-offset-1">
-                {% if authors %}
-                <div class="alignMid" style="float: right"><b>Author(s):</b>
-                    
-                     {% for author in authors %}
-                        <a href="/senators/{{ author.id }}/"><div><img class="img-rounded" src="{%  cloudinary_url author.twitter type="twitter_name" width="150" height="150" %}.jpg"></div>
-                        <div class="authors"> {{ author.name }}</div></a>
-                    {% endfor %}
-                    
-               </div>
-               {% endif %}
+            <div class="col-sm-9 col-sm-offset-1">
                 <ul class="list-unstyled topContainer">
                     <li><b>Legislative Session: </b>{{ bill.legislative_session }}</li>
                     <li><b>Primary Committee: </b><a href="/committees/{{ bill.primary_committee.id }}/"> {{ bill.primary_committee.name }}</a></li>
                     <li><b>Status: </b>{{ bill.status }} <span class="glyphicon glyphicon-ok"></span></li>
                     <li><b>Summary: </b>{{ bill.description }}</li>
-                    
-                    {% if voters %}
-                    <li>Voters:
-                        <ul class="">
-                                {% for voter in voters %}
-                                    <li class=""><a href="/senators/{{ voter.id }}/"> {{ voter.name }} </a></li>
-                                {% endfor %}
-                        </ul>
-                    {% endif %}
-                    </li>
                 </ul>
                 <table class="table billDates">
                        <tr class="alignMid ">
@@ -45,6 +25,62 @@
                 <div>
                     {% if bill.url %}<b>Want more information about this bill? </b><a href="{{ bill.url }}">Click here</a>{% endif %}
                 </div>
+                <div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <a data-toggle="collapse" href="#votesPanelBody">View Votes for this Bill</a>
+                            </h3>
+                        </div>
+                        <div id="votesPanelBody" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                {% if votes %}
+                                    {% for vote in votes %}
+                                        <div class="col-sm-4">
+                                            <div class="well voteWell">
+                                                <div class="col-xs-4" style="padding: 0">
+                                                    {% if vote.senator.photo_url %}
+                                                        <img class="img-rounded" src="{{  senator.photo_url }}" width="70" height="70">
+                                                    {% else %}
+                                                        <img class="img-rounded" src="{%  cloudinary_url vote.senator.twitter type="twitter_name" width="70" height="70" %}.jpg">
+                                                    {% endif %}
+                                                </div>
+                                                <div class="col-xs-5">
+                                                    <div class="name">{{vote.senator.name}}</div>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    {% if vote.vote == 'AYE' %}
+                                                        <i class="fa fa-thumbs-up fa-2x"></i>
+                                                    {% elif vote.vote == 'NAY' %}
+                                                        <i class="fa fa-thumbs-down fa-2x"></i>
+                                                    {% elif vote.vote == 'PNV' %}
+                                                        <i class="fa fa-square-o fa-2x"></i>
+                                                    {% elif vote.vote == 'ABS' %}
+                                                        <i class="fa fa-ban fa-2x"></i>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    No votes recorded for this bill
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                {% if authors %}
+                <div class="alignMid"><b>Author(s):</b>
+                    
+                     {% for author in authors %}
+                        <a href="/senators/{{ author.id }}/"><div><img class="img-rounded" src="{%  cloudinary_url author.twitter type="twitter_name" width="150" height="150" %}.jpg"></div>
+                        <div class="authors"> {{ author.name }}</div></a>
+                    {% endfor %}
+                    
+               </div>
+               {% endif %}
             </div>
         </div>
         <div class="col-sm-11 back-button">
