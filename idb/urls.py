@@ -5,13 +5,15 @@ from django.conf.urls import patterns
 from django.conf import settings
 from django.conf.urls.static import static
 from tastypie.api import Api
-from idb.api.resources import SenatorResource
+from idb.api.resources import SenatorResource, BillResource, CommitteeResource
 
-v1_api = Api(api_name='v1')
-v1_api.register(SenatorResource())
+idb_api = Api(api_name='api')
+
+idb_api.register(SenatorResource())
+idb_api.register(BillResource())
+idb_api.register(CommitteeResource())
 
 admin.autodiscover()
-
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
@@ -23,5 +25,5 @@ urlpatterns = patterns('',
     url(r'^bills/(\d+)/$', views.BillView.as_view()),
     url(r'^bills/$', views.bills, name="bills"),
     url(r'^about/$', views.about, name="about"),
-		(r'^api/', include(v1_api.urls)),
+	url(r'^', include(idb_api.urls)),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
