@@ -25,20 +25,19 @@
 						</li>
 
 					{% endif %}
-					{% if committees %}
-						<li><b>83rd Session Committee Membership:</b> 
+
+					{% if committees or chair or vice_chair%}
+							<li><b>83rd Session Committee Membership:</b> 
 							<ul class="">
-								{% for committee in committees %}
-									<li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }} </a>
-										{% if committee.chair.name == senator.name %} 
-											- Chair
-										{% elif committee.vice_chair.name == senator.name %} 
-											- Vice-Chair
-										{% else %} 
-											- Member
-										{% endif %}
-									</li>
+								{% for committee in chair %}
+									<li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }} </a> - Chair </li>
 								{% endfor %}
+								{% for committee in vice_chair %}
+									<li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }} </a> - Vice-Chair </li>
+								{% endfor %}
+								{% for committee in committees %}
+									<li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }} </a></li>
+								{% endfor %}	
 							</ul>
 						</li>
 					{% endif %}

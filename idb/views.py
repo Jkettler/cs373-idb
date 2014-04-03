@@ -50,7 +50,9 @@ class SenatorView(TemplateView):
         senator = Senator.objects.get(id=str(self.args[0]))
         context['senator'] = senator
         context['bills'] = senator.bills.all()
-        context['committees'] = senator.senator_set.all()
+        context['chair'] = senator.committee_chair_set.all()
+        context['vice_chair'] = senator.committee_vice_chair_set.all()
+        context['committees'] = senator.senator_set.all() 
         return context
 
 
