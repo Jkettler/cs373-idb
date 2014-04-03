@@ -16,15 +16,16 @@
 					<li><b>Legislative Experience:</b>  {{ senator.legislative_experience }}</li>
 					<li><b>Occupation:</b>  {{ senator.occupation }}</li>
 					{% if bills %}
-						<li><b>Bills Voted On:</b>
+						<li><b>Bills Authored:</b>
 							<ul>
 								{% for bill in bills %}
-									<li class=""><a href="/bills/{{ bill.id }}/"> {{ bill.name }}</a> <span>{{ bill.vote }}</span></li>
+									<li class=""><a href="/bills/{{ bill.id }}/"> {{ bill.name }}</a></li>
 								{% endfor %}
 							</ul>
 						</li>
 
 					{% endif %}
+
 
 					{% if committees or chair or vice_chair%}
 							<li><b>83rd Session Committee Membership:</b> 
