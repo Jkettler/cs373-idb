@@ -16,10 +16,10 @@
 					<li><b>Legislative Experience:</b>  {{ senator.legislative_experience }}</li>
 					<li><b>Occupation:</b>  {{ senator.occupation }}</li>
 					{% if bills %}
-						<li><b>Bills Authored:</b> 
+						<li><b>Bills Voted On:</b>
 							<ul>
 								{% for bill in bills %}
-									<li class=""><a href="/bills/{{ bill.id }}/"> {{ bill.name }}</a></li>
+									<li class=""><a href="/bills/{{ bill.id }}/"> {{ bill.name }}</a> <span>{{ bill.vote }}</span></li>
 								{% endfor %}
 							</ul>
 						</li>
@@ -46,7 +46,7 @@
 			<div class="senatorMap col-sm-6">	
 				<span><h4> <b>Contact the Senator: </b> </h4></span>
 				<b>Mailing Address:</b>
-				<div class="col-sm-12"> {{ senator.map |safe }}</p></div>
+				<div class="col-sm-12"> {{ senator.map |safe }}</div>
 			</div>
 			<div class="col-sm-12">
 				<div><h2 class="alignMid"> <b>Social Media </b> </h2></div>
