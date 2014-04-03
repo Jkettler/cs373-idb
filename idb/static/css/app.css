@@ -170,3 +170,17 @@ a:hover {
 .billButton a:link{
   color: white !important;
 }
+
+.voteWell {
+  padding: 0;
+  height: 72px;
+  line-height: 70px;
+}
+.voteWell .name {
+  line-height: 33px;
+  font-weight: 500;
+  font-size: 12pt;
+}
+.voteWell i {
+  line-height: 75px;
+}
