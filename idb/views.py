@@ -62,7 +62,7 @@ class BillView(TemplateView):
         context = super(BillView, self).get_context_data(**kwargs)
         bill = Bill.objects.get(id=str(self.args[0]))
         context['bill'] = bill
-        context['authors'] = bill.owners.all()
+        context['authors'] = bill.authors.all()
         context['voters'] = bill.voters.all()
         return context
 
