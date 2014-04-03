@@ -7,7 +7,11 @@
                 <div class="col-sm-4 senator-grid">
                     <div class="photo">
                         <a class="pull-left">
-                            <img class="img-rounded" src="{%  cloudinary_url senator.twitter type="twitter_name" %}.jpg">
+                            {% if senator.photo_url %}
+                                <img class="img-rounded" src="{{  senator.photo_url }}" width="73" height="73">
+                            {% else %}
+                                <img class="img-rounded" src="{%  cloudinary_url senator.twitter type="twitter_name" %}.jpg">
+                            {% endif %}
                         </a>
                     </div>
                     <div class="name">

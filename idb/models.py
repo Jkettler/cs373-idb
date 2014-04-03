@@ -6,6 +6,7 @@ class Senator(models.Model):
   occupation = models.CharField(max_length=200, blank=True)
   legislative_experience = models.CharField(max_length=200, blank=True)
   district = models.IntegerField(blank=True, null=True)
+  photo_url = models.URLField(blank=True, null=True)
   twitter = models.CharField(max_length=50, blank=True)
   facebook = models.URLField(blank=True)
   map = models.TextField(blank=True)
