@@ -36,7 +36,8 @@
                             <div class="panel-body">
                                 {% if votes %}
                                     {% for vote in votes %}
-                                        <div class="col-sm-4">
+                                        <div class="col-md-4">
+                                            <a href="/senators/{{vote.senator.id}}">
                                             <div class="well voteWell">
                                                 <div class="col-xs-4" style="padding: 0">
                                                     {% if vote.senator.photo_url %}
@@ -60,6 +61,7 @@
                                                     {% endif %}
                                                 </div>
                                             </div>
+                                            </a>
                                         </div>
                                     {% endfor %}
                                 {% else %}

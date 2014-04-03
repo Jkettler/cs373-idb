@@ -11,12 +11,12 @@
             </ul>
             <div class="membersList row box-shadow">
                 <div class="col-xs-12 topContainer">
-                    <div class=" alignMid col-xs-4"><b>Chair</b> 
+                    <div class=" alignMid col-sm-4 col-xs-12"><b>Chair</b> 
 						<a href="/senators/{{ committee.chair.id }}/"> <div><img class="img-circle" src="{%  cloudinary_url committee.chair.twitter type="twitter_name" width="100" height="100" %}.jpg"></div>
                         {{ committee.chair }}</a>
 				    </div>
                     <div class="col-xs-4">&nbsp;</div>
-					<div class="alignMid col-xs-4" ><b>Vice-Chair</b> 
+					<div class="alignMid col-sm-4 col-xs-12" ><b>Vice-Chair</b> 
 						<a href="/senators/{{ committee.vice_chair.id }}/"><div><img class="img-circle" src="{%  cloudinary_url committee.vice_chair.twitter type="twitter_name" width="100" height="100" %}.jpg"></div>
                          {{ committee.vice_chair }}</a>
 					</div>
@@ -42,7 +42,7 @@
                 </div>
 
             </div>
-            <div class="col-xs-12">
+          <!--   <div class="col-xs-12">
                 {% if bills %}
                 <div>Bills originating in this committee: </div>
                 <div class="col-xs-2 bills">
@@ -51,7 +51,39 @@
                         {% endfor %}
                 {% endif %}
                 </div>
+            </div> -->
+            {% if bills %}
+            <div>Bills originating in this committee: </div>
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                {% for bill in bills %}
+                    <li data-target="#carousel-example-generic" data-slide-to="forloop.counter0" class="active"></li>
+                {% endfor %}
+                <!-- <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li> -->
+              </ol>
+
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                <div class="item active">
+                  <a href="/bills/{{ bill.id }}/"> {{ bill.name }}</a>
+                  <div class="carousel-caption">
+                    <div><a href="/bills/{{ bill.id }}/"> {{ bill.name }}</a></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Controls -->
+              <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+              </a>
+              <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+              </a>
             </div>
+            {% endif %}
             <!-- <ul class="list-unstyled">
                 <li>Appointment Date: {{ committee.appointment_date }}</li>
             </ul> -->
