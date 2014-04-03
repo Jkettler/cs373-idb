@@ -35,7 +35,7 @@ class Bill(models.Model):
   url = models.CharField(max_length=200, blank=True)
   description = models.TextField(blank=True)
   author = models.ForeignKey(Senator, null=True, blank=True)
-  owners = models.ManyToManyField(Senator, related_name='owners_set')
+  owners = models.ManyToManyField(Senator, related_name='owners_set', blank=True)
   primary_committee = models.ForeignKey(Committee, related_name='originating_committee_set', blank=True, null=True)
   voters = models.ManyToManyField(Senator, through='Vote', related_name='voted_bill_set', blank=True)
 
