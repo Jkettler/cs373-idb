@@ -35,28 +35,6 @@ class tests (unittest.TestCase) :
 
 
 	def test_senators_post(self) : 
-		connection = http.client.HTTPConnection("cs373idb2.apiary-mock.com")
-		values = json.dumps({
-		      "name": "Jane Nelson",
-		      "party": "Republican",
-		      "occupation": "Businesswoman, former teacher",
-		      "legistlative_experience": "Disaster Relief",
-		      "district": "12",
-		      "twitter": "https://twitter.com/SenJaneNelson",
-		      "facebook": "https://www.facebook.com/SenatorJaneNelson",
-		      "picture": "null",
-		      "committees": [1,2]
-		  })
-		headers = {"Content-Type": "application/json"}
-		connection.request("POST", "/api/senators", values, headers)
-		response = connection.getresponse()
-		desired_body = { "id": 1 }
-
-		self.assertTrue(response.status == 201)
-		self.assertTrue(json.loads(response.read().decode("utf-8")) == desired_body)
-		connection.close()
-
-	def test_senators_post_real(self) : 
 		connection = http.client.HTTPConnection("0.0.0.0:12345")
 		values = json.dumps({
 		      "name": "Jane Nelson",
@@ -66,11 +44,15 @@ class tests (unittest.TestCase) :
 		      "district": "12",
 		      "twitter": "https://twitter.com/SenJaneNelson",
 		      "facebook": "https://www.facebook.com/SenatorJaneNelson",
-		      
+		      "committees": [1,2],
+		      "map": "",
 		  })
 		headers = {"Content-Type": "application/json"}
 		connection.request("POST", "/api/senators", values, headers)
 		response = connection.getresponse()
+		print(response.status)
+		print("\n\n\n")
+		#print(response.read().decode("utf-8"))
 		desired_body = { "id": 1 }
 
 		self.assertTrue(response.status == 201)

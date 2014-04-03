@@ -2,7 +2,7 @@ from django.views.generic import TemplateView
 from idb.models import Senator, Committee, Bill
 from django.http import HttpResponse
 from django.template import RequestContext, loader
-from tastypie.serializers import Serializer
+from django.core import serializers
 import json
 
 
@@ -45,11 +45,28 @@ def committees(request):
     return HttpResponse(template.render(context))
 
 def Senators_Bills(request, senator_id):
-    sen_bills = Senator.objects.get(id=senator_id).bills.all()
-    s = Serializer()
-    #bills = s.to_json([Bill.objects.get(id=bill.id) for bill in sen_bills])
-    bills = json.dumps([json.dumps(Bill.objects.get(id=bill.id).__dict__) for bill in sen_bills])    
+    sen_bills = Senator.objects.get(id=senator_id).bill_set.all()
+    bills = serializers.serialize("json", [Bill.objects.get(id=bill.id) for bill in sen_bills])    
+    return HttpResponse(bills)
 
+def Senators_Committees(request, senator_id):
+    sen_committees = Senator.objects.get(id=senator_id).committee_set.all()
+    committees = serializers.serialize("json", [Committee.objects.get(id=com.id) for com in sen_committees])    
+    return HttpResponse(committees)
+
+def Bills_Authors(request, bill_id):
+    bill_auths = Bill.objects.get(id=bill_id).authors.all()
+    auths = serializers.serialize("json", [Senator.objects.get(id=auth.id) for auth in bill_auths])    
+    return HttpResponse(auths)
+
+def Committees_Senators(request, committee_id):
+    committee_senators = Committee.objects.get(id=committee_id).senators.all()
+    senators = serializers.serialize("json", [Senator.objects.get(id=sen.id) for sen in committee_senators])    
+    return HttpResponse(senators)
+
+def Committees_Bills(request, committee_id):
+    committee_bills = Committee.objects.get(id=committee_id).bill_set.all()
+    bills = serializers.serialize("json", [Bill.objects.get(id=bill.id) for bill in committee_bills])    
     return HttpResponse(bills)
 
 class SenatorView(TemplateView):
