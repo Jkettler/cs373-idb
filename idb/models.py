@@ -55,7 +55,7 @@ class Vote(models.Model):
   date_voted = models.DateField(blank=True, null=True)
 
   def __str__(self):
-    return self.senator.name + ': ' + self.get_vote_display()
+    return self.senator.name + ': ' + self.get_vote_display() + ' (' + self.bill.name + ')'
 
 class Picture(models.Model):
 
