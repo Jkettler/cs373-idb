@@ -6,7 +6,7 @@ class Senator(models.Model):
   occupation = models.CharField(max_length=200, blank=True)
   legislative_experience = models.CharField(max_length=200, blank=True)
   district = models.IntegerField(blank=True, null=True)
-  bills = models.ManyToManyField('Bill', related_name='bill_set', blank=True)
+  # bills = models.ManyToManyField(Bill, related_name='bill_set', blank=True)
   twitter = models.CharField(max_length=50, blank=True)
   facebook = models.URLField(blank=True)
   map = models.TextField(blank=True)
@@ -34,6 +34,8 @@ class Bill(models.Model):
   status = models.CharField(max_length=70, blank=True)
   url = models.CharField(max_length=200, blank=True)
   description = models.TextField(blank=True)
+  author = models.ForeignKey(Senator, null=True, blank=True)
+  owners = models.ManyToManyField(Senator, related_name='owners_set')
   primary_committee = models.ForeignKey(Committee, related_name='originating_committee_set', blank=True, null=True)
   voters = models.ManyToManyField(Senator, through='Vote', related_name='voted_bill_set', blank=True)
 
