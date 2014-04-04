@@ -68,7 +68,7 @@ def Bills_Votes(request, bill_id):
         currdic['senator'] = vote.senator.id
         currdic['bill'] = vote.bill.id
         currdic['vote'] = vote.vote
-        currdic['date_voted'] = vote.date_voted
+        currdic['date_voted'] = str(vote.date_voted)
         retlist.append(currdic)
 
 
