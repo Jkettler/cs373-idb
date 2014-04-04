@@ -44,13 +44,15 @@ class tests (unittest.TestCase) :
 		      "district": "12",
 		      "twitter": "SenJaneNelson",
 		      "facebook": "https://www.facebook.com/SenatorJaneNelson",
+<<<<<<< HEAD
 			  "photo_url": "null",
               "map": "null"		  
         })
-
+=======
 		      "committees": [1,2],
 		      "map": "",
 		  })
+>>>>>>> api-implementation
 		headers = {"Content-Type": "application/json"}
 		connection.request("POST", "/api/senators", values, headers)
 		response = connection.getresponse()

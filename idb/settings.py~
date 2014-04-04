@@ -43,7 +43,7 @@ INSTALLED_APPS = (
     'cloudinary',
     'idb',
     'south',
-		'tastypie',
+
 )
 
 MIDDLEWARE_CLASSES = (

@@ -37,7 +37,11 @@ class Bill(models.Model):
   url = models.CharField(max_length=200, blank=True)
   description = models.TextField(blank=True)
   authors = models.ManyToManyField(Senator, related_name='bill_set', blank=True, null=True)
+<<<<<<< HEAD
+  primary_committee = models.ForeignKey(Committee, related_name='originating_committee_set', blank=True, null=True)
+=======
   primary_committee = models.ForeignKey(Committee, related_name='bill_set', blank=True, null=True)
+>>>>>>> api-implementation
   voters = models.ManyToManyField(Senator, through='Vote', related_name='voted_bill_set', blank=True)
 
   def __str__(self):
@@ -50,6 +54,10 @@ class Bill(models.Model):
     counts = dict((i[0], votes.count(i[0])) for i in Vote.VOTE_TYPES)
     return "{0} Ayes, {1} Nays, {2} Present Not Voting, {3} Absent - {4}".format(counts["AYE"], counts["NAY"], counts["PNV"], counts["ABS"], self.vote_set.first().date_voted)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> api-implementation
 class Vote(models.Model):
   VOTE_TYPES = (
       ('AYE', 'Aye'),
