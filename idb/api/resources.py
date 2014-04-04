@@ -7,7 +7,7 @@ from idb.models import Senator, Bill, Committee, Picture
 
 class BillResource(ModelResource):
     authors = fields.ToManyField('idb.api.resources.SenatorResource', 'authors', full=False, null=True)
-    primary_committee = fields.ToOneField('idb.api.resources.BillResource', 'primary_committee', full=False, null=True)
+    primary_committee = fields.ToOneField('idb.api.resources.CommitteeResource', 'primary_committee', full=False, null=True)
 
     class Meta:
         resource_name = 'bills'
