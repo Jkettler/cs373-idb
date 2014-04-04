@@ -94,9 +94,9 @@ class SenatorView(TemplateView):
         context['bills'] = senator.bill_set.all()
         context['chair'] = senator.committee_chair_set.all()
         context['vice_chair'] = senator.committee_vice_chair_set.all()
-        context['committees'] = senator.senator_set.all()
-        context['img_counter'] = enumerate(senator.picture_set.all())
-        context['img_links'] = enumerate(senator.picture_set.all())
+        context['committees'] = senator.committee_set.all()
+        context['img_counter'] = enumerate(senator.pictures_set.all())
+        context['img_links'] = enumerate(senator.pictures_set.all())
         # context['committees'] = senator.senator_set.all()
         return context
 
