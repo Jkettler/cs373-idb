@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
-from idb.models import Senator, Committee, Bill
+from idb.models import Senator, Committee, Bill, Vote
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 
@@ -64,7 +64,15 @@ class BillView(TemplateView):
         context['bill'] = bill
         context['authors'] = bill.authors.all()
         context['voters'] = bill.voters.all()
-        context['votes'] = bill.vote_set.all()
+        
+        votes = bill.vote_set.all()
+        context['votes'] = votes
+        votes_vote = [vote.vote for vote in votes]
+        if not votes_vote :
+            context['votes_summary'] = "No voting record"
+        else :
+            counts = dict((i[0], votes_vote.count(i[0])) for i in Vote.VOTE_TYPES)
+            context['votes_summary'] = "{0} Ayes, {1} Nays, {2} Present Not Voting, {3} Absent - {4}".format(counts["AYE"], counts["NAY"], counts["PNV"], counts["ABS"], votes.first().date_voted)
         return context
 
 
