@@ -6,6 +6,7 @@ class Senator(models.Model):
   occupation = models.CharField(max_length=200, blank=True)
   legislative_experience = models.CharField(max_length=200, blank=True)
   district = models.IntegerField(blank=True, null=True)
+  # photo_url = models.URLField(blank=True, null=True)
   twitter = models.CharField(max_length=50, blank=True)
   facebook = models.URLField(blank=True)
   map = models.TextField(blank=True)
@@ -41,6 +42,14 @@ class Bill(models.Model):
   def __str__(self):
     return self.name
 
+  def votes_summary(self):
+    votes = [vote.vote for vote in self.vote_set.all()]
+    if not votes :
+      return "No voting record"
+    counts = dict((i[0], votes.count(i[0])) for i in Vote.VOTE_TYPES)
+    return "{0} Ayes, {1} Nays, {2} Present Not Voting, {3} Absent - {4}".format(counts["AYE"], counts["NAY"], counts["PNV"], counts["ABS"], self.vote_set.first().date_voted)
+
+
 class Vote(models.Model):
   VOTE_TYPES = (
       ('AYE', 'Aye'),
@@ -54,4 +63,12 @@ class Vote(models.Model):
   date_voted = models.DateField(blank=True, null=True)
 
   def __str__(self):
-    return self.senator.name + ': ' + self.get_vote_display()
+    return self.senator.name + ': ' + self.get_vote_display() + ' (' + self.bill.name + ')'
+
+class Picture(models.Model):
+
+    parent = models.ForeignKey(Senator, blank=True, null=True)
+    link = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return self.link + ' (' + self.parent.name + ')'
