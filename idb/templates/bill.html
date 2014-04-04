@@ -22,11 +22,11 @@
                             <td class="bg-primary"> <div><b>Date Effective:</b></div>  {{ bill.date_effective }}</td>
                         </tr>
                 </table>
-                <div>
+                <div class="bill-more-info">
                     {% if bill.url %}<b>Want more information about this bill? </b><a href="{{ bill.url }}">Click here</a>{% endif %}
                 </div>
-                <div class="panel panel-default votes-panel">
-                    <div class="panel-heading row">
+                <div class="panel panel-default votes-panel vote-heading">
+                    <div class="panel-heading row vote-heading">
                         <h3 class="panel-title col-lg-4">
                             <a data-toggle="collapse" href="#votes-panel-body">View Votes for this Bill</a>
                         </h3>

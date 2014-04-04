@@ -209,3 +209,11 @@ a:hover {
 .vote-well i {
     line-height: 2.5em;
 }
+
+.vote-heading {
+	border-radius: 15px;
+}
+
+.bill-more-info {
+	padding-bottom: 10px;
+}
