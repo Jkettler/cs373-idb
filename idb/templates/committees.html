@@ -2,8 +2,8 @@
 {% block content %}
     {% if latest_committees_list %}
      	{% for committee in latest_committees_list %}
-        <div class="buttonList">
-		        <a class="comitButton" href="/committees/{{ committee.id }}/">
+        <div class="button-list">
+		        <a class="commit-button" href="/committees/{{ committee.id }}/">
 		        	<button type="button" class="btn btn-danger btn-sm"><b>{{ committee.name }}</b></button>
 		        </a>
     	</div>

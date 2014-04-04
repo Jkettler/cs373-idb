@@ -53,18 +53,22 @@ a:hover {
     margin-bottom: 0.5em;
 }
 
+.committee > div[class^="col-sm-"] {
+    padding-bottom: 1em;
+}
+
 .twitterFeed {
     width:530px;
 }
 
-.fbFeed {
+.fb-feed {
     padding-left: 100px;
 }
-.senatorMap{
+.senator-map{
     float: left;
 }
 
-.socialMedia {
+.social-media {
     padding-top:20px;
 }
 
@@ -107,31 +111,32 @@ a:hover {
     margin-top: 2em;
 }
 
-.alignMid{
+.align-mid{
     text-align: center;
 }
 
-.membersList{
+.members-list{
     background-color: rgba(214, 245, 255, 1);
     width: 100%;
     border: 2px solid;
     border-radius: 25px;
+    margin: 0 1em 0 0;
 }
 
-.topContainer {
+.top-container {
     padding-top: 20px;
 }
 
-.memberContainer{
+.member-container{
     padding-bottom: 10px;
 }
 
-.billDates {
+.bill-dates {
     width: 70%;
 }
 
 
-.billDates td {
+.bill-dates td {
     border-top: 0px !important;
     border-radius: 25px;
 
@@ -152,31 +157,31 @@ a:hover {
     border-radius: 25px;
 }
 
-.comitButton button{
+.commit-button button{
     width: 300px;
     white-space: normal;
 }
-.comitButton a:link{
+.commit-button a:link{
     color: white !important;
 }
 
-.buttonList {
+.button-list {
     padding-bottom: 7px;
     border-radius: 25px !important;
   line-height: 35px;
 }
 
-.buttonList button {
+.button-list button {
     border-radius: 25px !important;
 }
 .bills {
   margin-bottom: 15px;
 }
-.billButton button{
+.bill-button button{
     width: 150px;
     white-space: normal;
 }
-.billButton a:link{
+.bill-button a:link{
     color: white !important;
 }
 
@@ -185,13 +190,13 @@ a:hover {
   margin-left: 0;
 }
 
-.voteWell {
+.vote-well {
     padding: 0;
     height: 5.3em;
     line-height: 5.2em;
     color: black;
 }
-.voteWell .name {
+.vote-well .name {
     
     line-height: 4em;
     font-weight: 500;
@@ -201,6 +206,6 @@ a:hover {
     white-space: nowrap;
 
 }
-.voteWell i {
+.vote-well i {
     line-height: 2.5em;
 }

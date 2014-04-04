@@ -3,18 +3,18 @@
 {% block content %}
     <div class="col-sm-12">
         <div class="bill">
-            <div class="col-sm-12 alignMid">
+            <div class="col-sm-12 align-mid">
                 <h1><b>{{ bill.name }}</b></h1>
             </div>
             <div class="col-sm-9 col-sm-offset-1">
-                <ul class="list-unstyled topContainer">
+                <ul class="list-unstyled top-container">
                     <li><b>Legislative Session: </b>{{ bill.legislative_session }}</li>
                     <li><b>Primary Committee: </b><a href="/committees/{{ bill.primary_committee.id }}/"> {{ bill.primary_committee.name }}</a></li>
                     <li><b>Status: </b>{{ bill.status }} <span class="glyphicon glyphicon-ok"></span></li>
                     <li><b>Summary: </b>{{ bill.description }}</li>
                 </ul>
-                <table class="table billDates">
-                       <tr class="alignMid ">
+                <table class="table bill-dates">
+                       <tr class="align-mid ">
                             <td class="bg-primary"> <div><b>Date Proposed:</b></div> {{ bill.date_proposed }}</td>
                             <td><span class="glyphicon glyphicon-arrow-right arrow-right"></span></td>
                             <td class="bg-primary"> <div><b>Date Signed:</b></div>  {{ bill.date_signed }}</td>
@@ -28,17 +28,17 @@
                 <div class="panel panel-default votes-panel">
                     <div class="panel-heading row">
                         <h3 class="panel-title col-lg-4">
-                            <a data-toggle="collapse" href="#votesPanelBody">View Votes for this Bill</a>
+                            <a data-toggle="collapse" href="#votes-panel-body">View Votes for this Bill</a>
                         </h3>
                         <div class="col-lg-8">{{votes_summary}}</div>
                     </div>
-                    <div id="votesPanelBody" class="panel-collapse collapse">
+                    <div id="votes-panel-body" class="panel-collapse collapse">
                         <div class="panel-body">
                             {% if votes %}
                                 {% for vote in votes %}
                                     <div class="col-md-4">
                                         <a href="/senators/{{vote.senator.id}}">
-                                        <div class="well voteWell">
+                                        <div class="well vote-well">
                                             <div class="col-xs-4" style="padding: 0">
                                                 {% if vote.senator.photo_url %}
                                                     <img class="img-rounded" src="{{  senator.photo_url }}" width="70" height="70">
@@ -73,7 +73,7 @@
             </div>
             <div class="col-sm-2">
                 {% if authors %}
-                <div class="alignMid"><b>Author(s):</b>
+                <div class="align-mid"><b>Author(s):</b>
                     
                      {% for author in authors %}
                         <a href="/senators/{{ author.id }}/"><div><img class="img-rounded" src="{%  cloudinary_url author.twitter type="twitter_name" width="150" height="150" %}.jpg"></div>
