@@ -171,6 +171,11 @@ a:hover {
   color: white !important;
 }
 
+.votes-panel .row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
 .voteWell {
   padding: 0;
   height: 5.3em;
@@ -178,12 +183,9 @@ a:hover {
   color: black;
 }
 .voteWell .name {
-  line-height: 4em;
+  line-height: 2em;
   font-weight: 500;
   font-size: 1.3em;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
 }
 .voteWell i {
   line-height: 2.5em;

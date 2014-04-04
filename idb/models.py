@@ -42,6 +42,13 @@ class Bill(models.Model):
   def __str__(self):
     return self.name
 
+  def votes_summary(self):
+    votes = [vote.vote for vote in self.vote_set.all()]
+    if not votes :
+      return "No voting record"
+    counts = dict((i, votes.count(i)) for i in votes)
+    return "{0} Ayes, {1} Nays, {2} Present Not Voting, {3} Absent - {4}".format(counts["AYE"], counts["NAY"], counts["PNV"], counts["ABS"], self.vote_set.first().date_voted)
+
 class Vote(models.Model):
   VOTE_TYPES = (
       ('AYE', 'Aye'),
