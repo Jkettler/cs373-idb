@@ -97,7 +97,7 @@ class SenatorView(TemplateView):
         context['committees'] = senator.senator_set.all()
         context['img_counter'] = enumerate(senator.picture_set.all())
         context['img_links'] = enumerate(senator.picture_set.all())
-        context['committees'] = senator.senator_set.all()
+        # context['committees'] = senator.senator_set.all()
         return context
 
 
