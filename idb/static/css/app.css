@@ -156,7 +156,9 @@ a:hover {
 .buttonList button {
   border-radius: 25px !important;
 }
-
+.bills {
+  margin-bottom: 15px;
+}
 .billButton button{
   width: 150px;
   white-space: normal; 
