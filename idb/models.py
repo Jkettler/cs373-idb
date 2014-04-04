@@ -63,4 +63,4 @@ class Picture(models.Model):
     link = models.URLField(blank=True, null=True)
 
     def __str__(self):
-        return self.link
+        return self.link + ' (' + self.parent.name + ')'

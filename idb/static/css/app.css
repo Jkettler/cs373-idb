@@ -173,14 +173,18 @@ a:hover {
 
 .voteWell {
   padding: 0;
-  height: 72px;
-  line-height: 70px;
+  height: 5.3em;
+  line-height: 5.2em;
+  color: black;
 }
 .voteWell .name {
-  line-height: 33px;
+  line-height: 4em;
   font-weight: 500;
-  font-size: 12pt;
+  font-size: 1.3em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .voteWell i {
-  line-height: 75px;
+  line-height: 2.5em;
 }
