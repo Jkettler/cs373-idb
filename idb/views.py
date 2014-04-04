@@ -59,6 +59,22 @@ def Bills_Authors(request, bill_id):
     auths = serializers.serialize("json", [Senator.objects.get(id=auth.id) for auth in bill_auths])    
     return HttpResponse(auths)
 
+def Bills_Votes(request, bill_id):
+    bill_votes = Bill.objects.get(id=bill_id).vote_set.all()
+
+    retlist = []
+    for vote in bill_votes:
+        currdic = {}
+        currdic['senator'] = vote.senator.id
+        currdic['bill'] = vote.bill.id
+        currdic['vote'] = vote.vote
+        currdic['date_voted'] = vote.date_voted
+        retlist.append(currdic)
+
+
+    #votes = serializers.serialize("json", [Vote.objects.get(id=vote.id).fields for vote in bill_votes])    
+    return HttpResponse(json.dumps(retlist))    
+
 def Committees_Senators(request, committee_id):
     committee_senators = Committee.objects.get(id=committee_id).senators.all()
     senators = serializers.serialize("json", [Senator.objects.get(id=sen.id) for sen in committee_senators])    

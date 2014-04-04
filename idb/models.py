@@ -51,7 +51,7 @@ class Vote(models.Model):
       ('ABS', 'Absent'),
   )
   senator = models.ForeignKey(Senator)
-  bill = models.ForeignKey(Bill)
+  bill = models.ForeignKey(Bill, related_name='vote_set')
   vote = models.CharField(max_length=3, choices=VOTE_TYPES)
   date_voted = models.DateField(blank=True, null=True)
 
@@ -60,7 +60,7 @@ class Vote(models.Model):
 
 class Picture(models.Model):
 
-    parent = models.ForeignKey(Senator, blank=True, null=True)
+    parent = models.ForeignKey(Senator, related_name='pictures_set', blank=True, null=True)
     link = models.URLField(blank=True, null=True)
 
     def __str__(self):

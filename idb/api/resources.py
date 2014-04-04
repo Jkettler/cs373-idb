@@ -2,8 +2,7 @@ from tastypie.resources import ModelResource
 from django.contrib.auth.models import User
 from tastypie import fields
 from tastypie.authorization import Authorization
-from idb.models import Senator, Bill, Committee
-
+from idb.models import Senator, Bill, Committee, Picture
 
 
 class BillResource(ModelResource):
@@ -16,6 +15,7 @@ class BillResource(ModelResource):
         authorization = Authorization()
         allowed_methods = ['get','post','put','delete']
         include_resource_uri = False
+        always_return_data = True
 
     def get_list(self, request, **kwargs):
             base_bundle = self.build_bundle(request=request)
@@ -69,6 +69,7 @@ class CommitteeResource(ModelResource):
         allowed_methods = ['get','post','put','delete']
         include_resource_uri = False
         authorization = Authorization()
+        always_return_data = True
 
     def get_list(self, request, **kwargs):
         base_bundle = self.build_bundle(request=request)
@@ -129,10 +130,18 @@ class CommitteeResource(ModelResource):
 
         return bundle      
 
+# class PictureResource(ModelResource):
+#     class Meta:
+#         queryset = Picture.objects.all()
+#         resource_name = 'pictures'
+#         allowed_methods = ['get','post','put','delete']
+#         include_resource_uri = False
+#         authorization = Authorization()  
 
 class SenatorResource(ModelResource):
     bills = fields.ToManyField(BillResource, 'bill_set',  full=False, null=True)
     committees = fields.ToManyField(CommitteeResource, 'committee_set', full=False, null=True)
+    #pictures = fields.ToManyField(PictureResource, 'pictures_set', full=False, null=True)
 
     class Meta:
         queryset = Senator.objects.all()
@@ -140,6 +149,7 @@ class SenatorResource(ModelResource):
         allowed_methods = ['get','post','put','delete']
         include_resource_uri = False
         authorization = Authorization()
+        always_return_data = True
 
     def get_list(self, request, **kwargs):
         base_bundle = self.build_bundle(request=request)
