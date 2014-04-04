@@ -129,5 +129,5 @@ class CommitteeView(TemplateView):
         committee = Committee.objects.get(id=str(self.args[0]))
         context['committee'] = committee
         context['senator_set'] = committee.senators.all()
-        context['bills'] = committee.originating_committee_set.all()
+        context['bills'] = committee.bill_set.all()
         return context
