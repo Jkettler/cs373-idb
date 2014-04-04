@@ -198,13 +198,9 @@ a:hover {
 }
 .vote-well .name {
     
-    line-height: 4em;
+    line-height: 1.7em;
     font-weight: 500;
     font-size: 1.3em;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-
 }
 .vote-well i {
     line-height: 2.5em;
