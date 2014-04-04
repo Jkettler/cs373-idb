@@ -31,6 +31,9 @@ class BillResource(ModelResource):
             to_be_serialized = self.alter_list_data_to_serialize(request, to_be_serialized)
             return self.create_response(request, to_be_serialized['objects'])
 
+    def determine_format(self, request):
+        return 'application/json'
+
     def dehydrate(self, bundle):
         if (bundle.data['primary_committee']):
             arr = bundle.data['primary_committee'].split("/")
@@ -84,6 +87,9 @@ class CommitteeResource(ModelResource):
         to_be_serialized[self._meta.collection_name] = bundles
         to_be_serialized = self.alter_list_data_to_serialize(request, to_be_serialized)
         return self.create_response(request, to_be_serialized['objects'])
+
+    def determine_format(self, request):
+        return 'application/json'
 
     def dehydrate(self, bundle):
         i = 0
@@ -164,6 +170,9 @@ class SenatorResource(ModelResource):
         to_be_serialized[self._meta.collection_name] = bundles
         to_be_serialized = self.alter_list_data_to_serialize(request, to_be_serialized)
         return self.create_response(request, to_be_serialized['objects'])
+
+    def determine_format(self, request):
+        return 'application/json'
 
     def dehydrate(self, bundle):
         i = 0
