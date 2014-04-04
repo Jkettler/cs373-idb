@@ -45,20 +45,21 @@ class BillResource(ModelResource):
         return bundle
 
     def hydrate(self, bundle):
-        if (bundle.data['primary_committee']):
+        if ('primary_committee' in bundle.data and bundle.data['primary_committee']):
             bundle.data['primary_committee'] = "/api/committees/" + str(bundle.data['primary_committee']) + "/"
 
-        i = 0
-        for auth in bundle.data['authors']:
-            bundle.data['authors'][i] = "/api/senators/" + str(bundle.data['authors'][i]) + "/"
-            i += 1
+        if ('authors' in bundle.data):
+            i = 0
+            for auth in bundle.data['authors']:
+                bundle.data['authors'][i] = "/api/senators/" + str(bundle.data['authors'][i]) + "/"
+                i += 1
 
         return bundle       
 
 
 class CommitteeResource(ModelResource):
     bills = fields.ToManyField(BillResource, 'bill_set',  full=False, null=True)
-    senators = fields.ToManyField('idb.api.resources.CommitteeResource', 'senators', full=False, null=True)
+    senators = fields.ToManyField('idb.api.resources.SenatorResource', 'senators', full=False, null=True)
     chair = fields.ToOneField('idb.api.resources.SenatorResource', 'chair', full=False, null=True)
     vice_chair = fields.ToOneField('idb.api.resources.SenatorResource', 'vice_chair', full=False, null=True)
 
@@ -67,7 +68,7 @@ class CommitteeResource(ModelResource):
         queryset = Committee.objects.all()
         allowed_methods = ['get','post','put','delete']
         include_resource_uri = False
-        detail_uri_name = 'pk'
+        authorization = Authorization()
 
     def get_list(self, request, **kwargs):
         base_bundle = self.build_bundle(request=request)
@@ -83,6 +84,50 @@ class CommitteeResource(ModelResource):
         to_be_serialized = self.alter_list_data_to_serialize(request, to_be_serialized)
         return self.create_response(request, to_be_serialized['objects'])
 
+    def dehydrate(self, bundle):
+        i = 0
+        for bill in bundle.data['bills']:
+            arr = bill.split("/")
+            bundle.data['bills'][i] = int(arr[len(arr) - 2])
+            i += 1
+
+        i = 0
+        for senator in bundle.data['senators']:
+           arr = senator.split("/")
+           bundle.data['senators'][i] = int(arr[len(arr) - 2])
+           i += 1
+
+        if (bundle.data['chair']):
+            arr = bundle.data['chair'].split("/")
+            bundle.data['chair'] = int(arr[len(arr) - 2])
+
+        if (bundle.data['vice_chair']):
+            arr = bundle.data['vice_chair'].split("/")
+            bundle.data['vice_chair'] = int(arr[len(arr) - 2])
+
+        return bundle
+
+    def hydrate(self, bundle):
+        i = 0
+        if 'bills' in bundle.data:
+            for bill in bundle.data['bills']:
+                bundle.data['bills'][i] = "/api/bills/" + str(bundle.data['bills'][i]) + "/"
+                i += 1
+
+        if 'senators' in bundle.data:
+           i = 0
+           for senator in bundle.data['senators']:
+               bundle.data['senators'][i] = "/api/senators/" + str(bundle.data['senators'][i]) + "/"
+               i += 1
+
+        if ('chair' in bundle.data and bundle.data['chair']):
+                bundle.data['chair'] = "/api/senators/" + str(bundle.data['chair']) + "/"
+
+        if ('vice_chair' in bundle.data and bundle.data['vice_chair']):
+                bundle.data['vice_chair'] = "/api/senators/" + str(bundle.data['vice_chair']) + "/"
+
+
+        return bundle      
 
 
 class SenatorResource(ModelResource):
@@ -92,10 +137,9 @@ class SenatorResource(ModelResource):
     class Meta:
         queryset = Senator.objects.all()
         resource_name = 'senators'
-        authorization = Authorization()
         allowed_methods = ['get','post','put','delete']
         include_resource_uri = False
-        detail_uri_name = 'pk'
+        authorization = Authorization()
 
     def get_list(self, request, **kwargs):
         base_bundle = self.build_bundle(request=request)
@@ -110,3 +154,33 @@ class SenatorResource(ModelResource):
         to_be_serialized[self._meta.collection_name] = bundles
         to_be_serialized = self.alter_list_data_to_serialize(request, to_be_serialized)
         return self.create_response(request, to_be_serialized['objects'])
+
+    def dehydrate(self, bundle):
+        i = 0
+        for bill in bundle.data['bills']:
+            arr = bill.split("/")
+            bundle.data['bills'][i] = int(arr[len(arr) - 2])
+            i += 1
+
+        i = 0
+        for senator in bundle.data['committees']:
+            arr = senator.split("/")
+            bundle.data['committees'][i] = int(arr[len(arr) - 2])
+            i += 1
+
+        return bundle
+
+    def hydrate(self, bundle):
+        i = 0
+        if 'bills' in bundle.data:
+            for bill in bundle.data['bills']:
+                bundle.data['bills'][i] = "/api/bills/" + str(bundle.data['bills'][i]) + "/"
+                i += 1
+
+        if 'committees' in bundle.data:
+            i = 0
+            for senator in bundle.data['committees']:
+                bundle.data['committees'][i] = "/api/committees/" + str(bundle.data['committees'][i]) + "/"
+                i += 1
+
+        return bundle   

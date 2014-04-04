@@ -20,7 +20,7 @@ class Committee(models.Model):
   appointment_date = models.DateField(null=True, blank=True)
   chair = models.ForeignKey(Senator, related_name='committee_chair_set', blank=True, null=True)
   vice_chair = models.ForeignKey(Senator, related_name='committee_vice_chair_set', blank=True, null=True)
-  senators = models.ManyToManyField(Senator, related_name='committee_set', blank=True)
+  senators = models.ManyToManyField(Senator, related_name='committee_set', blank=True, null=True)
 
   def __str__(self):
     return self.name
