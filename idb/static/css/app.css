@@ -163,18 +163,26 @@ a:hover {
 .buttonList {
     padding-bottom: 7px;
     border-radius: 25px !important;
+  line-height: 35px;
 }
 
 .buttonList button {
     border-radius: 25px !important;
 }
-
+.bills {
+  margin-bottom: 15px;
+}
 .billButton button{
     width: 150px;
     white-space: normal;
 }
 .billButton a:link{
     color: white !important;
+}
+
+.votes-panel .row {
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .voteWell {
@@ -184,12 +192,14 @@ a:hover {
     color: black;
 }
 .voteWell .name {
+    
     line-height: 4em;
     font-weight: 500;
     font-size: 1.3em;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+
 }
 .voteWell i {
     line-height: 2.5em;

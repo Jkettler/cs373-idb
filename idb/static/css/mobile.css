@@ -10,3 +10,10 @@
 .comitButton button{width: 100% !important;}
 
 .billButton button{width: 100% !important;}
+
+.voteWell .name { 
+  line-height: 4em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

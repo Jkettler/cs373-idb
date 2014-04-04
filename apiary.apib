@@ -127,8 +127,7 @@ All of the Bills that this senator has authored
                 "status": "Signed into law",
                 "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
                 "primary_committee": 1,
-                "Description": "Relating to consent to the immunization of certain children.",
-                "voters": [2, 3]
+                "Description": "Relating to consent to the immunization of certain children."
             }
         ]
 
@@ -150,8 +149,7 @@ A collection of all of the bills in the database
                 "status": "Signed into law",
                 "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
                 "primary_committee": 1,
-                "Description": "Relating to consent to the immunization of certain children.",
-                "voters": [2, 3]
+                "Description": "Relating to consent to the immunization of certain children."
             }
         ]
         
@@ -168,8 +166,7 @@ A collection of all of the bills in the database
             "status": "Signed into law",
             "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
             "primary_committee": 1,
-            "Description": "Relating to consent to the immunization of certain children.",
-            "voters": [2, 3]
+            "Description": "Relating to consent to the immunization of certain children."
         }
 
 + Response 201 (application/json)
@@ -196,8 +193,7 @@ A specific bill, where id is the database primary key for that bill
                 "status": "Signed into law",
                 "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
                 "primary_committee": 1,
-                "Description": "Relating to consent to the immunization of certain children.",
-                "voters": [2, 3]
+                "Description": "Relating to consent to the immunization of certain children."
             }
 
 ###Update an existing bill [PUT]
@@ -214,8 +210,7 @@ A specific bill, where id is the database primary key for that bill
                 "status": "Signed into law",
                 "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
                 "primary_committee": 1,
-                "Description": "Relating to consent to the immunization of certain children.",
-                "voters": [2, 3]
+                "Description": "Relating to consent to the immunization of certain children."
 
         }
 + Response 204
@@ -261,6 +256,18 @@ A list of all the senators that authored the bill
                 "facebook": "https://www.facebook.com/SenatorJaneNelson",
                 "map": "null"
             }
+        ]
+
+##Bill votes [/api/bills/{id}/votes]
+All of the votes for a given bill
+###List the votes [GET]
++ Response 200 (application/json)
+
+        [
+            "senator_id": 1,
+            "bill_id": 2,
+            "vote": "AYE",
+            "date_voted": "5/20/2013"
         ]
 
 #Group Committees
