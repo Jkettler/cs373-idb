@@ -48,13 +48,14 @@ class BillResource(ModelResource):
         return bundle
 
     def hydrate(self, bundle):
-        if ('primary_committee' in bundle.data and bundle.data['primary_committee']):
+        if ('primary_committee' in bundle.data and bundle.data['primary_committee'] and isinstance(bundle.data['primary_committee'], int)):
             bundle.data['primary_committee'] = "/api/committees/" + str(bundle.data['primary_committee']) + "/"
 
         if ('authors' in bundle.data):
             i = 0
             for auth in bundle.data['authors']:
-                bundle.data['authors'][i] = "/api/senators/" + str(bundle.data['authors'][i]) + "/"
+                if (isinstance(bundle.data['authors'][i], int)):
+                    bundle.data['authors'][i] = "/api/senators/" + str(bundle.data['authors'][i]) + "/"
                 i += 1
 
         return bundle       
@@ -118,19 +119,21 @@ class CommitteeResource(ModelResource):
         i = 0
         if 'bills' in bundle.data:
             for bill in bundle.data['bills']:
-                bundle.data['bills'][i] = "/api/bills/" + str(bundle.data['bills'][i]) + "/"
+                if (isinstance(bundle.data['bills'][i], int)):
+                    bundle.data['bills'][i] = "/api/bills/" + str(bundle.data['bills'][i]) + "/"
                 i += 1
 
         if 'senators' in bundle.data:
-           i = 0
-           for senator in bundle.data['senators']:
-               bundle.data['senators'][i] = "/api/senators/" + str(bundle.data['senators'][i]) + "/"
-               i += 1
+            i = 0
+            for senator in bundle.data['senators']:
+                if (isinstance(bundle.data['senators'][i], int)):
+                    bundle.data['senators'][i] = "/api/senators/" + str(bundle.data['senators'][i]) + "/"
+                i += 1
 
-        if ('chair' in bundle.data and bundle.data['chair']):
+        if ('chair' in bundle.data and bundle.data['chair'] and isinstance(bundle.data['chair'], int)):
                 bundle.data['chair'] = "/api/senators/" + str(bundle.data['chair']) + "/"
 
-        if ('vice_chair' in bundle.data and bundle.data['vice_chair']):
+        if ('vice_chair' in bundle.data and bundle.data['vice_chair'] and isinstance(bundle.data['vice_chair'], int)):
                 bundle.data['vice_chair'] = "/api/senators/" + str(bundle.data['vice_chair']) + "/"
 
 
@@ -193,13 +196,15 @@ class SenatorResource(ModelResource):
         i = 0
         if 'bills' in bundle.data:
             for bill in bundle.data['bills']:
-                bundle.data['bills'][i] = "/api/bills/" + str(bundle.data['bills'][i]) + "/"
+                if (isinstance(bundle.data['bills'][i], int)):
+                    bundle.data['bills'][i] = "/api/bills/" + str(bundle.data['bills'][i]) + "/"
                 i += 1
 
         if 'committees' in bundle.data:
             i = 0
             for senator in bundle.data['committees']:
-                bundle.data['committees'][i] = "/api/committees/" + str(bundle.data['committees'][i]) + "/"
+                if (isinstance(bundle.data['committees'][i], int)):
+                    bundle.data['committees'][i] = "/api/committees/" + str(bundle.data['committees'][i]) + "/"
                 i += 1
 
         return bundle   
