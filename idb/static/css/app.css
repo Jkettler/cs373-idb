@@ -1,7 +1,7 @@
 body {
-   position:relative;
-   height: 100%;
-   background-color:#FCFCFC;
+    position:relative;
+    height: 100%;
+    background-color:#FCFCFC;
 
 }
 body:after {
@@ -27,20 +27,26 @@ a:hover {
 }
 
 .senator .col-sm-12.senatorName{
-	text-align: center; 
-	padding-bottom: 35px;
-  padding-top: 50px;
+    text-align: center;
+    padding-bottom: 35px;
+    padding-top: 50px;
 }
 
 .senator img.img{
-      display: block;
-      margin-right: auto;
-      margin-left: auto;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
 }
-
+.carousel-inner {
+    height: 22.5em;
+}
+.carousel-inner>.item>img, .carousel-inner>.item>a>img{
+    margin-left: auto;
+    margin-right:auto;
+}
 .data div .list-unstyled {
-  padding-top: 30px; 
-  padding-left: 70px;
+    padding-top: 30px;
+    padding-left: 70px;
 }
 
 .senator li, .bill li, .committee li {
@@ -48,18 +54,18 @@ a:hover {
 }
 
 .twitterFeed {
-  width:530px;
+    width:530px;
 }
 
 .fbFeed {
-  padding-left: 100px;
+    padding-left: 100px;
 }
 .senatorMap{
-	float: left;
+    float: left;
 }
 
 .socialMedia {
-  padding-top:20px;
+    padding-top:20px;
 }
 
 .senators .name {
@@ -87,14 +93,14 @@ a:hover {
 }
 
 #footer {
-  background-color: #f5f5f5;
-  position: relative;
-  bottom: 0;
-  margin-top: 35em;
+    background-color: #f5f5f5;
+    position: relative;
+    bottom: 0;
+    margin-top: 35em;
 }
 
 #footer .text-muted {
-  margin-top: 1em;
+    margin-top: 1em;
 }
 
 .back-button {
@@ -102,89 +108,89 @@ a:hover {
 }
 
 .alignMid{
-	text-align: center; 
+    text-align: center;
 }
 
 .membersList{
-  background-color: rgba(214, 245, 255, 1);
-  width: 100%;
-  border: 2px solid;
-  border-radius: 25px;
+    background-color: rgba(214, 245, 255, 1);
+    width: 100%;
+    border: 2px solid;
+    border-radius: 25px;
 }
 
 .topContainer {
-  padding-top: 20px;
+    padding-top: 20px;
 }
 
 .memberContainer{
-  padding-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .billDates {
-  width: 70%;
+    width: 70%;
 }
 
 
 .billDates td {
-  border-top: 0px !important;
-  border-radius: 25px;
+    border-top: 0px !important;
+    border-radius: 25px;
 
 }
 
 .arrow-right {
-  top: 10px; 
-  font-size: 20px;
+    top: 10px;
+    font-size: 20px;
 }
 
 .authors {
-  padding-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .bills {
-  background-color: rgba(214, 245, 255, 1);
-  border: 1px solid;
-  border-radius: 25px;
+    background-color: rgba(214, 245, 255, 1);
+    border: 1px solid;
+    border-radius: 25px;
 }
 
 .comitButton button{
-  width: 300px;
-  white-space: normal; 
+    width: 300px;
+    white-space: normal;
 }
 .comitButton a:link{
-  color: white !important;
+    color: white !important;
 }
 
 .buttonList {
-  padding-bottom: 7px;
-  border-radius: 25px !important;
+    padding-bottom: 7px;
+    border-radius: 25px !important;
 }
 
 .buttonList button {
-  border-radius: 25px !important;
+    border-radius: 25px !important;
 }
 
 .billButton button{
-  width: 150px;
-  white-space: normal; 
+    width: 150px;
+    white-space: normal;
 }
 .billButton a:link{
-  color: white !important;
+    color: white !important;
 }
 
 .voteWell {
-  padding: 0;
-  height: 5.3em;
-  line-height: 5.2em;
-  color: black;
+    padding: 0;
+    height: 5.3em;
+    line-height: 5.2em;
+    color: black;
 }
 .voteWell .name {
-  line-height: 4em;
-  font-weight: 500;
-  font-size: 1.3em;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+    line-height: 4em;
+    font-weight: 500;
+    font-size: 1.3em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .voteWell i {
-  line-height: 2.5em;
+    line-height: 2.5em;
 }

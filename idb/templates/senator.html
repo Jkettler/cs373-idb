@@ -3,67 +3,104 @@
 {% block content %}
 
 
-	<div class="senator">
-		<div class="col-sm-12 senatorName">
-			<h1><b>{{ senator.name }}</b></h1>
-      {% if senator.photo_url %}
-        <img class="img-circle" src="{{  senator.photo_url }}" width="250" height="250">
-      {% else %}
-			  <img class="img-circle" src="{%  cloudinary_url senator.twitter type="twitter_name" width="250" height="250" %}.jpg">
-      {% endif %}
-		</div>
-		<div class="data">
-			<div class="col-sm-5 col-sm-offset-1">
-				<ul class="list-unstyled">
-					<li><b>District:</b>  {{ senator.district }}</li>
-					<li><b>Political Party:</b> {{ senator.party }}</li>
-					<li><b>Legislative Experience:</b>  {{ senator.legislative_experience }}</li>
-					<li><b>Occupation:</b>  {{ senator.occupation }}</li>
-					{% if bills %}
-						<li><b>Bills Authored:</b>
-							<ul>
-								{% for bill in bills %}
-									<li class=""><a href="/bills/{{ bill.id }}/"> {{ bill.name }}</a></li>
-								{% endfor %}
-							</ul>
-						</li>
+    <div class="senator">
+        <div class="col-sm-12 senatorName">
+            <h1><b>{{ senator.name }}</b></h1>
+            {% if senator.photo_url %}
+                <img class="img-circle" src="{{  senator.photo_url }}" width="250" height="250">
+            {% else %}
+                <img class="img-circle" src="{%  cloudinary_url senator.twitter type="twitter_name" width="250" height="250" %}.jpg">
+            {% endif %}
+        </div>
+        <div class="data">
+            <div class="col-sm-5 col-sm-offset-1">
+                <ul class="list-unstyled">
+                    <li><b>District:</b>  {{ senator.district }}</li>
+                    <li><b>Political Party:</b> {{ senator.party }}</li>
+                    <li><b>Legislative Experience:</b>  {{ senator.legislative_experience }}</li>
+                    <li><b>Occupation:</b>  {{ senator.occupation }}</li>
+                    {% if bills %}
+                        <li><b>Bills Authored:</b>
+                            <ul>
+                                {% for bill in bills %}
+                                    <li class=""><a href="/bills/{{ bill.id }}/"> {{ bill.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
 
-					{% endif %}
+                    {% endif %}
 
 
-					{% if committees or chair or vice_chair%}
-							<li><b>83rd Session Committee Membership:</b> 
-							<ul class="">
-								{% for committee in chair %}
-									<li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }} </a> - Chair </li>
-								{% endfor %}
-								{% for committee in vice_chair %}
-									<li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }} </a> - Vice-Chair </li>
-								{% endfor %}
-								{% for committee in committees %}
-									<li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }} </a></li>
-								{% endfor %}	
-							</ul>
-						</li>
-					{% endif %}
-				</ul>			
-			</div>
-			<div class="senatorMap col-sm-6">	
-				<span><h4> <b>Contact the Senator: </b> </h4></span>
-				<b>Mailing Address:</b>
-				<div class="col-sm-12"> {{ senator.map |safe }}</div>
-			</div>
-			<div class="col-sm-12">
-				<div><h2 class="alignMid"> <b>Social Media </b> </h2></div>
-				<div class="col-sm-6 twitterFeed">
-					<a  class="twitter-timeline" href="https://twitter.com/{{ senator.twitter }}" data-widget-id="446782772338651138" data-screen-name="{{ senator.twitter }}">Tweets by @{{ senator.twitter }}</a>
-					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-				</div>
-				<div class="fb-like-box fbFeed col-sm-6" data-href="{{ senator.facebook }}" data-width="500" data-height="600" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>
-			</div>
-		</div>
+                    {% if committees or chair or vice_chair%}
+                        <li><b>83rd Session Committee Membership:</b>
+                            <ul class="">
+                                {% for committee in chair %}
+                                    <li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }} </a> - Chair </li>
+                                {% endfor %}
+                                {% for committee in vice_chair %}
+                                    <li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }} </a> - Vice-Chair </li>
+                                {% endfor %}
+                                {% for committee in committees %}
+                                    <li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }} </a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="senatorMap col-sm-6">
+                <span><h4> <b>Contact the Senator: </b> </h4></span>
+                <b>Mailing Address:</b>
+                <div class="col-sm-12"> {{ senator.map |safe }}</div>
+            </div>
+            <div class="col-sm-12">
+                <div id="senator-pics" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        {% for idx, val in img_counter %}
+                            {% if idx == 0 %}
+                                <li data-target="#senator-pics" data-slide-to="{{ idx }}" class="active"></li>
+                            {% else %}
+                                <li data-target="#senator-pics" data-slide-to="{{ idx }}"></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ol>
+                    <!-- Wrapper for slides -->
 
-		
+                    <div class="carousel-inner">
+                        {% for idx, val in img_links %}
+                            {% if idx == 0 %}
+                                <div class="item active">
+                                    <img src="{{ val.link }}">
+                                </div>
+                            {% else %}
+                                <div class="item">
+                                    <img src="{{ val.link }}">
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#senator-pics" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#senator-pics" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div><h2 class="alignMid"> <b>Social Media </b> </h2></div>
+                <div class="col-sm-6 twitterFeed">
+                    <a  class="twitter-timeline" href="https://twitter.com/{{ senator.twitter }}" data-widget-id="446782772338651138" data-screen-name="{{ senator.twitter }}">Tweets by @{{ senator.twitter }}</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                </div>
+                <div class="fb-like-box fbFeed col-sm-6" data-href="{{ senator.facebook }}" data-width="500" data-height="600" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>
+            </div>
+        </div>
+
+
     </div>
     <div class="col-sm-12 back-button">
         <a href="/senators/">
@@ -74,14 +111,14 @@
         </a>
     </div>
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
 
 {% endblock %}
