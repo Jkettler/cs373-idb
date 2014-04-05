@@ -213,3 +213,10 @@ a:hover {
 .bill-more-info {
 	padding-bottom: 10px;
 }
+
+.carousel-style{
+    padding-top: 1em;
+    padding-left: 2em;
+    padding-right: 6em;
+    clear: both;
+}
