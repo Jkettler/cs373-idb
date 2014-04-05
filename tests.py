@@ -11,7 +11,7 @@ def senators_post():
 	connection = http.client.HTTPConnection(host)
 	values = json.dumps({
 			  "bills": [
-			    1
+			    4
 			  ],
 			  "committees": [
 			    1
@@ -134,7 +134,7 @@ class tests (unittest.TestCase) :
 		response = connection.getresponse()
 		desired_body = {
 		  "bills": [
-		    1
+		    4
 		  ],
 		  "committees": [
 		    1
@@ -162,7 +162,7 @@ class tests (unittest.TestCase) :
 		connection = http.client.HTTPConnection(host)
 		values = json.dumps({
 		  "bills": [
-		    1
+		    4
 		  ],
 		  "committees": [
 		    1
@@ -219,7 +219,7 @@ class tests (unittest.TestCase) :
 
 		self.assertTrue(response.status == 200)
 		response_list = json.loads(response.read().decode("utf-8"))
-		self.assertTrue(response_list[0]['pk'] == 1)
+		self.assertTrue(response_list[0]['pk'] == 4)
 		connection.close()
 
 		connection = senators_delete(sen_id)
@@ -236,267 +236,267 @@ class tests (unittest.TestCase) :
 
 
 
-	# def test_bills_post(self) : 
-	# 	connection = bills_post()
-	# 	response = connection.getresponse()
-	# 	response_body = json.loads(response.read().decode("utf-8"))
-	# 	self.assertTrue(response.status == 201)
-	# 	self.assertTrue("id" in response_body)
-	# 	bill_id = response_body['id']
-	# 	connection.close()
+	def test_bills_post(self) : 
+		connection = bills_post()
+		response = connection.getresponse()
+		response_body = json.loads(response.read().decode("utf-8"))
+		self.assertTrue(response.status == 201)
+		self.assertTrue("id" in response_body)
+		bill_id = response_body['id']
+		connection.close()
 
-	# 	bills_delete(bill_id).close()
-
-
-	# def test_bills_id_delete(self) :
-	# 	connection = bills_post()
-	# 	bill_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
-	# 	connection.close()
-
-	# 	connection = bills_delete(bill_id)
-	# 	self.assertTrue(connection.getresponse().status == 204)
-	# 	connection.close()
-
-	# def test_bills_get(self) :
-	# 	connection = http.client.HTTPConnection(host)
-	# 	connection.request("GET", "/api/bills/")
-	# 	response = connection.getresponse()
-
-	# 	self.assertTrue(response.status == 200)
-	# 	connection.close()
-
-	# def test_bills_id_get(self) :
-	# 	connection = bills_post()
-	# 	bill_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
-	# 	connection.close()		
-
-	# 	connection = http.client.HTTPConnection(host)
-	# 	connection.request("GET", "/api/bills/" + str(bill_id) + "/")
-	# 	response = connection.getresponse()
-	# 	desired_body = 	{
-	#        "authors":
-	#        [
-	# 			2
-	#        ],
-	#        "id": bill_id,
-	#        "date_effective": "2013-06-14",
-	#        "date_proposed": "2012-11-12",
-	#        "date_signed": "2013-06-14",
-	#        "description": "Relating to consent to the immunization of certain children.",
-	#        "legislative_session": "83(R)",
-	#        "name": "SB 747 test",
-	#        "primary_committee": 1,
-	#        "status": "Signed into law",
-	#        "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63"
- #    	}
-	# 	self.assertTrue(response.status == 200)
-	# 	self.assertTrue(json.loads(response.read().decode("utf-8")) == desired_body)
-	# 	connection.close()
-
-	# 	connection = bills_delete(bill_id)
-	# 	self.assertTrue(connection.getresponse().status == 204)
-	# 	connection.close()		
+		bills_delete(bill_id).close()
 
 
-	# def test_bills_id_put(self) :
-	# 	connection = bills_post()
-	# 	bill_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
-	# 	connection.close()	
+	def test_bills_id_delete(self) :
+		connection = bills_post()
+		bill_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
+		connection.close()
 
-	# 	connection = http.client.HTTPConnection(host)
-	# 	values = json.dumps({
-	#        "authors":
-	#        [
-	# 			2
-	#        ],
-	#        "id": bill_id,
-	#        "date_effective": "2013-06-14",
-	#        "date_proposed": "2012-11-12",
-	#        "date_signed": "2013-06-14",
-	#        "description": "Relating to consent to eat cookies.",
-	#        "legislative_session": "83(R)",
-	#        "name": "SB 747 test",
-	#        "primary_committee": 1,
-	#        "status": "Signed into law",
-	#        "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63"
- #    	})
-	# 	headers = {"Content-Type": "application/json"}
+		connection = bills_delete(bill_id)
+		self.assertTrue(connection.getresponse().status == 204)
+		connection.close()
 
-	# 	connection.request("PUT", "/api/bills/" + str(bill_id) + "/", values, headers)		
-	# 	response = connection.getresponse()
-	# 	self.assertTrue(response.status == 200)
-	# 	self.assertTrue(json.loads(response.read().decode("utf-8"))['description'] == "Relating to consent to eat cookies.")
+	def test_bills_get(self) :
+		connection = http.client.HTTPConnection(host)
+		connection.request("GET", "/api/bills/")
+		response = connection.getresponse()
 
-	# 	connection.close()
+		self.assertTrue(response.status == 200)
+		connection.close()
 
-	# 	connection = bills_delete(bill_id)
-	# 	self.assertTrue(connection.getresponse().status == 204)
-	# 	connection.close()
+	def test_bills_id_get(self) :
+		connection = bills_post()
+		bill_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
+		connection.close()		
 
-	# def test_bills_id_authors(self) :
-	# 	connection = bills_post()
-	# 	bill_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
-	# 	connection.close()	
+		connection = http.client.HTTPConnection(host)
+		connection.request("GET", "/api/bills/" + str(bill_id) + "/")
+		response = connection.getresponse()
+		desired_body = 	{
+	       "authors":
+	       [
+				2
+	       ],
+	       "id": bill_id,
+	       "date_effective": "2013-06-14",
+	       "date_proposed": "2012-11-12",
+	       "date_signed": "2013-06-14",
+	       "description": "Relating to consent to the immunization of certain children.",
+	       "legislative_session": "83(R)",
+	       "name": "SB 747 test",
+	       "primary_committee": 1,
+	       "status": "Signed into law",
+	       "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63"
+    	}
+		self.assertTrue(response.status == 200)
+		self.assertTrue(json.loads(response.read().decode("utf-8")) == desired_body)
+		connection.close()
 
-	# 	connection = http.client.HTTPConnection(host)
-	# 	connection.request("GET", "/api/bills/" + str(bill_id) + "/authors/")
-	# 	response = connection.getresponse()
-
-	# 	self.assertTrue(response.status == 200)
-	# 	response_list = json.loads(response.read().decode("utf-8"))
-	# 	self.assertTrue(response_list[0]['pk'] == 2)
-	# 	connection.close()
-
-	# 	connection = bills_delete(bill_id)
-	# 	self.assertTrue(connection.getresponse().status == 204)
-	# 	connection.close()
-
-	# def test_bills_id_votes(self) :
-	# 	connection = bills_post()
-	# 	bill_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
-	# 	connection.close()	
-
-	# 	connection = http.client.HTTPConnection(host)
-	# 	connection.request("GET", "/api/bills/" + str(bill_id) + "/votes/")
-	# 	response = connection.getresponse()
-
-	# 	self.assertTrue(response.status == 200)
-	# 	response_list = json.loads(response.read().decode("utf-8"))
-	# 	connection.close()
-
-	# 	connection = bills_delete(bill_id)
-	# 	self.assertTrue(connection.getresponse().status == 204)
-	# 	connection.close()
+		connection = bills_delete(bill_id)
+		self.assertTrue(connection.getresponse().status == 204)
+		connection.close()		
 
 
+	def test_bills_id_put(self) :
+		connection = bills_post()
+		bill_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
+		connection.close()	
+
+		connection = http.client.HTTPConnection(host)
+		values = json.dumps({
+	       "authors":
+	       [
+				2
+	       ],
+	       "id": bill_id,
+	       "date_effective": "2013-06-14",
+	       "date_proposed": "2012-11-12",
+	       "date_signed": "2013-06-14",
+	       "description": "Relating to consent to eat cookies.",
+	       "legislative_session": "83(R)",
+	       "name": "SB 747 test",
+	       "primary_committee": 1,
+	       "status": "Signed into law",
+	       "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63"
+    	})
+		headers = {"Content-Type": "application/json"}
+
+		connection.request("PUT", "/api/bills/" + str(bill_id) + "/", values, headers)		
+		response = connection.getresponse()
+		self.assertTrue(response.status == 200)
+		self.assertTrue(json.loads(response.read().decode("utf-8"))['description'] == "Relating to consent to eat cookies.")
+
+		connection.close()
+
+		connection = bills_delete(bill_id)
+		self.assertTrue(connection.getresponse().status == 204)
+		connection.close()
+
+	def test_bills_id_authors(self) :
+		connection = bills_post()
+		bill_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
+		connection.close()	
+
+		connection = http.client.HTTPConnection(host)
+		connection.request("GET", "/api/bills/" + str(bill_id) + "/authors/")
+		response = connection.getresponse()
+
+		self.assertTrue(response.status == 200)
+		response_list = json.loads(response.read().decode("utf-8"))
+		self.assertTrue(response_list[0]['pk'] == 2)
+		connection.close()
+
+		connection = bills_delete(bill_id)
+		self.assertTrue(connection.getresponse().status == 204)
+		connection.close()
+
+	def test_bills_id_votes(self) :
+		connection = bills_post()
+		bill_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
+		connection.close()	
+
+		connection = http.client.HTTPConnection(host)
+		connection.request("GET", "/api/bills/" + str(bill_id) + "/votes/")
+		response = connection.getresponse()
+
+		self.assertTrue(response.status == 200)
+		response_list = json.loads(response.read().decode("utf-8"))
+		connection.close()
+
+		connection = bills_delete(bill_id)
+		self.assertTrue(connection.getresponse().status == 204)
+		connection.close()
 
 
-	# def test_committees_post(self) : 
-	# 	connection = committees_post()
-	# 	response = connection.getresponse()
-	# 	response_body = json.loads(response.read().decode("utf-8"))
-	# 	self.assertTrue(response.status == 201)
-	# 	self.assertTrue("id" in response_body)
-	# 	committee_id = response_body['id']
-	# 	connection.close()
-
-	# 	connection = committees_delete(committee_id)
-	# 	self.assertTrue(connection.getresponse().status == 204)
-	# 	connection.close()
 
 
-	# def test_committees_id_delete(self) :
-	# 	connection = committees_post()
-	# 	committee_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
-	# 	connection.close()
+	def test_committees_post(self) : 
+		connection = committees_post()
+		response = connection.getresponse()
+		response_body = json.loads(response.read().decode("utf-8"))
+		self.assertTrue(response.status == 201)
+		self.assertTrue("id" in response_body)
+		committee_id = response_body['id']
+		connection.close()
 
-	# 	connection = committees_delete(committee_id)
-	# 	self.assertTrue(connection.getresponse().status == 204)
-	# 	connection.close()
-
-	# def test_committees_get(self) :
-	# 	connection = http.client.HTTPConnection(host)
-	# 	connection.request("GET", "/api/committees/")
-	# 	response = connection.getresponse()
-
-	# 	self.assertTrue(response.status == 200)
-	# 	connection.close()
-
-	# def test_committees_id_get(self) :
-	# 	connection = committees_post()
-	# 	committee_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
-	# 	connection.close()		
-
-	# 	connection = http.client.HTTPConnection(host)
-	# 	connection.request("GET", "/api/committees/" + str(committee_id) + "/")
-	# 	response = connection.getresponse()
-	# 	desired_body = 	{
-	# 	  "appointment_date": "2013-01-08",
-	# 	  "bills": [
-	# 	  ],
-	# 	  "chair": 2,
-	# 	  "id" : committee_id,
-	# 	  "description": "Helping humans test on animals",
-	# 	  "name": "Health & Human Services test ",
-	# 	  "senators": [
-	# 		2
-	# 	  ],
-	# 	  "vice_chair": 2
-	# 	}
-	# 	self.assertTrue(response.status == 200)
-	# 	self.assertTrue(json.loads(response.read().decode("utf-8")) == desired_body)
-	# 	connection.close()
+		connection = committees_delete(committee_id)
+		self.assertTrue(connection.getresponse().status == 204)
+		connection.close()
 
 
-	# def test_committees_id_put(self) :
-	# 	connection = committees_post()
-	# 	committee_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
-	# 	connection.close()	
+	def test_committees_id_delete(self) :
+		connection = committees_post()
+		committee_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
+		connection.close()
 
-	# 	connection = http.client.HTTPConnection(host)
-	# 	values = json.dumps({
-	# 	  "appointment_date": "2013-01-08",
-	# 	  "bills": [
-	# 	  ],
-	# 	  "chair": 2,
-	# 	  "id" : committee_id,
-	# 	  "description": "Helping humans eat animals",
-	# 	  "name": "Health & Human Services test ",
-	# 	  "senators": [
-	# 		2
-	# 	  ],
-	# 	  "vice_chair": 2
-	# 	})
-	# 	headers = {"Content-Type": "application/json"}
+		connection = committees_delete(committee_id)
+		self.assertTrue(connection.getresponse().status == 204)
+		connection.close()
 
-	# 	connection.request("PUT", "/api/committees/" + str(committee_id) + "/", values, headers)		
-	# 	response = connection.getresponse()
-	# 	self.assertTrue(response.status == 200)
-	# 	self.assertTrue(json.loads(response.read().decode("utf-8"))['description'] == "Helping humans eat animals")
+	def test_committees_get(self) :
+		connection = http.client.HTTPConnection(host)
+		connection.request("GET", "/api/committees/")
+		response = connection.getresponse()
 
-	# 	connection.close()
+		self.assertTrue(response.status == 200)
+		connection.close()
 
-	# 	connection = committees_delete(committee_id)
-	# 	self.assertTrue(connection.getresponse().status == 204)
-	# 	connection.close()
+	def test_committees_id_get(self) :
+		connection = committees_post()
+		committee_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
+		connection.close()		
 
-	# def test_committees_id_senators(self) :
-	# 	connection = committees_post()
-	# 	committee_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
-	# 	connection.close()	
+		connection = http.client.HTTPConnection(host)
+		connection.request("GET", "/api/committees/" + str(committee_id) + "/")
+		response = connection.getresponse()
+		desired_body = 	{
+		  "appointment_date": "2013-01-08",
+		  "bills": [
+		  ],
+		  "chair": 2,
+		  "id" : committee_id,
+		  "description": "Helping humans test on animals",
+		  "name": "Health & Human Services test ",
+		  "senators": [
+			2
+		  ],
+		  "vice_chair": 2
+		}
+		self.assertTrue(response.status == 200)
+		self.assertTrue(json.loads(response.read().decode("utf-8")) == desired_body)
+		connection.close()
 
-	# 	connection = http.client.HTTPConnection(host)
-	# 	connection.request("GET", "/api/committees/" + str(committee_id) + "/senators/")
-	# 	response = connection.getresponse()
 
-	# 	self.assertTrue(response.status == 200)
-	# 	response_list = json.loads(response.read().decode("utf-8"))
-	# 	if len(response_list) > 0:
-	# 		self.assertTrue(response_list[0]['pk'] == 2)
-	# 	connection.close()
+	def test_committees_id_put(self) :
+		connection = committees_post()
+		committee_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
+		connection.close()	
 
-	# 	connection = committees_delete(committee_id)
-	# 	self.assertTrue(connection.getresponse().status == 204)
-	# 	connection.close()
+		connection = http.client.HTTPConnection(host)
+		values = json.dumps({
+		  "appointment_date": "2013-01-08",
+		  "bills": [
+		  ],
+		  "chair": 2,
+		  "id" : committee_id,
+		  "description": "Helping humans eat animals",
+		  "name": "Health & Human Services test ",
+		  "senators": [
+			2
+		  ],
+		  "vice_chair": 2
+		})
+		headers = {"Content-Type": "application/json"}
 
-	# def test_committees_id_bills(self) :
-	# 	connection = committees_post()
-	# 	committee_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
-	# 	connection.close()	
+		connection.request("PUT", "/api/committees/" + str(committee_id) + "/", values, headers)		
+		response = connection.getresponse()
+		self.assertTrue(response.status == 200)
+		self.assertTrue(json.loads(response.read().decode("utf-8"))['description'] == "Helping humans eat animals")
 
-	# 	connection = http.client.HTTPConnection(host)
-	# 	connection.request("GET", "/api/committees/" + str(committee_id) + "/bills/")
-	# 	response = connection.getresponse()
+		connection.close()
 
-	# 	self.assertTrue(response.status == 200)
-	# 	response_list = json.loads(response.read().decode("utf-8"))
-	# 	if len(response_list) > 0:
-	# 		self.assertTrue(response_list[0]['pk'] == 1)
-	# 	connection.close()
+		connection = committees_delete(committee_id)
+		self.assertTrue(connection.getresponse().status == 204)
+		connection.close()
 
-	# 	connection = committees_delete(committee_id)
-	# 	self.assertTrue(connection.getresponse().status == 204)
-	# 	connection.close()
+	def test_committees_id_senators(self) :
+		connection = committees_post()
+		committee_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
+		connection.close()	
+
+		connection = http.client.HTTPConnection(host)
+		connection.request("GET", "/api/committees/" + str(committee_id) + "/senators/")
+		response = connection.getresponse()
+
+		self.assertTrue(response.status == 200)
+		response_list = json.loads(response.read().decode("utf-8"))
+		if len(response_list) > 0:
+			self.assertTrue(response_list[0]['pk'] == 2)
+		connection.close()
+
+		connection = committees_delete(committee_id)
+		self.assertTrue(connection.getresponse().status == 204)
+		connection.close()
+
+	def test_committees_id_bills(self) :
+		connection = committees_post()
+		committee_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
+		connection.close()	
+
+		connection = http.client.HTTPConnection(host)
+		connection.request("GET", "/api/committees/" + str(committee_id) + "/bills/")
+		response = connection.getresponse()
+
+		self.assertTrue(response.status == 200)
+		response_list = json.loads(response.read().decode("utf-8"))
+		if len(response_list) > 0:
+			self.assertTrue(response_list[0]['pk'] == 1)
+		connection.close()
+
+		connection = committees_delete(committee_id)
+		self.assertTrue(connection.getresponse().status == 204)
+		connection.close()
 
 
 
