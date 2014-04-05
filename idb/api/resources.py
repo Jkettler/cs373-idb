@@ -122,9 +122,9 @@ class CommitteeResource(ModelResource):
                 if (isinstance(bundle.data['bills'][i], int)):
                     bundle.data['bills'][i] = "/api/bills/" + str(bundle.data['bills'][i]) + "/"
                 i += 1
-
+            
+        i = 0
         if 'senators' in bundle.data:
-            i = 0
             for senator in bundle.data['senators']:
                 if (isinstance(bundle.data['senators'][i], int)):
                     bundle.data['senators'][i] = "/api/senators/" + str(bundle.data['senators'][i]) + "/"
