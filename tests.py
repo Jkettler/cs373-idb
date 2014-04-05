@@ -11,7 +11,7 @@ def senators_post():
 	connection = http.client.HTTPConnection(host)
 	values = json.dumps({
 			  "bills": [
-			    4
+			    1
 			  ],
 			  "committees": [
 			    1
@@ -40,7 +40,7 @@ def bills_post():
 	values = json.dumps({
        "authors":
        [
-			2
+			1
        ],
        "date_effective": "2013-06-14",
        "date_proposed": "2012-11-12",
@@ -69,15 +69,15 @@ def committees_post():
 	{
 	  "appointment_date": "2013-01-08",
 	  "bills": [
-	  	6
+	  	1
 	  ],
-	  "chair": 2,
+	  "chair": 1,
 	  "description": "Helping humans test on animals",
 	  "name": "Health & Human Services test ",
 	  "senators": [
-		2
+		1
 	  ],
-	  "vice_chair": 2
+	  "vice_chair": 1
 	}
 	)
 
@@ -135,7 +135,7 @@ class tests (unittest.TestCase) :
 		response = connection.getresponse()
 		desired_body = {
 		  "bills": [
-		    4
+		    1
 		  ],
 		  "committees": [
 		    1
@@ -163,7 +163,7 @@ class tests (unittest.TestCase) :
 		connection = http.client.HTTPConnection(host)
 		values = json.dumps({
 		  "bills": [
-		    4
+		    1
 		  ],
 		  "committees": [
 		    1
@@ -220,7 +220,7 @@ class tests (unittest.TestCase) :
 
 		self.assertTrue(response.status == 200)
 		response_list = json.loads(response.read().decode("utf-8"))
-		self.assertTrue(response_list[0]['pk'] == 4)
+		self.assertTrue(response_list[0]['pk'] == 1)
 		connection.close()
 
 		connection = senators_delete(sen_id)
@@ -277,7 +277,7 @@ class tests (unittest.TestCase) :
 		desired_body = 	{
 	       "authors":
 	       [
-				2
+				1
 	       ],
 	       "id": bill_id,
 	       "date_effective": "2013-06-14",
@@ -308,7 +308,7 @@ class tests (unittest.TestCase) :
 		values = json.dumps({
 	       "authors":
 	       [
-				2
+				1
 	       ],
 	       "id": bill_id,
 	       "date_effective": "2013-06-14",
@@ -345,7 +345,7 @@ class tests (unittest.TestCase) :
 
 		self.assertTrue(response.status == 200)
 		response_list = json.loads(response.read().decode("utf-8"))
-		self.assertTrue(response_list[0]['pk'] == 2)
+		self.assertTrue(response_list[0]['pk'] == 1)
 		connection.close()
 
 		connection = bills_delete(bill_id)
@@ -413,16 +413,16 @@ class tests (unittest.TestCase) :
 		response = connection.getresponse()
 		desired_body = 	{
 		  "appointment_date": "2013-01-08",
-		  "bills": [
+		  "bills": [ 1
 		  ],
-		  "chair": 2,
+		  "chair": 1,
 		  "id" : committee_id,
 		  "description": "Helping humans test on animals",
 		  "name": "Health & Human Services test ",
 		  "senators": [
-			2
+			1
 		  ],
-		  "vice_chair": 2
+		  "vice_chair": 1
 		}
 		self.assertTrue(response.status == 200)
 		self.assertTrue(json.loads(response.read().decode("utf-8")) == desired_body)
@@ -438,16 +438,16 @@ class tests (unittest.TestCase) :
 		values = json.dumps({
 		  "appointment_date": "2013-01-08",
 		  "bills": [
-		  	6
+		  	1
 		  ],
-		  "chair": 2,
+		  "chair": 1,
 		  "id" : committee_id,
 		  "description": "Helping humans eat animals",
 		  "name": "Health & Human Services test ",
 		  "senators": [
-			2
+			1
 		  ],
-		  "vice_chair": 2
+		  "vice_chair": 1
 		})
 		headers = {"Content-Type": "application/json"}
 
@@ -474,7 +474,7 @@ class tests (unittest.TestCase) :
 		self.assertTrue(response.status == 200)
 		response_list = json.loads(response.read().decode("utf-8"))
 		if len(response_list) > 0:
-			self.assertTrue(response_list[0]['pk'] == 2)
+			self.assertTrue(response_list[0]['pk'] == 1)
 		connection.close()
 
 		connection = committees_delete(committee_id)
@@ -492,7 +492,7 @@ class tests (unittest.TestCase) :
 
 		self.assertTrue(response.status == 200)
 		response_list = json.loads(response.read().decode("utf-8"))
-		self.assertTrue(response_list[0]['pk'] == 6)
+		self.assertTrue(response_list[0]['pk'] == 1)
 		connection.close()
 
 		connection = committees_delete(committee_id)
