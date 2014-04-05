@@ -11,7 +11,7 @@ def senators_post():
 	connection = http.client.HTTPConnection(host)
 	values = json.dumps({
 			  "bills": [
-			    3
+			    1
 			  ],
 			  "committees": [
 			    1
@@ -71,7 +71,7 @@ def committees_post():
 	{
 	  "appointment_date": "2013-01-08",
 	  "bills": [
-	    3
+	    1
 	  ],
 	  "chair": 2,
 	  "description": "Helping humans test on animals",
@@ -137,7 +137,7 @@ class tests (unittest.TestCase) :
 		response = connection.getresponse()
 		desired_body = {
 		  "bills": [
-		    3
+		    1
 		  ],
 		  "committees": [
 		    1
@@ -165,7 +165,7 @@ class tests (unittest.TestCase) :
 		connection = http.client.HTTPConnection(host)
 		values = json.dumps({
 		  "bills": [
-		    3
+		    1
 		  ],
 		  "committees": [
 		    1
@@ -422,7 +422,7 @@ class tests (unittest.TestCase) :
 		desired_body = 	{
 		  "appointment_date": "2013-01-08",
 		  "bills": [
-		    3
+		    1
 		  ],
 		  "chair": 2,
 		  "id" : committee_id,
@@ -447,7 +447,7 @@ class tests (unittest.TestCase) :
 		values = json.dumps({
 		  "appointment_date": "2013-01-08",
 		  "bills": [
-		    3
+		    1
 		  ],
 		  "chair": 2,
 		  "id" : committee_id,
