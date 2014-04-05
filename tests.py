@@ -69,6 +69,7 @@ def committees_post():
 	{
 	  "appointment_date": "2013-01-08",
 	  "bills": [
+	  	6
 	  ],
 	  "chair": 2,
 	  "description": "Helping humans test on animals",
@@ -437,6 +438,7 @@ class tests (unittest.TestCase) :
 		values = json.dumps({
 		  "appointment_date": "2013-01-08",
 		  "bills": [
+		  	6
 		  ],
 		  "chair": 2,
 		  "id" : committee_id,
@@ -490,8 +492,7 @@ class tests (unittest.TestCase) :
 
 		self.assertTrue(response.status == 200)
 		response_list = json.loads(response.read().decode("utf-8"))
-		if len(response_list) > 0:
-			self.assertTrue(response_list[0]['pk'] == 1)
+		self.assertTrue(response_list[0]['pk'] == 6)
 		connection.close()
 
 		connection = committees_delete(committee_id)
