@@ -7,6 +7,7 @@ import json
 
 host = "texaslawdb.herokuapp.com"
 
+
 def senators_post():
 	connection = http.client.HTTPConnection(host)
 	values = json.dumps({
@@ -89,7 +90,6 @@ def committees_delete(committee_id):
 	connection = http.client.HTTPConnection(host)
 	connection.request("DELETE", "/api/committees/" + str(committee_id) + "/")
 	return connection
-
 
 class tests (unittest.TestCase) : 
 	"""
@@ -498,7 +498,6 @@ class tests (unittest.TestCase) :
 		connection = committees_delete(committee_id)
 		self.assertTrue(connection.getresponse().status == 204)
 		connection.close()
-
 
 
 unittest.main()
