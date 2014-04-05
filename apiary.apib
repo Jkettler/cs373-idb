@@ -14,15 +14,21 @@ A collection of all of the senators in the database
 
         [
             {
-                "id": 1,
-                "name": "Jane Nelson",
-                "party": "Republican",
-                "occupation": "Businesswoman, former teacher",
-                "legistlative_experience": "Disaster Relief",
-                "district": "12",
-                "twitter": "SenJaneNelson",
-                "facebook": "https://www.facebook.com/SenatorJaneNelson",
-                "map": "null"
+              "bills": [
+                1
+              ],
+              "committees": [
+                1
+              ],
+              "district": 17,
+              "facebook": "https://www.facebook.com/SenatorJaneNelson",
+              "legislative_experience": "Senate Member, December 2008 - present",
+              "id": 1,
+              "map": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.899273384878!2d-97.0779837!3d32.927259399999954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c2b26c440b8cb%3A0xe8f6fb2969de0ad!2s1235+S+Main+St+%23280!5e0!3m2!1sen!2sus!4v1395279135094\" width=\"400\" height=\"300\" frameborder=\"0\" style=\"border:0\"></iframe>",
+              "name": "Joan tests test",
+              "occupation": "Attorney",
+              "party": "Republican",
+              "twitter": "SenJaneNelson"
             }
         ]
         
@@ -30,20 +36,40 @@ A collection of all of the senators in the database
 + Request (application/json)
 
         {
-            "name": "Jane Nelson",
-            "party": "Republican",
-            "occupation": "Businesswoman, former teacher",
-            "legistlative_experience": "Disaster Relief",
-            "district": "12",
-            "twitter": "SenJaneNelson",
-            "facebook": "https://www.facebook.com/SenatorJaneNelson",
-            "map": "null"
+          "bills": [
+            1
+          ],
+          "committees": [
+            1
+          ],
+          "district": 17,
+          "facebook": "https://www.facebook.com/SenatorJaneNelson",
+          "legislative_experience": "Senate Member, December 2008 - present",
+          "map": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.899273384878!2d-97.0779837!3d32.927259399999954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c2b26c440b8cb%3A0xe8f6fb2969de0ad!2s1235+S+Main+St+%23280!5e0!3m2!1sen!2sus!4v1395279135094\" width=\"400\" height=\"300\" frameborder=\"0\" style=\"border:0\"></iframe>",
+          "name": "Joan tests test",
+          "occupation": "Attorney",
+          "party": "Republican",
+          "twitter": "SenJaneNelson"
         }
 
 + Response 201 (application/json)
 
-        { 
-            "id": 1 
+        {
+          "bills": [
+            1
+          ],
+          "committees": [
+            1
+          ],
+          "district": 17,
+          "facebook": "https://www.facebook.com/SenatorJaneNelson",
+          "legislative_experience": "Senate Member, December 2008 - present",
+          "id": 1,
+          "map": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.899273384878!2d-97.0779837!3d32.927259399999954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c2b26c440b8cb%3A0xe8f6fb2969de0ad!2s1235+S+Main+St+%23280!5e0!3m2!1sen!2sus!4v1395279135094\" width=\"400\" height=\"300\" frameborder=\"0\" style=\"border:0\"></iframe>",
+          "name": "Joan tests test",
+          "occupation": "Attorney",
+          "party": "Republican",
+          "twitter": "SenJaneNelson"
         }
         
 ##Senator Data [/api/senators/{id}]
@@ -54,33 +80,66 @@ A specific senator, where id is the database primary key for that senator
     + Body
     
             {
-                "id": 1,
-                "name": "Jane Nelson",
-                "party": "Republican",
-                "occupation": "Businesswoman, former teacher",
-                "legistlative_experience": "Disaster Relief",
-                "district": "12",
-                "twitter": "SenJaneNelson",
-                "facebook": "https://www.facebook.com/SenatorJaneNelson",
-                "map": "null"
+              "bills": [
+                1
+              ],
+              "committees": [
+                1
+              ],
+              "district": 17,
+              "facebook": "https://www.facebook.com/SenatorJaneNelson",
+              "legislative_experience": "Senate Member, December 2008 - present",
+              "id": 1,
+              "map": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.899273384878!2d-97.0779837!3d32.927259399999954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c2b26c440b8cb%3A0xe8f6fb2969de0ad!2s1235+S+Main+St+%23280!5e0!3m2!1sen!2sus!4v1395279135094\" width=\"400\" height=\"300\" frameborder=\"0\" style=\"border:0\"></iframe>",
+              "name": "Joan tests test",
+              "occupation": "Attorney",
+              "party": "Republican",
+              "twitter": "SenJaneNelson"
             }
+        
 
 ###Update an existing senator [PUT]
 + Request (application/json)
     
         {
-            "id": 1,
-            "name": "Jane Nelson",
-            "party": "Republican",
-            "occupation": "Businesswoman, former teacher",
-            "legistlative_experience": "Disaster Relief",
-            "district": "12",
-            "twitter": "SenJaneNelson",
-            "facebook": "https://www.facebook.com/SenatorJaneNelson",
-            "map": "null"
+          "bills": [
+            1
+          ],
+          "committees": [
+            1
+          ],
+          "district": 17,
+          "facebook": "https://www.facebook.com/SenatorJaneNelson",
+          "legislative_experience": "Senate Member, December 2008 - present",
+          "id": 1,
+          "map": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.899273384878!2d-97.0779837!3d32.927259399999954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c2b26c440b8cb%3A0xe8f6fb2969de0ad!2s1235+S+Main+St+%23280!5e0!3m2!1sen!2sus!4v1395279135094\" width=\"400\" height=\"300\" frameborder=\"0\" style=\"border:0\"></iframe>",
+          "name": "Joan tests test",
+          "occupation": "Attorney",
+          "party": "Republican",
+          "twitter": "SenJaneNelson"
         }
-+ Response 204
-
+        
++ Response 200
+    + Body
+    
+            {
+              "bills": [
+                1
+              ],
+              "committees": [
+                1
+              ],
+              "district": 17,
+              "facebook": "https://www.facebook.com/SenatorJaneNelson",
+              "legislative_experience": "Senate Member, December 2008 - present",
+              "id": 1,
+              "map": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.899273384878!2d-97.0779837!3d32.927259399999954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c2b26c440b8cb%3A0xe8f6fb2969de0ad!2s1235+S+Main+St+%23280!5e0!3m2!1sen!2sus!4v1395279135094\" width=\"400\" height=\"300\" frameborder=\"0\" style=\"border:0\"></iframe>",
+              "name": "Joan tests test",
+              "occupation": "Attorney",
+              "party": "Republican",
+              "twitter": "SenJaneNelson"
+            }
+        
 ###Delete an existing senator [DELETE]
 + Response 204
 
@@ -90,23 +149,31 @@ All of the committees of which a senator is a member
 + Response 200 (application/json)
 
         [
-            {
-                "id": 1,
-                "name": "Health & Human Services",
-                "chair": 1,
-                "vice_chair": 2,
-                "description": "null",
-                "appointment_Date": "2013-01-08",
-                "senators": [1]
+            {   
+                "model": "idb.committee"
+                "fields": {
+                    "id": 1,
+                    "name": "Health & Human Services",
+                    "chair": 1,
+                    "vice_chair": [2],
+                    "description": "NONE",
+                    "appointment_Date": "2013-01-08"
+                    "senators": [1]
+                }
+                "pk": 1
             }, 
-            {
-                "id": 2,
-                "name": "Finance",
-                "chair": 3,
-                "vice_chair": 4,
-                "description": "null",
-                "appointment_Date": "2013-01-08",
-                "senators": [1,2]
+            {   
+                "model": "idb.committee"
+                "fields": {
+                    "id": 2,
+                    "name": "Transportation services",
+                    "chair": 1,
+                    "vice_chair": [2],
+                    "description": "NONE",
+                    "appointment_Date": "2013-01-08"
+                    "senators": [1]
+                }
+                "pk": 2
             }
         ]
         
@@ -117,17 +184,21 @@ All of the Bills that this senator has authored
 
         [
             {
-                "id": 1,
-                "name": "SB 63",
-                "authors": [1],
-                "legislative_session": "83(R)",
-                "date_proposed": "11/12/2012",
-                "date_signed": "6/14/2013",
-                "date_effective": "6/14/2013",
-                "status": "Signed into law",
-                "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
-                "primary_committee": 1,
-                "Description": "Relating to consent to the immunization of certain children."
+                "model": "idb.bill"
+                "pk": 1,
+                "fields": {
+                    "name": "SB 63",
+                    "author": [1],
+                    "legislative_session": "83(R)",
+                    "date_proposed": "11/12/2012",
+                    "date_signed": "6/14/2013",
+                    "date_effective": "6/14/2013",
+                    "status": "Signed into law",
+                    "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
+                    "primary_committee": 1,
+                    "Description": "Relating to consent to the immunization of certain children."
+                    "voters": [1,2]
+                }
             }
         ]
 
@@ -138,41 +209,62 @@ A collection of all of the bills in the database
 + Response 200 (application/json)
 
         [
-            {
-                "id": 1,
-                "name": "SB 63",
-                "authors": [1],
-                "legislative_session": "83(R)",
-                "date_proposed": "11/12/2012",
-                "date_signed": "6/14/2013",
-                "date_effective": "6/14/2013",
-                "status": "Signed into law",
-                "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
-                "primary_committee": 1,
-                "Description": "Relating to consent to the immunization of certain children."
-            }
+        {
+           "authors":
+           [
+                1
+           ],
+           "date_effective": "2013-06-14",
+           "id": 1,
+           "date_proposed": "2012-11-12",
+           "date_signed": "2013-06-14",
+           "description": "Relating to consent to the immunization of certain children.",
+           "legislative_session": "83(R)",
+           "name": "SB 747 test",
+           "primary_committee": 1,
+           "status": "Signed into law",
+           "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63"
+        }
         ]
         
 ### Create a new bill entry [POST]
 + Request (application/json)
 
+        [
         {
-            "name": "SB 63",
-            "authors": [1],
-            "legislative_session": "83(R)",
-            "date_proposed": "11/12/2012",
-            "date_signed": "6/14/2013",
-            "date_effective": "6/14/2013",
-            "status": "Signed into law",
-            "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
-            "primary_committee": 1,
-            "Description": "Relating to consent to the immunization of certain children."
+           "authors":
+           [
+                1
+           ],
+           "date_effective": "2013-06-14",
+           "date_proposed": "2012-11-12",
+           "date_signed": "2013-06-14",
+           "description": "Relating to consent to the immunization of certain children.",
+           "legislative_session": "83(R)",
+           "name": "SB 747 test",
+           "primary_committee": 1,
+           "status": "Signed into law",
+           "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63"
         }
+        ]
 
 + Response 201 (application/json)
 
-        { 
-            "id": 1 
+        {
+           "authors":
+           [
+                1
+           ],
+           "date_effective": "2013-06-14",
+           "id": 1,
+           "date_proposed": "2012-11-12",
+           "date_signed": "2013-06-14",
+           "description": "Relating to consent to the immunization of certain children.",
+           "legislative_session": "83(R)",
+           "name": "SB 747 test",
+           "primary_committee": 1,
+           "status": "Signed into law",
+           "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63"
         }
         
 ##Bill Data [/api/bills/{id}]
@@ -181,93 +273,109 @@ A specific bill, where id is the database primary key for that bill
 ###Get a bill[GET]
 + Response 200 (application/json)
     + Body
-    
+        
             {
-                "id": 1,
-                "name": "SB 63",
-                "authors": [1],
-                "legislative_session": "83(R)",
-                "date_proposed": "11/12/2012",
-                "date_signed": "6/14/2013",
-                "date_effective": "6/14/2013",
-                "status": "Signed into law",
-                "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
-                "primary_committee": 1,
-                "Description": "Relating to consent to the immunization of certain children."
+               "authors":
+               [
+                    1
+               ],
+               "date_effective": "2013-06-14",
+               "id": 1,
+               "date_proposed": "2012-11-12",
+               "date_signed": "2013-06-14",
+               "description": "Relating to consent to the immunization of certain children.",
+               "legislative_session": "83(R)",
+               "name": "SB 747 test",
+               "primary_committee": 1,
+               "status": "Signed into law",
+               "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63"
             }
 
 ###Update an existing bill [PUT]
 + Request (application/json)
     
         {
-                "id": 1,
-                "name": "SB 63",
-                "authors": [1],
-                "legislative_session": "83(R)",
-                "date_proposed": "11/12/2012",
-                "date_signed": "6/14/2013",
-                "date_effective": "6/14/2013",
-                "status": "Signed into law",
-                "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
-                "primary_committee": 1,
-                "Description": "Relating to consent to the immunization of certain children."
-
+           "authors":
+           [
+                1
+           ],
+           "date_effective": "2013-06-14",
+           "id": 1,
+           "date_proposed": "2012-11-12",
+           "date_signed": "2013-06-14",
+           "description": "Relating to consent to the immunization of certain children.",
+           "legislative_session": "83(S)",
+           "name": "SB 747 test",
+           "primary_committee": 1,
+           "status": "Signed into law",
+           "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63"
         }
-+ Response 204
+
++ Response 200 (application/json)
+    + Body
+        
+            {
+               "authors":
+               [
+                    1
+               ],
+               "date_effective": "2013-06-14",
+               "id": 1,
+               "date_proposed": "2012-11-12",
+               "date_signed": "2013-06-14",
+               "description": "Relating to consent to the immunization of certain children.",
+               "legislative_session": "83(S)",
+               "name": "SB 747 test",
+               "primary_committee": 1,
+               "status": "Signed into law",
+               "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63"
+            }
 
 ###Delete an existing bill [DELETE]
 + Response 204
+    
 
-        
-##Bill's voters [/api/bills/{id}/senators]
-A list of all the senators that voted on the bill 
+##Bill's authors [/api/bills/{id}/authors]
+A list of all the authors (senators) of the bill 
 ###List the senators [GET]
 + Response 200 (application/json)
 
         [
             {
-                "id": 1,
-                "name": "Jane Nelson",
-                "party": "Republican",
-                "occupation": "Businesswoman, former teacher",
-                "legistlative_experience": "Disaster Relief",
-                "district": "12",
-                "twitter": "SenJaneNelson",
-                "facebook": "https://www.facebook.com/SenatorJaneNelson",
-                "map": "null"
-                
+                "model": "idb.senator"
+                "pk": 1,
+                "fields": {
+                    "bills": [
+                        1
+                    ],
+                    "committees": [
+                        1
+                    ],
+                    "district": 17,
+                    "facebook": "https://www.facebook.com/SenatorJaneNelson",
+                    "legislative_experience": "Senate Member, December 2008 - present",
+                    "id": 1,
+                    "map": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.899273384878!2d-97.0779837!3d32.927259399999954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c2b26c440b8cb%3A0xe8f6fb2969de0ad!2s1235+S+Main+St+%23280!5e0!3m2!1sen!2sus!4v1395279135094\" width=\"400\" height=\"300\" frameborder=\"0\" style=\"border:0\"></iframe>",
+                    "name": "Joan tests test",
+                    "occupation": "Attorney",
+                    "party": "Republican",
+                    "twitter": "SenJaneNelson"
+                }
             }
         ]
-        
-##Bill's authors [/api/bills/{id}/authors]
-A list of all the senators that authored the bill 
-###List the authors [GET]
+
+##Bill's Votes [/api/bills/{id}/votes]
+A list of all votes for this bill
+###List the votes for this bill [GET]
 + Response 200 (application/json)
 
         [
             {
-                "id": 1,
-                "name": "Jane Nelson",
-                "party": "Republican",
-                "occupation": "Businesswoman, former teacher",
-                "legistlative_experience": "Disaster Relief",
-                "district": "12",
-                "twitter": "SenJaneNelson",
-                "facebook": "https://www.facebook.com/SenatorJaneNelson",
-                "map": "null"
+                "senator": 1, 
+                "vote": "AYE", 
+                "bill": 1, 
+                "date_voted": "2013-03-13"
             }
-        ]
-
-##Bill votes [/api/bills/{id}/votes]
-All of the votes for a given bill
-###List the votes [GET]
-+ Response 200 (application/json)
-
-        [
-            "senator_id": 1,
-            "bill_id": 2,
-            "vote": "AYE",
-            "date_voted": "5/20/2013"
         ]
 
 #Group Committees
@@ -281,9 +389,9 @@ A collection of all of the committees in the database
                 "id": 1,
                 "name": "Health & Human Services",
                 "chair": 1,
-                "vice_chair": 2,
-                "description": "null",
-                "appointment_Date": "2013-01-08",
+                "vice_chair": [2],
+                "description": "NONE",
+                "appointment_Date": "2013-01-08"
                 "senators": [1]
             }
         ]
@@ -294,9 +402,9 @@ A collection of all of the committees in the database
         {
                 "name": "Health & Human Services",
                 "chair": 1,
-                "vice_chair": 2,
-                "description": "null",
-                "appointment_Date": "2013-01-08",
+                "vice_chair": [2],
+                "description": "NONE",
+                "appointment_Date": "2013-01-08"
                 "senators": [1]
         }
 
@@ -317,9 +425,9 @@ A specific committee, where id is the database primary key for that committee
                 "id": 1,
                 "name": "Health & Human Services",
                 "chair": 1,
-                "vice_chair": 2,
-                "description": "null",
-                "appointment_Date": "2013-01-08",
+                "vice_chair": [2],
+                "description": "NONE",
+                "appointment_Date": "2013-01-08"
                 "senators": [1]
             }
 
@@ -330,9 +438,9 @@ A specific committee, where id is the database primary key for that committee
             "id": 1,
             "name": "Health & Human Services",
             "chair": 1,
-            "vice_chair": 2,
-            "description": "null",
-            "appointment_Date": "2013-01-08",
+            "vice_chair": [2],
+            "description": "NONE",
+            "appointment_Date": "2013-01-08"
             "senators": [1]
         }
 + Response 204
@@ -353,9 +461,10 @@ All of the senators that are members of this committee
                 "occupation": "Businesswoman, former teacher",
                 "legistlative_experience": "Disaster Relief",
                 "district": "12",
-                "twitter": "SenJaneNelson",
+                "twitter": "https://twitter.com/SenJaneNelson",
                 "facebook": "https://www.facebook.com/SenatorJaneNelson",
-                "map": "null"
+                "picture": "none",
+                "committees": [1,2]
             }
         ]
 
@@ -368,7 +477,7 @@ All of the Bills that this committee was the primary committee for
             {
                 "id": 1,
                 "name": "SB 63",
-                "authors": [1],
+                "author": [1],
                 "legislative_session": "83(R)",
                 "date_proposed": "11/12/2012",
                 "date_signed": "6/14/2013",
@@ -376,7 +485,8 @@ All of the Bills that this committee was the primary committee for
                 "status": "Signed into law",
                 "url": "http://www.legis.state.tx.us/BillLookup/History.aspx?LegSess=83R&Bill=SB63",
                 "primary_committee": 1,
-                "Description": "Relating to consent to the immunization of certain children.",
-                "voters": [1, 2]
+                "Description": "Relating to consent to the immunization of certain children."
+                "voters": [1,2]
             }
         ]
+
