@@ -5,7 +5,7 @@ import http.client
 import urllib.parse
 import json
 
-host = "0.0.0.0:12345"
+host = "texaslawdb.herokuapp.com"
 
 def senators_post():
 	connection = http.client.HTTPConnection(host)
