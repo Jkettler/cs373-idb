@@ -17,6 +17,10 @@ def about(request):
     context = RequestContext(request)
     return HttpResponse(template.render(context))
 
+def queries(request):
+    template = loader.get_template('queries.html')
+    context = RequestContext(request)
+    return HttpResponse(template.render(context))
 
 def bills(request):
     latest_bills_list = Bill.objects.order_by('-date_proposed')
