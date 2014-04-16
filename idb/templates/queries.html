@@ -35,53 +35,34 @@
 
     <!-- query 2 -->
     <div>
-      <h3>The senator who's voted nay the most</h3>
-      <h5>
-        SELECT
-            name, T.NayCount           
-        FROM
-        ( 
+        <h3>Senators who have one or more 'Nay' votes, sorted by number of 'Nay' votes</h3>
+        <h5>
             SELECT
-                senator_id, NayCount                                              
+                name, S.NayCount           
             FROM
-            (
+            ( 
                 SELECT
-                    senator_id,
-                    COUNT(*) as NayCount                                                                                    
+                    senator_id, NayCount                                              
                 FROM
-                    idb_vote                                                                                        
-                LEFT JOIN
-                    idb_senator                                                                                                                                                                           
-                        ON idb_vote.senator_id = idb_senator.id                                                                           
-                WHERE
-                    idb_vote.vote = 'NAY'
-                GROUP BY
-                    idb_vote.senator_id
-            ) AS R
-            WHERE 
-                R.NayCount >= 
                 (
                     SELECT
-                        MAX(S.NayCount)
-                        FROM
-                        (
-                            SELECT
-                                COUNT(*) AS NayCount
-                            FROM
-                                idb_vote v
-                            LEFT JOIN
-                                idb_senator s
-                                    ON v.senator_id = s.id
-                            WHERE
-                                v.vote = 'NAY'
-                            GROUP BY
-                                v.senator_id
-                        ) AS S
-                )     
-        ) AS T
-        INNER JOIN idb_senator
-            ON T.senator_id = idb_senator.id
-        ORDER BY T.senator_id
+                        senator_id,
+                        COUNT(*) as NayCount                                                                                    
+                    FROM
+                        idb_vote                                                                                        
+                    LEFT JOIN
+                        idb_senator                                                                                                                                                                           
+                            ON idb_vote.senator_id = idb_senator.id                                                                           
+                    WHERE
+                        idb_vote.vote = 'NAY'
+                    GROUP BY
+                        idb_vote.senator_id
+                ) AS R
+               
+            ) AS S
+            INNER JOIN idb_senator
+                ON S.senator_id = idb_senator.id
+            ORDER BY S.NayCount DESC
         </h5>      
         <div class="table-responsive">
             <table class="table">
@@ -93,11 +74,11 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Donna Campbell</td>
-                        <td>1</td>
+                        <td>Dan Patrick</td>
+                        <td>2</td>
                     </tr>
                     <tr>
-                        <td>Robert Duncan</td>
+                        <td>Donna Campbell</td>
                         <td>1</td>
                     </tr>
                     <tr>
@@ -105,17 +86,71 @@
                         <td>1</td>
                     </tr>
                     <tr>
-                        <td>Dan Patrick</td>
+                        <td>Charles Schwertner</td>
                         <td>1</td>
                     </tr>
+                    <tr>
+                        <td>Robert Duncan</td>
+                        <td>1</td>
+                    </tr>                    
                     <tr>
                         <td>Jose Rodriguez</td>
                         <td>1</td>
                     </tr>
+  
+                </tbody>
+            </table>
+        </div>     
+      <br>
+    </div>
+
+    <!-- query 3 -->
+    <div>
+        <h3>The most prolific bill authors in the senate</h3>
+        <h5>
+            SELECT
+                name, S.AuthorCount           
+            FROM
+            ( 
+                SELECT
+                    senator_id, AuthorCount                                              
+                FROM
+                (
+                    SELECT
+                        senator_id,
+                        COUNT(*) as AuthorCount                                                                                    
+                    FROM
+                        idb_bill_authors                                                                                        
+                    JOIN
+                        idb_senator                                                                                                                                                                           
+                            ON idb_bill_authors.senator_id = idb_senator.id
+                    GROUP BY 
+                        idb_bill_authors.senator_id
+                ) AS R
+               
+            ) AS S
+            INNER JOIN idb_senator
+                ON S.senator_id = idb_senator.id
+            ORDER BY S.AuthorCount DESC
+            LIMIT 2
+        </h5>      
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>Charles Schwertner</td>
-                        <td>1</td>
-                    </tr>  
+                        <th>Name</th>
+                        <th>AuthorCount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Jane Nelson</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Judith Zaffirini</td>
+                        <td>3</td>
+                    </tr>
                 </tbody>
             </table>
         </div>     
