@@ -220,3 +220,28 @@ a:hover {
     padding-right: 6em;
     clear: both;
 }
+
+.lighter-gray{
+    background-color: rgba(230, 230, 230, 0.42);
+}
+
+.dark-gray{
+    color: rgba(16, 31, 36, 0.77);
+}
+
+a.sen-link {
+    
+    color:rgba(0, 0, 0, 0.55);
+}
+
+a.sen-link:hover {
+    color:rgba(168, 3, 3, 0.62);
+}
+
+.member-list-heading {
+    background-color:#D9EDF7;
+}
+
+.member-list-heading a:link{
+    color:#31708F;
+}
