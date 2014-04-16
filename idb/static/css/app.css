@@ -236,6 +236,10 @@ a.sen-link:hover {
 }
 
 .pic-resize {
-    width: 35em;
+    width: 50%;
     margin: auto;
+}
+
+.fb-background {
+    background-color:white;
 }

@@ -17,3 +17,11 @@
   overflow: hidden;
   white-space: nowrap;
 }
+
+.fb-background {
+	background-color: rgba(230, 230, 230, 0.42);
+}
+
+.pic-resize {
+	width: 100% !important;
+}
