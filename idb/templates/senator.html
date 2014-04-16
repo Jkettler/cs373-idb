@@ -5,94 +5,106 @@
 
     <div class="senator">
         <div class="panel panel-info">
-        <div class="col-sm-12 senatorName panel-heading">
-            <h1><b>{{ senator.name }}</b></h1>
-            {% if senator.photo_url %}
-                <img class="img-circle" src="{{  senator.photo_url }}" width="250" height="250">
-            {% else %}
-                <img class="img-circle" src="{%  cloudinary_url senator.twitter type="twitter_name" width="250" height="250" %}.jpg">
-            {% endif %}
-        </div>
-        <div class="data panel-body lighter-gray">
-            <div class="col-sm-5 col-sm-offset-1">
-                <ul class="list-unstyled dark-gray">
-                    <li><b>District:</b>  {{ senator.district }}</li>
-                    <li><b>Political Party:</b> {{ senator.party }}</li>
-                    <li><b>Legislative Experience:</b>  {{ senator.legislative_experience }}</li>
-                    <li><b>Occupation:</b>  {{ senator.occupation }}</li>
-                    {% if bills %}
-                        <li><b>Bills Authored:</b>
-                            <ul>
-                                {% for bill in bills %}
-                                    <li><a class="sen-link" href="/bills/{{ bill.id }}/"> {{ bill.name }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-
-                    {% endif %}
-
-
-                    {% if committees or chair or vice_chair%}
-                        <li ><b>83rd Session Committee Membership:</b>
-                            <ul class="">
-                                {% for committee in chair %}
-                                    <li class=""><a class="sen-link" href="/committees/{{ committee.id }}/"> {{ committee.name }} </a> - Chair </li>
-                                {% endfor %}
-                                {% for committee in vice_chair %}
-                                    <li class=""><a class="sen-link" href="/committees/{{ committee.id }}/"> {{ committee.name }} </a> - Vice-Chair </li>
-                                {% endfor %}
-                                {% for committee in committees %}
-                                    <li class=""><a class="sen-link" href="/committees/{{ committee.id }}/"> {{ committee.name }} </a></li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    {% endif %}
-                </ul>
+            <div class="col-sm-12 senatorName panel-heading">
+                <h1><b>{{ senator.name }}</b></h1>
+                {% if senator.photo_url %}
+                    <img class="img-circle" src="{{  senator.photo_url }}" width="250" height="250">
+                {% else %}
+                    <img class="img-circle" src="{%  cloudinary_url senator.twitter type="twitter_name" width="250" height="250" %}.jpg">
+                {% endif %}
             </div>
-            <div class="senator-map col-sm-6 dark-gray">
-                <span><h4> <b>Contact the Senator: </b> </h4></span>
-                <b>Mailing Address:</b>
-                <div class="col-sm-12"> {{ senator.map |safe }}</div>
-            </div>
-            <div class="col-sm-12 carousel-style">
-                <div id="senator-pics" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        {% for idx, val in img_counter %}
-                            {% if idx == 0 %}
-                                <li data-target="#senator-pics" data-slide-to="{{ idx }}" class="active"></li>
-                            {% else %}
-                                <li data-target="#senator-pics" data-slide-to="{{ idx }}"></li>
-                            {% endif %}
-                        {% endfor %}
-                    </ol>
-                    <!-- Wrapper for slides -->
+            <div class="data panel-body lighter-gray">
+                <div class="col-sm-5 col-sm-offset-1">
+                    <ul class="list-unstyled dark-gray">
+                        <li><b>District:</b>  {{ senator.district }}</li>
+                        <li><b>Political Party:</b> {{ senator.party }}</li>
+                        <li><b>Legislative Experience:</b>  {{ senator.legislative_experience }}</li>
+                        <li><b>Occupation:</b>  {{ senator.occupation }}</li>
+                        {% if bills %}
+                            <li><b>Bills Authored:</b>
+                                <ul>
+                                    {% for bill in bills %}
+                                        <li><a class="sen-link" href="/bills/{{ bill.id }}/"> {{ bill.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
 
-                    <div class="carousel-inner">
-                        {% for idx, val in img_links %}
-                            {% if idx == 0 %}
-                                <div class="item active pic-resize">
-                                    <img src="{{ val.link }}">
-                                </div>
-                            {% else %}
-                                <div class="item pic-resize">
-                                    <img src="{{ val.link }}">
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
+                        {% endif %}
 
-                    <!-- Controls -->
-                    <a class="left carousel-control" href="#senator-pics" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </a>
-                    <a class="right carousel-control" href="#senator-pics" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </a>
+                </div>
+                 <div class="col-sm-5 sen-com-list">
+                        {% if committees or chair or vice_chair%}
+                            <div class="dark-gray"><b>83rd Session Committee Membership:</b>
+                                <ul>
+                                    {% for committee in chair %}
+                                        <li><a class="sen-link" href="/committees/{{ committee.id }}/"> {{ committee.name }} </a> - Chair </li>
+                                    {% endfor %}
+                                    {% for committee in vice_chair %}
+                                        <li><a class="sen-link" href="/committees/{{ committee.id }}/"> {{ committee.name }} </a> - Vice-Chair </li>
+                                    {% endfor %}
+                                    {% for committee in committees %}
+                                        <li class=""><a class="sen-link" href="/committees/{{ committee.id }}/"> {{ committee.name }} </a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </ul>
                 </div>
             </div>
-            <div class="col-lg-12">
-                <div><h2 class="align-mid dark-gray"> <b>Social Media </b> </h2></div>
+        </div>
+        <div class="panel panel-info">
+             <div class="member-list-heading"><a href="#contact_map" data-toggle="collapse"><div class="panel-heading"><h2 class="align-mid "> <b>Contact the Senator</b></h2></div></a></div>
+            <div id="contact_map" class ="panel-body lighter-gray collapse">
+                 <div class="align-mid dark-gray"><h4><b>Mailing Address:</b><h4></div>
+                <div class="align-mid"> <iframe src="{{ senator.map |safe }}" width="400" height="300" frameborder="0" style="border:0"></iframe> </div>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+             <div class="member-list-heading"><a href="#photos" data-toggle="collapse"><div class="panel-heading"><h2 class="align-mid "> <b>Photos</b></h2></div></a></div>
+            <div id="photos" class ="panel-body lighter-gray collapse">
+                <div class="col-sm-12 carousel-style">
+                    <div id="senator-pics" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            {% for idx, val in img_counter %}
+                                {% if idx == 0 %}
+                                    <li data-target="#senator-pics" data-slide-to="{{ idx }}" class="active"></li>
+                                {% else %}
+                                    <li data-target="#senator-pics" data-slide-to="{{ idx }}"></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ol>
+                        <!-- Wrapper for slides -->
+
+                        <div class="carousel-inner">
+                            {% for idx, val in img_links %}
+                                {% if idx == 0 %}
+                                    <div class="item active pic-resize">
+                                        <img src="{{ val.link }}">
+                                    </div>
+                                {% else %}
+                                    <div class="item pic-resize">
+                                        <img src="{{ val.link }}">
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#senator-pics" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#senator-pics" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-info">
+             <div class="member-list-heading"><a href="#social_media" data-toggle="collapse"><div class="panel-heading"><h2 class="align-mid "> <b>Social Media</b></h2></div></a></div>
+            <div id="social_media" class ="panel-body lighter-gray col-lg-12 collapse">
                 <div class="col-lg-6 ">
                     <a  class="twitter-timeline" href="https://twitter.com/{{ senator.twitter }}" data-widget-id="446782772338651138" data-screen-name="{{ senator.twitter }}">Tweets by @{{ senator.twitter }}</a>
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
@@ -102,8 +114,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
     </div>
     <div class="col-sm-12 back-button">
         <a href="/senators/">
