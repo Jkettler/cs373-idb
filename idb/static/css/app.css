@@ -206,8 +206,6 @@ a:hover {
 
 .carousel-style{
     padding-top: 1em;
-    padding-left: 2em;
-    padding-right: 6em;
     clear: both;
 }
 
@@ -235,4 +233,9 @@ a.sen-link:hover {
 
 .member-list-heading a:link{
     color:#31708F;
+}
+
+.pic-resize {
+    width: 35em;
+    margin: auto;
 }

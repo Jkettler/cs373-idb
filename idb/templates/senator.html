@@ -71,11 +71,11 @@
                     <div class="carousel-inner">
                         {% for idx, val in img_links %}
                             {% if idx == 0 %}
-                                <div class="item active">
+                                <div class="item active pic-resize">
                                     <img src="{{ val.link }}">
                                 </div>
                             {% else %}
-                                <div class="item">
+                                <div class="item pic-resize">
                                     <img src="{{ val.link }}">
                                 </div>
                             {% endif %}
