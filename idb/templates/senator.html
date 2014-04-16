@@ -4,7 +4,8 @@
 
 
     <div class="senator">
-        <div class="col-sm-12 senatorName">
+        <div class="panel panel-info">
+        <div class="col-sm-12 senatorName panel-heading">
             <h1><b>{{ senator.name }}</b></h1>
             {% if senator.photo_url %}
                 <img class="img-circle" src="{{  senator.photo_url }}" width="250" height="250">
@@ -12,9 +13,9 @@
                 <img class="img-circle" src="{%  cloudinary_url senator.twitter type="twitter_name" width="250" height="250" %}.jpg">
             {% endif %}
         </div>
-        <div class="data">
+        <div class="data panel-body lighter-gray">
             <div class="col-sm-5 col-sm-offset-1">
-                <ul class="list-unstyled">
+                <ul class="list-unstyled dark-gray">
                     <li><b>District:</b>  {{ senator.district }}</li>
                     <li><b>Political Party:</b> {{ senator.party }}</li>
                     <li><b>Legislative Experience:</b>  {{ senator.legislative_experience }}</li>
@@ -32,23 +33,23 @@
 
 
                     {% if committees or chair or vice_chair%}
-                        <li><b>83rd Session Committee Membership:</b>
+                        <li ><b>83rd Session Committee Membership:</b>
                             <ul class="">
                                 {% for committee in chair %}
-                                    <li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }} </a> - Chair </li>
+                                    <li class=""><a class="sen-link" href="/committees/{{ committee.id }}/"> {{ committee.name }} </a> - Chair </li>
                                 {% endfor %}
                                 {% for committee in vice_chair %}
-                                    <li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }} </a> - Vice-Chair </li>
+                                    <li class=""><a class="sen-link" href="/committees/{{ committee.id }}/"> {{ committee.name }} </a> - Vice-Chair </li>
                                 {% endfor %}
                                 {% for committee in committees %}
-                                    <li class=""><a href="/committees/{{ committee.id }}/"> {{ committee.name }} </a></li>
+                                    <li class=""><a class="sen-link" href="/committees/{{ committee.id }}/"> {{ committee.name }} </a></li>
                                 {% endfor %}
                             </ul>
                         </li>
                     {% endif %}
                 </ul>
             </div>
-            <div class="senator-map col-sm-6">
+            <div class="senator-map col-sm-6 dark-gray">
                 <span><h4> <b>Contact the Senator: </b> </h4></span>
                 <b>Mailing Address:</b>
                 <div class="col-sm-12"> {{ senator.map |safe }}</div>
@@ -91,15 +92,17 @@
                 </div>
             </div>
             <div class="col-sm-12">
-                <div><h2 class="align-mid"> <b>Social Media </b> </h2></div>
-                <div class="col-sm-6 twitterFeed">
+                <div><h2 class="align-mid dark-gray"> <b>Social Media </b> </h2></div>
+                <div class="col-sm-6 ">
                     <a  class="twitter-timeline" href="https://twitter.com/{{ senator.twitter }}" data-widget-id="446782772338651138" data-screen-name="{{ senator.twitter }}">Tweets by @{{ senator.twitter }}</a>
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                 </div>
-                <div class="fb-like-box fbFeed col-sm-6" data-href="{{ senator.facebook }}" data-width="500" data-height="600" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>
+                <div class="col-sm-6 fbFeed">
+                <div class="fb-like-box " style="background-color:white"data-href="{{ senator.facebook }}" data-width="500" data-height="600" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>
+                </div>
             </div>
         </div>
-
+    </div>
 
     </div>
     <div class="col-sm-12 back-button">
