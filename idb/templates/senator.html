@@ -24,7 +24,7 @@
                         <li><b>Bills Authored:</b>
                             <ul>
                                 {% for bill in bills %}
-                                    <li class=""><a href="/bills/{{ bill.id }}/"> {{ bill.name }}</a></li>
+                                    <li><a class="sen-link" href="/bills/{{ bill.id }}/"> {{ bill.name }}</a></li>
                                 {% endfor %}
                             </ul>
                         </li>

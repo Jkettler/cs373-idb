@@ -112,13 +112,6 @@ a:hover {
     text-align: center;
 }
 
-.members-list{
-    background-color: rgba(214, 245, 255, 1);
-    width: 100%;
-    border: 2px solid;
-    border-radius: 25px;
-    margin: 0 1em 0 0;
-}
 
 .top-container {
     padding-top: 20px;
