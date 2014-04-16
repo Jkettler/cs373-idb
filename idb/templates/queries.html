@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- query 1 -->
+    <div>
+      <h3>List of all senators who have been absent at least once</h3>
+      <h5>
+        SELECT
+            name                                                                                  
+        FROM
+            idb_vote v 
+        LEFT JOIN
+            idb_senator s
+            ON v.senator_id = s.id
+        WHERE
+            v.vote = 'ABS'</h5>      
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Leticia Van de Putte</td>
+                    </tr>
+                    <tr>
+                        <td>John Carona</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>        
+      <br>
+    </div>
+
+    <!-- query 2 -->
+    <div>
+        <h3>The senator who's voted against the most bills</h3>
+        <h5>
+            SELECT
+                name, S.NayCount           
+            FROM
+            ( 
+                SELECT
+                    senator_id, NayCount                                              
+                FROM
+                (
+                    SELECT
+                        senator_id,
+                        COUNT(*) as NayCount                                                                                    
+                    FROM
+                        idb_vote                                                                                        
+                    LEFT JOIN
+                        idb_senator                                                                                                                                                                           
+                            ON idb_vote.senator_id = idb_senator.id                                                                           
+                    WHERE
+                        idb_vote.vote = 'NAY'
+                    GROUP BY
+                        idb_vote.senator_id
+                ) AS R
+               
+            ) AS S
+            INNER JOIN idb_senator
+                ON S.senator_id = idb_senator.id
+            ORDER BY S.NayCount DESC
+            LIMIT 1
+        </h5>      
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>NayCount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dan Patrick</td>
+                        <td>2</td>
+                    </tr>  
+                </tbody>
+            </table>
+        </div>     
+      <br>
+    </div>
+
+    <!-- query 3 -->
+    <div>
+        <h3>The most prolific bill authors in the senate</h3>
+        <h5>
+            SELECT
+                name, S.AuthorCount           
+            FROM
+            ( 
+                SELECT
+                    senator_id, AuthorCount                                              
+                FROM
+                (
+                    SELECT
+                        senator_id,
+                        COUNT(*) as AuthorCount                                                                                    
+                    FROM
+                        idb_bill_authors                                                                                        
+                    JOIN
+                        idb_senator                                                                                                                                                                           
+                            ON idb_bill_authors.senator_id = idb_senator.id
+                    GROUP BY 
+                        idb_bill_authors.senator_id
+                ) AS R
+               
+            ) AS S
+            INNER JOIN idb_senator
+                ON S.senator_id = idb_senator.id
+            ORDER BY S.AuthorCount DESC
+            LIMIT 2
+        </h5>      
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>AuthorCount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Jane Nelson</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Judith Zaffirini</td>
+                        <td>3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>     
+      <br>
+    </div>
+
+    <!-- query 4 -->
+    <div>
+        <h3>The senator(s) who's in the most committees</h3>
+        <h5>
+            SELECT
+                name, S.CommitteeCount           
+            FROM
+            ( 
+                SELECT
+                    senator_id, CommitteeCount                                             
+                FROM
+                (
+                    SELECT
+                        senator_id,
+                        COUNT(*) as CommitteeCount                                                                                    
+                    FROM
+                        idb_committee_senators                                                                                        
+                    JOIN
+                        idb_senator                                                                                                                                                                           
+                            ON idb_committee_senators.senator_id = idb_senator.id
+                    GROUP BY 
+                        idb_committee_senators.senator_id
+                ) AS R
+                WHERE R.CommitteeCount =
+                (
+                    SELECT
+                        MAX(CommitteeCount) 
+                    FROM
+                    (
+                        SELECT
+                            COUNT(*) as CommitteeCount
+                        FROM
+                            idb_committee_senators
+                        JOIN
+                            idb_senator
+                                ON idb_committee_senators.senator_id = idb_senator.id
+                        GROUP BY
+                            idb_committee_senators.senator_id
+                    ) AS T
+               )
+            ) AS S
+            INNER JOIN idb_senator
+                ON S.senator_id = idb_senator.id
+            ORDER BY S.CommitteeCount DESC
+        </h5>      
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>CommitteeCount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Larry Taylor</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Judith Zaffirini</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Ken Paxton</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Kirk Watson</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Robert Duncan</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Sylvia Garcia</td>
+                        <td>4</td>
+                    </tr><tr>
+                        <td>Kelly Hancock</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Kevin Eltife</td>
+                        <td>4</td>
+                    </tr>                    
+                </tbody>
+            </table>
+        </div>     
+      <br>
+    </div>
+    <!-- query 5 -->
+    <div>
+        <h3>The bill that took the longest time between proposal and effect</h3>
+        <h5>
+            SELECT
+                name,
+                T.date_proposed,
+                T.date_effective,
+                T.date_effective - T.date_proposed AS Days_In_Between 
+            FROM
+                (
+                    SELECT
+                        name,
+                        date_proposed,
+                        date_effective,
+                        date_effective - date_proposed AS Days_In_Between
+                    FROM
+                        (
+                            SELECT
+                                name,
+                                date_proposed,
+                                date_effective,
+                                date_effective - date_proposed AS Days_In_Between
+                            FROM
+                                idb_bill
+                            GROUP BY
+                                idb_bill.id
+                         ) AS R
+                    WHERE
+                        R.Days_In_Between = 
+                    (
+                        SELECT
+                            MAX(DAYS_IN_BETWEEN)
+                        FROM
+                        (
+                            SELECT
+                                name,
+                                date_proposed,
+                                date_effective,
+                                date_effective - date_proposed AS Days_In_Between
+                            FROM
+                                idb_bill
+                            GROUP BY
+                                idb_bill.id
+                        ) AS S
+                    )
+                ) AS T       
+                    
+            ORDER BY
+                Days_In_Between DESC
+        </h5>      
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date_Proposed</th>
+                        <th>Date_Effective</th>
+                        <th>Days_In_Between</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>SB 62</td>
+                        <td>2012-11-12</td>
+                        <td>2013-10-01</td>
+                        <td>323</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>        
+      <br>
+    </div>
+
+{% endblock %}

@@ -32,4 +32,5 @@ urlpatterns = patterns('',
     url(r'^api/committees/(?P<committee_id>\d+)/senators/$', views.Committees_Senators),
     url(r'^api/committees/(?P<committee_id>\d+)/bills/$', views.Committees_Bills),
 	url(r'^', include(idb_api.urls)),
+    url(r'^queries/$', views.queries, name="queries"),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
