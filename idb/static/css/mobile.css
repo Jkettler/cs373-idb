@@ -1,6 +1,6 @@
 .twitter-feed { width: 100%; }
 
-.fb-feed { padding: 0; }
+.fb-feed { padding-left:0;}
 
 .fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe { width: 100% !important; }
 
@@ -19,4 +19,5 @@
 }
 .pic-resize {
 	width: 100% !important;
+	margin-top: 15px;
 }
