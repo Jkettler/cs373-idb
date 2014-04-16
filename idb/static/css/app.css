@@ -231,7 +231,8 @@ a:hover {
 
 a.sen-link {
     
-    color:rgba(0, 0, 0, 0.55);
+    /*color:rgba(0, 0, 0, 0.55);*/
+    color: rgba(168, 3, 3, 0.62);
 }
 
 a.sen-link:hover {

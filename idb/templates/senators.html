@@ -6,7 +6,7 @@
             {% for senator in latest_senators_list %}
                 <div class="col-sm-4 senator-grid">
                     <div class="photo">
-                        <a class="pull-left">
+                        <a class="pull-left sen-link">
                             {% if senator.photo_url %}
                                 <img class="img-rounded" src="{{  senator.photo_url }}" width="73" height="73">
                             {% else %}
@@ -15,7 +15,7 @@
                         </a>
                     </div>
                     <div class="name">
-                        <a href="/senators/{{ senator.id }}/" class="media-heading">{{ senator.name }}</a>
+                        <a class="sen-link"href="/senators/{{ senator.id }}/" class="media-heading">{{ senator.name }}</a>
                     </div>
                 </div>
             {% endfor %}

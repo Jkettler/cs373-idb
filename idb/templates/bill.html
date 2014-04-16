@@ -1,34 +1,36 @@
 {% extends "base.html" %}
 {% load cloudinary %}
 {% block content %}
-    <div class="col-sm-12">
-        <div class="bill">
-            <div class="col-sm-12 align-mid">
-                <h1><b>{{ bill.name }}</b></h1>
-            </div>
-            <div class="col-sm-9 col-sm-offset-1">
-                <ul class="list-unstyled top-container">
+
+<div class="bill">
+    <div class="panel panel-info">
+        <div class="align-mid panel-heading">
+            <h1><b>{{ bill.name }}</b></h1>
+        </div>
+        <div class="panel-body lighter-gray">
+            <div class="col-sm-10">
+                <ul class="list-unstyled top-container dark-gray">
                     <li><b>Legislative Session: </b>{{ bill.legislative_session }}</li>
-                    <li><b>Primary Committee: </b><a href="/committees/{{ bill.primary_committee.id }}/"> {{ bill.primary_committee.name }}</a></li>
+                    <li><b>Primary Committee: </b><a class ="sen-link" href="/committees/{{ bill.primary_committee.id }}/"> {{ bill.primary_committee.name }}</a></li>
                     <li><b>Status: </b>{{ bill.status }} <span class="glyphicon glyphicon-ok"></span></li>
                     <li><b>Summary: </b>{{ bill.description }}</li>
                 </ul>
-                <table class="table bill-dates">
+                <table class="table bill-dates ">
                        <tr class="align-mid ">
                             <td class="bg-primary"> <div><b>Date Proposed:</b></div> {{ bill.date_proposed }}</td>
-                            <td><span class="glyphicon glyphicon-arrow-right arrow-right"></span></td>
+                            <td><span class="glyphicon glyphicon-arrow-right arrow-right dark-gray"></span></td>
                             <td class="bg-primary"> <div><b>Date Signed:</b></div>  {{ bill.date_signed }}</td>
-                            <td><span class="glyphicon glyphicon-arrow-right arrow-right"></span></td>
+                            <td><span class="glyphicon glyphicon-arrow-right arrow-right dark-gray"></span></td>
                             <td class="bg-primary"> <div><b>Date Effective:</b></div>  {{ bill.date_effective }}</td>
                         </tr>
                 </table>
-                <div class="bill-more-info">
-                    {% if bill.url %}<b>Want more information about this bill? </b><a href="{{ bill.url }}">Click here</a>{% endif %}
+                <div class="bill-more-info dark-gray">
+                    {% if bill.url %}<b>Want more information about this bill? </b><a class ="sen-link" href="{{ bill.url }}">Click here</a>{% endif %}
                 </div>
-                <div class="panel panel-default votes-panel vote-heading">
+                <div class="panel panel-info votes-panel vote-heading">
                     <div class="panel-heading row vote-heading">
-                        <h3 class="panel-title col-lg-4">
-                            <a data-toggle="collapse" href="#votes-panel-body">View Votes for this Bill</a>
+                        <h3 class="panel-title col-lg-4 member-list-heading">
+                            <a data-toggle="collapse" href="#votes-panel-body"><b>View Votes for this Bill</b></a>
                         </h3>
                         <div class="col-lg-8">{{votes_summary}}</div>
                     </div>
@@ -47,9 +49,9 @@
                                                 {% endif %}
                                             </div>
                                             <div class="col-xs-5">
-                                                <div class="name">{{vote.senator.name}}</div>
+                                                <div class="name dark-gray">{{vote.senator.name}}</div>
                                             </div>
-                                            <div class="col-xs-3">
+                                            <div class="col-xs-3 dark-gray">
                                                 {% if vote.vote == 'AYE' %}
                                                     <i class="fa fa-thumbs-up fa-2x"></i>
                                                 {% elif vote.vote == 'NAY' %}
@@ -71,12 +73,13 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-sm-2">
                 {% if authors %}
-                <div class="align-mid"><b>Author(s):</b>
+                <div class="align-mid dark-gray"><b>Author(s):</b>
                     
                      {% for author in authors %}
-                        <a href="/senators/{{ author.id }}/"><div><img class="img-rounded" src="{%  cloudinary_url author.twitter type="twitter_name" width="150" height="150" %}.jpg"></div>
+                        <a class="sen-link" href="/senators/{{ author.id }}/"><div><img class="img-rounded" src="{%  cloudinary_url author.twitter type="twitter_name" width="150" height="150" %}.jpg"></div>
                         <div class="authors"> {{ author.name }}</div></a>
                     {% endfor %}
                     
@@ -84,8 +87,10 @@
                {% endif %}
             </div>
         </div>
-        <div class="col-sm-11 back-button">
-            <a href="/bills/"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back to Bills</button></a>
-        </div>
     </div>
+    <div class="col-sm-11 back-button">
+        <a href="/bills/"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back to Bills</button></a>
+    </div>
+</div>
+
 {% endblock %}
