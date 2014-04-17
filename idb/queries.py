@@ -114,7 +114,7 @@ def q5():
                 name,
                 T.date_proposed AS date_proposed,
                 T.date_effective AS date_effective, 
-                T.date_effective - T.date_proposed AS Days_In_Between 
+                T.date_effective - T.date_proposed AS days_in_between
             FROM
                 (
                     SELECT

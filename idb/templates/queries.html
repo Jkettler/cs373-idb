@@ -39,7 +39,7 @@
                 {% for x in q2Dict %}
                 <tr>
                     <td>{{x.name}}</td>
-                    <td>{{x.NayCount}}</td>
+                    <td>{{x.naycount}}</td>
                 </tr>
                 {%endfor%}
             </tbody>
@@ -64,7 +64,7 @@
                 {% for x in q3Dict %}
                 <tr>
                     <td>{{x.name}}</td>
-                    <td>{{x.AuthorCount}}</td>
+                    <td>{{x.authorcount}}</td>
                 </tr>
                 {%endfor%}
             </tbody>
@@ -89,7 +89,7 @@
                 {% for x in q4Dict %}
                 <tr>
                     <td>{{x.name}}</td>
-                    <td>{{x.CommitteeCount}}</td>
+                    <td>{{x.committeecount}}</td>
                 </tr>
                 {%endfor%}
             </tbody>
@@ -100,7 +100,7 @@
 
 <!-- Query 5 -->
 <div>
-    <h4> The Senators who've voted Nay the most</h4>
+    <h4> The bill that spent the most time between proposal and effect</h4>
     <h6>{{q5Text}}</h6>
     <div class="table-responsive">
         <table class="table">
@@ -109,16 +109,14 @@
                     <th>Name</th>
                     <th>Date_Proposed</th>
                     <th>Date_Effective</th>
-                    <th>Days_In_Between</th>
                 </tr>
             </thead>
             <tbody>
                 {% for x in q5Dict %}
                 <tr>
                     <td>{{x.name}}</td>
-                    <td>{{x.Date_Proposed}}</td>
-                    <td>{{x.Date_Effective}}</td>
-                    <td>{{x.Days_In_Between}}</td>               
+                    <td>{{x.date_proposed}}</td>
+                    <td>{{x.date_effective}}</td>
                 </tr>
                 {%endfor%}
             </tbody>
