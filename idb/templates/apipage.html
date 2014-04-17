@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% load cloudinary %}
+{% block content %}
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script> -->
+<script>
+$(document).ready(function() {
+    //var host = "http://0.0.0.0:12345";
+    var host = "http://texaslawdb.herokuapp.com";
+    var sen_id = -1;
+    var bills = {};
+    var votes = {};
+    /**
+     * Given a string name of a senator, calls the API at /api/senators,
+     * finds the senator with name = name, and returns the id of that senator
+     */
+    function getSenatorID(name)
+    {
+        $.ajax({
+            type: 'GET',
+            async: false,
+            dataType: 'json',
+            url: host + "/api/senators/", 
+            success: function(data) {
+                sen_id = -1;
+                $.each(data, function(senator) {
+                    if (String(this.name).toLowerCase() === String(name).toLowerCase())
+                        sen_id = this.id;
+                });
+            },
+            error: function() {
+                console.log("ERROR: getSenatorID function AJAX call fail");
+            }
+        });
+    }
+
+    function getBills()
+    {
+        $.ajax({
+            type: 'GET',
+            async: false,
+            dataType: 'json',
+            url: host + "/api/bills/", 
+            success: function(data) {
+                $.each(data, function(bill) {
+                    bills[this.id] = this.description; 
+                });
+            },
+            error: function() {
+                console.log("ERROR: getBills function AJAX call fail");
+            }
+        });
+    }
+
+    function getVote(bill_id, sen_id)
+    {
+        $.ajax({
+            type: 'GET',
+            async: false,
+            dataType: 'json',
+            url: host + "/api/bills/" + bill_id + "/votes/", 
+            success: function(data) {
+                $.each(data, function(vote) {
+                    if (this.senator == sen_id)
+                        votes[bill_id] = this.vote;
+                });
+            },
+            error: function() {
+                console.log("ERROR: getVote function AJAX call fail");
+            }
+        });
+    }
+
+
+    $('button').click(function() {
+        var name = $('#senator_name').val();
+
+        //Search for the senator with given name and get their ID /api/senators
+        getSenatorID(name);
+
+        
+        if (sen_id != -1)
+        {
+            $('.member-list-heading').text("Votes for " + name);
+            $('#votes-panel').css("visibility", "visible");
+
+            //Get all of the bills descriptions and bill ids /api/bills
+            getBills();
+
+            //For each bill id, get the votes /api/bills/{id}/votes
+            for (var bill_id in bills)
+                getVote(bill_id, sen_id);
+
+            console.log(votes);
+        }
+        else
+        {
+            $('#votes-panel').css("visibility", "hidden");
+            alert("Invalid senator name; Please enter a valid name");
+        }
+    });
+});
+/*
+    function populateVotes()
+    {
+        var name = $('#senator_name').val();
+        $('#panel_senator_name').text(name);
+        $('.panel').css("visbility", "visible");
+        alert($('#senator_name').val());
+
+    }*/
+</script>
+
+<div class="apipage">
+    <div class="panel panel-info">
+        <div class="align-mid panel-heading">
+            <h1><b>API Page</b></h1>
+        </div>
+        <div class="panel-body lighter-gray">
+            <form class="well form-inline" style="text-align: center;">  
+                  <input type="text" class="input-small" id="senator_name" placeholder="Senator Name">   
+                  <button type="button" class="btn">View Votes</button>  
+            </form>  
+            <div id="votes-panel" class="panel panel-info votes-panel vote-heading" style="visibility: hidden">
+                    <div class="panel-heading row vote-heading">
+                        <h3 class="panel-title col-lg-4 member-list-heading" id="panel_senator_name"> 
+                        </h3>
+                    </div>
+                    <div id="votes-panel-body" class="panel-collapse">
+                        <div class="panel-body">
+                            <!-- {% if votes %}
+                                {% for vote in votes %}
+                                    <div class="col-md-4">
+                                        <a href="/senators/{{vote.senator.id}}">
+                                        <div class="well vote-well">
+                                            <div class="col-xs-4" style="padding: 0">
+                                                {% if vote.senator.photo_url %}
+                                                    <img class="img-rounded" src="{{  senator.photo_url }}" width="70" height="70">
+                                                {% else %}
+                                                    <img class="img-rounded" src="{%  cloudinary_url vote.senator.twitter type="twitter_name" width="70" height="70" %}.jpg">
+                                                {% endif %}
+                                            </div>
+                                            <div class="col-xs-5">
+                                                <div class="name dark-gray">{{vote.senator.name}}</div>
+                                            </div>
+                                            <div class="col-xs-3 dark-gray">
+                                                {% if vote.vote == 'AYE' %}
+                                                    <i class="fa fa-thumbs-up fa-2x"></i>
+                                                {% elif vote.vote == 'NAY' %}
+                                                    <i class="fa fa-thumbs-down fa-2x"></i>
+                                                {% elif vote.vote == 'PNV' %}
+                                                    <i class="fa fa-square-o fa-2x"></i>
+                                                {% elif vote.vote == 'ABS' %}
+                                                    <i class="fa fa-ban fa-2x"></i>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                No votes recorded for this bill
+                            {% endif %} -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>       
+</div>
+
+
+{% endblock %}

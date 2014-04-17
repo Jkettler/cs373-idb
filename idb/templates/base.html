@@ -12,7 +12,7 @@
 
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
-
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <title>Texas Law Database</title>
 
     <!-- Bootstrap core CSS -->
@@ -56,6 +56,7 @@
               <li class="{% if 'senator' in messages.request.path %}active{% endif %}"><a class="navbar-brand" href="/senators/">Senators</a></li>
               <li class="{% if 'bill' in messages.request.path %}active{% endif %}"><a class="navbar-brand" href="/bills/">Bills</a></li>
               <li class="{% if 'committee' in messages.request.path  %}active{% endif %}"><a class="navbar-brand" href="/committees/">Committees</a></li>
+              <li class="{% if 'api' in messages.request.path %}active{% endif %}"><a class="navbar-brand" href="/apipage/">API Page</a></li>
             </ul>
           </div>
         </div>
@@ -78,7 +79,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+ 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
   </body>

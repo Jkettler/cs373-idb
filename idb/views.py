@@ -17,6 +17,11 @@ def about(request):
     context = RequestContext(request)
     return HttpResponse(template.render(context))
 
+def apipage(request):
+    template = loader.get_template('apipage.html')
+    context = RequestContext(request)
+    return HttpResponse(template.render(context))    
+
 
 def bills(request):
     latest_bills_list = Bill.objects.order_by('-date_proposed')
