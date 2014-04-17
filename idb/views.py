@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.core import serializers
 from django.db import connection
-from queries import *
+from idb.queries import *
 import json
 
 
