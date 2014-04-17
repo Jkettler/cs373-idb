@@ -221,6 +221,8 @@ a:hover {
 	padding-bottom: 10px;
 }
 
+.typeahead { z-index: 1051;}
+
 .carousel-style{
     padding-top: 1em;
     clear: both;
