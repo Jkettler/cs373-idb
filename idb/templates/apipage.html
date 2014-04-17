@@ -71,8 +71,8 @@ $(document).ready(function() {
         });
     }
 
-
-    $('button').click(function() {
+    function populate()
+    {
         var name = $('#senator_name').val();
 
         //Search for the senator with given name and get their ID /api/senators
@@ -116,6 +116,15 @@ $(document).ready(function() {
             $('#votes-panel').css("visibility", "hidden");
             alert("Invalid senator name; Please enter a valid name");
         }
+    }
+
+    $('#senator_name').keypress(function(e) {
+        if (e.which == '13')
+            populate();
+    });
+
+    $('button').click(function() {
+        populate();
     });
 });
 </script>
@@ -126,7 +135,7 @@ $(document).ready(function() {
             <h1><b>API Page</b></h1>
         </div>
         <div class="panel-body lighter-gray">
-            <form class="well form-inline" style="text-align: center;">  
+            <form action="javascript:populate()" class="well form-inline" style="text-align: center;">  
                   <input type="text" class="input-small" id="senator_name" placeholder="Senator Name">   
                   <button type="button" class="btn">View Votes</button>  
             </form>  
