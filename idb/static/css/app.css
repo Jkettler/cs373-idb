@@ -252,3 +252,7 @@ a.sen-link:hover {
 .fb-background {
     background-color:white;
 }
+
+.masthead-color {
+    color: rgba(167, 0, 0, 1);
+}
