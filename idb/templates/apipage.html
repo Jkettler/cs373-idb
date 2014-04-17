@@ -5,8 +5,8 @@
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script> -->
 <script>
 $(document).ready(function() {
-    //var host = "http://0.0.0.0:12345";
-    var host = "http://texaslawdb.herokuapp.com";
+    var host = "http://0.0.0.0:1234";
+    //var host = "http://texaslawdb.herokuapp.com";
     var sen_id = -1;
     var bills = {};
     var votes = {};
@@ -92,6 +92,7 @@ $(document).ready(function() {
                 getVote(bill_id, sen_id);
 
             console.log(votes);
+           // console.log(bills);
 
             //Insert our votes into the html page
             var items = [];
@@ -107,7 +108,7 @@ $(document).ready(function() {
                 else if (votes[bill_key] == 'ABS')
                     votestr = "<i class=\"fa fa-ban fa-2x\"></i>";   
 
-                items.push("<div class=\"col-md-12\"><a href=\"/bills/" + bill_key +  "/\"><div class=\"well vote-well\"><div class=\"col-xs-10\" style=\"padding-left: 2\">"+ bills[bill_key] +  "</div><div class=\"col-xs-2 dark-gray\">"+ votestr + "</div></div></a></div>");
+                items.push("<div class=\"col-md-12\"><a href=\"/bills/" + bill_key +  "/\"><div class=\"well vote-well\"><div class=\"col-xs-10\" style=\"padding-left: 2; line-height: initial;\">"+ bills[bill_key] +  "</div><div class=\"col-xs-2 dark-gray\">"+ votestr + "</div></div></a></div>");
             }
             $('#votes-data').html(items.join(""));
         }
@@ -119,8 +120,9 @@ $(document).ready(function() {
     }
 
     $('#senator_name').keypress(function(e) {
-        if (e.which == '13')
+        if (e.which == '13') {
             populate();
+        return false;}
     });
 
     $('button').click(function() {
@@ -135,7 +137,7 @@ $(document).ready(function() {
             <h1><b>API Page</b></h1>
         </div>
         <div class="panel-body lighter-gray">
-            <form action="javascript:populate()" class="well form-inline" style="text-align: center;">  
+            <form class="well form-inline" style="text-align: center;">  
                   <input type="text" class="input-small" id="senator_name" placeholder="Senator Name">   
                   <button type="button" class="btn">View Votes</button>  
             </form>  
