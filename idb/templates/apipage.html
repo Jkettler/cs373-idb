@@ -108,7 +108,7 @@ $(document).ready(function() {
                 else if (votes[bill_key] == 'ABS')
                     votestr = "<i class=\"fa fa-ban fa-2x\"></i>";   
 
-                items.push("<div class=\"col-md-12\"><a href=\"/bills/" + bill_key +  "/\"><div class=\"well vote-well\"><div class=\"col-xs-10\" style=\"padding: 2; line-height: auto;\">"+ bills[bill_key] +  "</div><div class=\"col-xs-2 dark-gray\">"+ votestr + "</div></div></a></div>");
+                items.push("<div class=\"col-md-12\"><a href=\"/bills/" + bill_key +  "/\"><div class=\"well vote-well\"><div class=\"col-xs-10\" style=\"padding: 2; line-height: initial;\">"+ bills[bill_key] +  "</div><div class=\"col-xs-2 dark-gray\">"+ votestr + "</div></div></a></div>");
             }
             $('#votes-data').html(items.join(""));
         }
