@@ -19,7 +19,7 @@ class Senator(models.Model):
   def __str__(self):
     return self.name
 
-watson.register(Senator)
+watson.register(Senator, exclude=("map",))
 
 class Committee(models.Model):
   name = models.CharField(max_length=70)
