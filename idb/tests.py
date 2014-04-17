@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-from django.utils import unittest
+from django.test import TestCase
 import httplib
 import json
 
-#host = "texaslawdb.herokuapp.com"
-host = "0.0.0.0:12345"
+host = "texaslawdb.herokuapp.com"
+#host = "0.0.0.0:12345"
 
 def senators_post():
 	connection = httplib.HTTPConnection(host)
@@ -90,7 +90,7 @@ def committees_delete(committee_id):
 	connection.request("DELETE", "/api/committees/" + str(committee_id) + "/")
 	return connection
 
-class tests (unittest.TestCase) : 
+class tests (TestCase) : 
 	"""
 	Tests for the Senator class
 	"""
@@ -153,6 +153,9 @@ class tests (unittest.TestCase) :
 		self.assertTrue(json.loads(response.read().decode("utf-8")) == desired_body)
 		connection.close()
 
+		connection = senators_delete(sen_id)
+		self.assertTrue(connection.getresponse().status == 204)
+		connection.close()		
 
 	def test_senators_id_put(self) :
 		connection = senators_post()
@@ -427,6 +430,10 @@ class tests (unittest.TestCase) :
 		self.assertTrue(json.loads(response.read().decode("utf-8")) == desired_body)
 		connection.close()
 
+		connection = committees_delete(committee_id)
+		self.assertTrue(connection.getresponse().status == 204)
+		connection.close()		
+
 
 	def test_committees_id_put(self) :
 		connection = committees_post()
@@ -497,8 +504,3 @@ class tests (unittest.TestCase) :
 		connection = committees_delete(committee_id)
 		self.assertTrue(connection.getresponse().status == 204)
 		connection.close()
-
-
-unittest.main()
-
-
