@@ -260,3 +260,8 @@ a.sen-link:hover {
 .masthead-color {
     color: rgba(167, 0, 0, 1);
 }
+
+.query-highlight {
+    background-color: yellow;
+    color: black;
+}
