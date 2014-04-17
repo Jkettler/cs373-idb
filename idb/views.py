@@ -3,6 +3,8 @@ from idb.models import Senator, Committee, Bill, Vote
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.core import serializers
+from django.db import connection
+from queries import *
 import json
 
 
@@ -22,6 +24,45 @@ def apipage(request):
     context = RequestContext(request)
     return HttpResponse(template.render(context))    
 
+def dictfetchall(cursor):
+    "Returns all rows from a cursor as a dict"
+    desc = cursor.description
+    return [
+        dict(zip([col[0] for col in desc], row))
+        for row in cursor.fetchall()
+    ]
+
+def queries(request):
+    cursor = connection.cursor()
+    #Query 1
+    cursor.execute(q1())
+    q1Dict = dictfetchall(cursor)
+    #Query 2
+    cursor.execute(q2())
+    q2Dict = dictfetchall(cursor)
+    #Query 2
+    cursor.execute(q3())
+    q3Dict = dictfetchall(cursor)
+    #Query 4
+    cursor.execute(q4())
+    q4Dict = dictfetchall(cursor)
+    #Query 5
+    cursor.execute(q5())
+    q5Dict = dictfetchall(cursor)
+    context = RequestContext(request, {
+        'q1Text' : q1(),
+        'q1Dict': q1Dict,
+        'q2Text' : q2(),
+        'q2Dict' : q2Dict,
+        'q3Text' : q3(),
+        'q3Dict': q3Dict,
+        'q4Text' : q4(),
+        'q4Dict' : q4Dict,
+        'q5Text' : q5(),
+        'q5Dict' : q5Dict,
+    })
+    template = loader.get_template('queries.html')
+    return HttpResponse(template.render(context))
 
 def bills(request):
     latest_bills_list = Bill.objects.order_by('-date_proposed')
