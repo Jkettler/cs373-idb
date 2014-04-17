@@ -92,6 +92,24 @@ $(document).ready(function() {
                 getVote(bill_id, sen_id);
 
             console.log(votes);
+
+            //Insert our votes into the html page
+            var items = [];
+            for (var bill_key in votes)
+            {
+                var votestr;
+                if (votes[bill_key] == 'AYE')
+                    votestr = "<i class=\"fa fa-thumbs-up fa-2x\"></i>";
+                else if (votes[bill_key] == 'NAY')
+                    votestr = "<i class=\"fa fa-thumbs-down fa-2x\"></i>";
+                else if (votes[bill_key] == 'PNV')
+                    votestr = "<i class=\"fa fa-square-o fa-2x\"></i>";
+                else if (votes[bill_key] == 'ABS')
+                    votestr = "<i class=\"fa fa-ban fa-2x\"></i>";   
+
+                items.push("<div class=\"col-md-12\"><a href=\"/bills/" + bill_key +  "/\"><div class=\"well vote-well\"><div class=\"col-xs-10\" style=\"padding-left: 2\">"+ bills[bill_key] +  "</div><div class=\"col-xs-2 dark-gray\">"+ votestr + "</div></div></a></div>");
+            }
+            $('#votes-data').html(items.join(""));
         }
         else
         {
@@ -100,15 +118,6 @@ $(document).ready(function() {
         }
     });
 });
-/*
-    function populateVotes()
-    {
-        var name = $('#senator_name').val();
-        $('#panel_senator_name').text(name);
-        $('.panel').css("visbility", "visible");
-        alert($('#senator_name').val());
-
-    }*/
 </script>
 
 <div class="apipage">
@@ -127,40 +136,7 @@ $(document).ready(function() {
                         </h3>
                     </div>
                     <div id="votes-panel-body" class="panel-collapse">
-                        <div class="panel-body">
-                            <!-- {% if votes %}
-                                {% for vote in votes %}
-                                    <div class="col-md-4">
-                                        <a href="/senators/{{vote.senator.id}}">
-                                        <div class="well vote-well">
-                                            <div class="col-xs-4" style="padding: 0">
-                                                {% if vote.senator.photo_url %}
-                                                    <img class="img-rounded" src="{{  senator.photo_url }}" width="70" height="70">
-                                                {% else %}
-                                                    <img class="img-rounded" src="{%  cloudinary_url vote.senator.twitter type="twitter_name" width="70" height="70" %}.jpg">
-                                                {% endif %}
-                                            </div>
-                                            <div class="col-xs-5">
-                                                <div class="name dark-gray">{{vote.senator.name}}</div>
-                                            </div>
-                                            <div class="col-xs-3 dark-gray">
-                                                {% if vote.vote == 'AYE' %}
-                                                    <i class="fa fa-thumbs-up fa-2x"></i>
-                                                {% elif vote.vote == 'NAY' %}
-                                                    <i class="fa fa-thumbs-down fa-2x"></i>
-                                                {% elif vote.vote == 'PNV' %}
-                                                    <i class="fa fa-square-o fa-2x"></i>
-                                                {% elif vote.vote == 'ABS' %}
-                                                    <i class="fa fa-ban fa-2x"></i>
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                {% endfor %}
-                            {% else %}
-                                No votes recorded for this bill
-                            {% endif %} -->
+                        <div id = "votes-data" class="panel-body">
                         </div>
                     </div>
                 </div>
