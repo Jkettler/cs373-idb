@@ -45,6 +45,7 @@ a:hover {
     text-align: center;
     padding-bottom: 35px;
     padding-top: 50px;
+    color: rgba(167, 0, 0, .7);
 }
 
 .senator img.img{
@@ -246,7 +247,7 @@ a.sen-link:hover {
 }
 
 .member-list-heading a:link{
-    color:#31708F;
+    color: rgba(167, 0, 0, .7);
 }
 
 .pic-resize {
@@ -258,5 +259,13 @@ a.sen-link:hover {
 }
 
 .masthead-color {
-    color: rgba(167, 0, 0, 1);
+    color: rgba(167, 0, 0, .8);
+}
+
+.title-color {
+    color:rgba(167, 0, 0, .7) !important;
+}
+
+.jumbotron {
+    background-color: rgba(238, 238, 238, 0.45);
 }
