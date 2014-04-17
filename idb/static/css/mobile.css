@@ -18,10 +18,13 @@
   white-space: nowrap;
 }
 .pic-resize {
-	width: 100% !important;
 	margin-top: 15px;
 }
 
 .sen-com-list {
     padding-left: 70px;
+}
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img{
+    width:100%;
 }
