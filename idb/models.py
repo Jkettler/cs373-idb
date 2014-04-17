@@ -1,5 +1,7 @@
 from django.db import models
 
+import watson
+
 class Senator(models.Model):
   name = models.CharField(max_length=70)
   party = models.CharField(max_length=70)
@@ -11,10 +13,13 @@ class Senator(models.Model):
   facebook = models.URLField(blank=True)
   map = models.TextField(blank=True)
 
+  def get_absolute_url(self):
+    return "/senators/%i/" % self.id
 
   def __str__(self):
     return self.name
 
+watson.register(Senator, store=("description",))
 
 class Committee(models.Model):
   name = models.CharField(max_length=70)
@@ -24,8 +29,13 @@ class Committee(models.Model):
   vice_chair = models.ForeignKey(Senator, related_name='committee_vice_chair_set', blank=True, null=True)
   senators = models.ManyToManyField(Senator, related_name='committee_set', blank=True, null=True)
 
+  def get_absolute_url(self):
+    return "/committees/%i/" % self.id
+
   def __str__(self):
     return self.name
+
+watson.register(Committee)
 
 class Bill(models.Model):
   name = models.CharField(max_length=70)
@@ -40,8 +50,13 @@ class Bill(models.Model):
   primary_committee = models.ForeignKey(Committee, related_name='bill_set', blank=True, null=True, on_delete=models.SET_NULL)
   voters = models.ManyToManyField(Senator, through='Vote', related_name='voted_bill_set', blank=True)
 
+  def get_absolute_url(self):
+    return "/bills/%i/" % self.id
+
   def __str__(self):
     return self.name
+
+watson.register(Bill)
 
 class Vote(models.Model):
   VOTE_TYPES = (

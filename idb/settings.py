@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'idb',
     'south',
 		'tastypie',
+    'watson',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -9,6 +9,7 @@
 
     {% load staticfiles %}
     {% load cloudinary  %}
+    {% load watson %}
 
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
@@ -58,6 +59,14 @@
               <li class="{% if 'committee' in messages.request.path  %}active{% endif %}"><a class="navbar-brand" href="/committees/">Committees</a></li>
               <li class="{% if 'api' in messages.request.path %}active{% endif %}"><a class="navbar-brand" href="/apipage/">API Page</a></li>
               <li><a class="navbar-brand" href="/queries">Queries</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="search">
+                <form action="/search/" class="form-inline">
+                    <input name="q" value="{{query}}" class="form-control">
+                    <input type="submit" value="Search" class="btn btn-default">
+                </form>
+              </li>
             </ul>
           </div>
         </div>
