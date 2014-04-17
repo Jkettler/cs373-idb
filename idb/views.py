@@ -3,6 +3,8 @@ from idb.models import Senator, Committee, Bill, Vote
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.core import serializers
+from django.db import connection
+from queries import *
 import json
 
 
@@ -17,9 +19,29 @@ def about(request):
     context = RequestContext(request)
     return HttpResponse(template.render(context))
 
+def dictfetchall(cursor):
+    "Returns all rows from a cursor as a dict"
+    desc = cursor.description
+    return [
+        dict(zip([col[0] for col in desc], row))
+        for row in cursor.fetchall()
+    ]
+
 def queries(request):
+    cursor = connection.cursor()
+    #Query 1
+    cursor.execute(q1())
+    q1Dict = dictfetchall(cursor)
+    #Query 2
+    cursor.execute(q2())
+    q2Dict = dictfetchall(cursor)
+    context = RequestContext(request, {
+        'q1Text' : q1(),
+        'q1Dict': q1Dict,
+        'q2Text' : q2(),
+        'q2Dict' : q2Dict,
+    })
     template = loader.get_template('queries.html')
-    context = RequestContext(request)
     return HttpResponse(template.render(context))
 
 def bills(request):
