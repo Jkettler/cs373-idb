@@ -5,8 +5,8 @@
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script> -->
 <script>
 $(document).ready(function() {
-    //var host = "http://0.0.0.0:12345";
-    var host = "http://texaslawdb.herokuapp.com";
+    var host = "http://0.0.0.0:12345";
+    //var host = "http://texaslawdb.herokuapp.com";
     var sen_id = -1;
     var bills = {};
     var votes = {};
@@ -92,6 +92,25 @@ $(document).ready(function() {
                 getVote(bill_id, sen_id);
 
             console.log(votes);
+
+            //Insert our votes into the html page
+            var items = [];
+            for (var bill_key in votes)
+            {
+                var votestr;
+                if (votes[bill_key] == 'AYE')
+                    votestr = "<i class=\"fa fa-thumbs-up fa-2x\"></i>";
+                else if (votes[bill_key] == 'NAY')
+                    votestr = "<i class=\"fa fa-thumbs-down fa-2x\"></i>";
+                else if (votes[bill_key] == 'PNV')
+                    votestr = "<i class=\"fa fa-square-o fa-2x\"></i>";
+                else if (votes[bill_key] == 'ABS')
+                    votestr = "<i class=\"fa fa-ban fa-2x\"></i>";   
+
+                items.push("<div class=\"col-md-12\"><a href=\"/bills/" + bill_key +  "/\"><div class=\"well vote-well\"><div class=\"col-xs-10\" style=\"padding-left: 2\">"+ bills[bill_key] +  "</div><div class=\"col-xs-2 dark-gray\">"+ votestr + "</div></div></a></div>");
+            }
+            $('#votes-data').html(items.join(""));
+            alert("panelbody");
         }
         else
         {
@@ -100,15 +119,6 @@ $(document).ready(function() {
         }
     });
 });
-/*
-    function populateVotes()
-    {
-        var name = $('#senator_name').val();
-        $('#panel_senator_name').text(name);
-        $('.panel').css("visbility", "visible");
-        alert($('#senator_name').val());
-
-    }*/
 </script>
 
 <div class="apipage">
@@ -127,7 +137,7 @@ $(document).ready(function() {
                         </h3>
                     </div>
                     <div id="votes-panel-body" class="panel-collapse">
-                        <div class="panel-body">
+                        <div id = "votes-data" class="panel-body">
                             <!-- {% if votes %}
                                 {% for vote in votes %}
                                     <div class="col-md-4">
