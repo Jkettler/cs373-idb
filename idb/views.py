@@ -35,11 +35,26 @@ def queries(request):
     #Query 2
     cursor.execute(q2())
     q2Dict = dictfetchall(cursor)
+    #Query 2
+    cursor.execute(q3())
+    q3Dict = dictfetchall(cursor)
+    #Query 4
+    cursor.execute(q4())
+    q4Dict = dictfetchall(cursor)
+    #Query 5
+    cursor.execute(q5())
+    q5Dict = dictfetchall(cursor)
     context = RequestContext(request, {
         'q1Text' : q1(),
         'q1Dict': q1Dict,
         'q2Text' : q2(),
         'q2Dict' : q2Dict,
+        'q3Text' : q3(),
+        'q3Dict': q3Dict,
+        'q4Text' : q4(),
+        'q4Dict' : q4Dict,
+        'q5Text' : q5(),
+        'q5Dict' : q5Dict,
     })
     template = loader.get_template('queries.html')
     return HttpResponse(template.render(context))

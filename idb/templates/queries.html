@@ -47,5 +47,84 @@
     </div>        
     <br>
 </div>
+
+<!-- Query 3 -->
+<div>
+    <h4> The most prolific bill authors in the senate</h4>
+    <h6>{{q3Text}}</h6>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>AuthorCount</th>                   
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in q3Dict %}
+                <tr>
+                    <td>{{x.name}}</td>
+                    <td>{{x.AuthorCount}}</td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>        
+    <br>
+</div>
+
+<!-- Query 4 -->
+<div>
+    <h4> The Senator(s) who's in the most committees</h4>
+    <h6>{{q4Text}}</h6>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>CommitteeCount</th>                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in q4Dict %}
+                <tr>
+                    <td>{{x.name}}</td>
+                    <td>{{x.CommitteeCount}}</td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>        
+    <br>
+</div>
+
+<!-- Query 5 -->
+<div>
+    <h4> The Senators who've voted Nay the most</h4>
+    <h6>{{q5Text}}</h6>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date_Proposed</th>
+                    <th>Date_Effective</th>
+                    <th>Days_In_Between</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in q5Dict %}
+                <tr>
+                    <td>{{x.name}}</td>
+                    <td>{{x.Date_Proposed}}</td>
+                    <td>{{x.Date_Effective}}</td>
+                    <td>{{x.Days_In_Between}}</td>               
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>        
+    <br>
+</div>
 {% endblock %}
 
