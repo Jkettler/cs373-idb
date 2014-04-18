@@ -9,6 +9,7 @@
 
     {% load staticfiles %}
     {% load cloudinary  %}
+    {% load watson %}
 
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
@@ -59,8 +60,15 @@
                 <li class="{% if 'committee' in messages.request.path  %}active{% endif %}"><a class="navbar-brand" href="/committees/">Committees</a></li>
                 <li class="{% if 'api' in messages.request.path %}active{% endif %}"><a class="navbar-brand" href="/apipage/">API Page</a></li>
                 <li><a class="navbar-brand" href="/queries">Queries</a></li>
-              </ul>
-            </div>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="search">
+                <form action="/search/" class="form-inline">
+                    <input name="q" value="{{query}}" class="form-control">
+                    <input type="submit" value="Search" class="btn btn-default">
+                </form>
+              </li>
+            </ul>
           </div>
         </nav>
 
@@ -87,5 +95,11 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/bootstrap3-typeahead.js' %}"></script>
+    <script src="{% static 'js/highlight.js' %}"></script>
+    <script type="text/javascript">
+      {% if query %}
+        $('.search-results').highlight('{{query}}', true, 'query-highlight');
+      {% endif %}
+    </script>
   </body>
 </html>

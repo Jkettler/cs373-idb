@@ -10,3 +10,4 @@ pillow==2.3.1
 -e git://github.com/cloudinary/pycloudinary#egg=cloudinary
 South==0.8.4
 django-tastypie==0.11.0
+django-watson==1.1.3
