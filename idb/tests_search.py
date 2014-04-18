@@ -107,7 +107,9 @@ class tests_search (TestCase) :
         response = connection.getresponse()
 
         self.assertTrue(response.status == 200)
-        #self.assertTrue(json.loads(response.read().decode("utf-8")))
+        response_body = response.read().decode("utf-8")
+        self.assertTrue(sen_name in response_body)
+        self.assertFalse("There are no results to display" in response_body)
         connection.close()
 
         connection = senators_delete(sen_id)
@@ -128,7 +130,9 @@ class tests_search (TestCase) :
         response = connection.getresponse()
 
         self.assertTrue(response.status == 200)
-        #self.assertTrue(json.loads(response.read().decode("utf-8")))
+        response_body = response.read().decode("utf-8")
+        self.assertTrue(bill_name in response_body)
+        self.assertFalse("There are no results to display" in response_body)
         connection.close()
 
         connection = bills_delete(bill_id)
@@ -148,7 +152,9 @@ class tests_search (TestCase) :
         response = connection.getresponse()
 
         self.assertTrue(response.status == 200)
-        #self.assertTrue(json.loads(response.read().decode("utf-8")))
+        response_body = response.read().decode("utf-8")
+        self.assertTrue(com_name in response_body)
+        self.assertFalse("There are no results to display" in response_body)
         connection.close()
 
         connection = committees_delete(committee_id)
