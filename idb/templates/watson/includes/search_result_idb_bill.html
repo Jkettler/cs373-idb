@@ -1,9 +1,11 @@
-<article>
+<article class="well">
     <h1>
         <a href="{{result.url}}">{{result.title}}</a>
+        <img class="" src="/static/img/bill.jpeg" width="50" height="50">
     </h1>
     {% if result.description %}
         {{result.description|linebreaks}}
     {% endif %}
+
     <div>Description: {{ result.object.description }}</div>
 </article>
