@@ -51,9 +51,7 @@
                     error: function() {
                         console.log("ERROR: getSenatorID function AJAX call fail");
                     }
-                }).always(function() {
-                    $('#submit-button').button('reset')
-                });
+                })
             }
 
             function getBills()
@@ -145,9 +143,10 @@
             });
 
             $('button').click(function() {
-                $('#submit-button').button('loading')
+                var btn = $(this);
+                btn.button('loading')
                 populate();
-
+                btn.button('reset')
             });
 
 
