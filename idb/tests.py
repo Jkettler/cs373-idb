@@ -4,8 +4,8 @@ from django.test import TestCase
 import httplib
 import json
 
-host = "texaslawdb.herokuapp.com"
-#host = "0.0.0.0:12345"
+#host = "texaslawdb.herokuapp.com"
+host = "0.0.0.0:12345"
 
 def senators_post():
 	connection = httplib.HTTPConnection(host)
