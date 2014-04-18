@@ -43,7 +43,8 @@ INSTALLED_APPS = (
     'cloudinary',
     'idb',
     'south',
-		'tastypie',
+	'tastypie',
+    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (
