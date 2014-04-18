@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 
 from django.test import TestCase
-import httplib
+import http.client
 import json
 
 #host = "texaslawdb.herokuapp.com"
-host = "0.0.0.0:12345"
+host = "0.0.0.0:5000"
 
 def senators_post():
-	connection = httplib.HTTPConnection(host)
+	connection = http.client.HTTPConnection(host)
 	values = json.dumps({
 			  "bills": [
 			    1
@@ -30,13 +30,13 @@ def senators_post():
 	return connection
 
 def senators_delete(sen_id):
-	connection = httplib.HTTPConnection(host)
+	connection = http.client.HTTPConnection(host)
 	connection.request("DELETE", "/api/senators/" + str(sen_id) + "/")
 	return connection
 
 
 def bills_post():
-	connection = httplib.HTTPConnection(host)
+	connection = http.client.HTTPConnection(host)
 	values = json.dumps({
        "authors":
        [
@@ -58,13 +58,13 @@ def bills_post():
 	return connection
 
 def bills_delete(bill_id):
-	connection = httplib.HTTPConnection(host)
+	connection = http.client.HTTPConnection(host)
 	connection.request("DELETE", "/api/bills/" + str(bill_id) + "/")
 	return connection
 
 
 def committees_post():
-	connection = httplib.HTTPConnection(host)
+	connection = http.client.HTTPConnection(host)
 	values = json.dumps(
 	{
 	  "appointment_date": "2013-01-08",
@@ -86,7 +86,7 @@ def committees_post():
 	return connection
 
 def committees_delete(committee_id):
-	connection = httplib.HTTPConnection(host)
+	connection = http.client.HTTPConnection(host)
 	connection.request("DELETE", "/api/committees/" + str(committee_id) + "/")
 	return connection
 
@@ -117,7 +117,7 @@ class tests (TestCase) :
 		connection.close()
 
 	def test_senators_get(self) :
-		connection = httplib.HTTPConnection(host)
+		connection = http.client.HTTPConnection(host)
 		connection.request("GET", "/api/senators/")
 		response = connection.getresponse()
 
@@ -129,7 +129,7 @@ class tests (TestCase) :
 		sen_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
 		connection.close()		
 
-		connection = httplib.HTTPConnection(host)
+		connection = http.client.HTTPConnection(host)
 		connection.request("GET", "/api/senators/" + str(sen_id) + "/")
 		response = connection.getresponse()
 		desired_body = {
@@ -162,7 +162,7 @@ class tests (TestCase) :
 		sen_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
 		connection.close()	
 
-		connection = httplib.HTTPConnection(host)
+		connection = http.client.HTTPConnection(host)
 		values = json.dumps({
 		  "bills": [
 		    1
@@ -198,7 +198,7 @@ class tests (TestCase) :
 		sen_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
 		connection.close()	
 
-		connection = httplib.HTTPConnection(host)
+		connection = http.client.HTTPConnection(host)
 		connection.request("GET", "/api/senators/" + str(sen_id) + "/committees/")
 		response = connection.getresponse()
 
@@ -216,7 +216,7 @@ class tests (TestCase) :
 		sen_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
 		connection.close()	
 
-		connection = httplib.HTTPConnection(host)
+		connection = http.client.HTTPConnection(host)
 		connection.request("GET", "/api/senators/" + str(sen_id) + "/bills/")
 		response = connection.getresponse()
 
@@ -261,7 +261,7 @@ class tests (TestCase) :
 		connection.close()
 
 	def test_bills_get(self) :
-		connection = httplib.HTTPConnection(host)
+		connection = http.client.HTTPConnection(host)
 		connection.request("GET", "/api/bills/")
 		response = connection.getresponse()
 
@@ -273,7 +273,7 @@ class tests (TestCase) :
 		bill_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
 		connection.close()		
 
-		connection = httplib.HTTPConnection(host)
+		connection = http.client.HTTPConnection(host)
 		connection.request("GET", "/api/bills/" + str(bill_id) + "/")
 		response = connection.getresponse()
 		desired_body = 	{
@@ -306,7 +306,7 @@ class tests (TestCase) :
 		bill_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
 		connection.close()	
 
-		connection = httplib.HTTPConnection(host)
+		connection = http.client.HTTPConnection(host)
 		values = json.dumps({
 	       "authors":
 	       [
@@ -341,7 +341,7 @@ class tests (TestCase) :
 		bill_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
 		connection.close()	
 
-		connection = httplib.HTTPConnection(host)
+		connection = http.client.HTTPConnection(host)
 		connection.request("GET", "/api/bills/" + str(bill_id) + "/authors/")
 		response = connection.getresponse()
 
@@ -359,7 +359,7 @@ class tests (TestCase) :
 		bill_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
 		connection.close()	
 
-		connection = httplib.HTTPConnection(host)
+		connection = http.client.HTTPConnection(host)
 		connection.request("GET", "/api/bills/" + str(bill_id) + "/votes/")
 		response = connection.getresponse()
 
@@ -398,7 +398,7 @@ class tests (TestCase) :
 		connection.close()
 
 	def test_committees_get(self) :
-		connection = httplib.HTTPConnection(host)
+		connection = http.client.HTTPConnection(host)
 		connection.request("GET", "/api/committees/")
 		response = connection.getresponse()
 
@@ -410,7 +410,7 @@ class tests (TestCase) :
 		committee_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
 		connection.close()		
 
-		connection = httplib.HTTPConnection(host)
+		connection = http.client.HTTPConnection(host)
 		connection.request("GET", "/api/committees/" + str(committee_id) + "/")
 		response = connection.getresponse()
 		desired_body = 	{
@@ -440,7 +440,7 @@ class tests (TestCase) :
 		committee_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
 		connection.close()	
 
-		connection = httplib.HTTPConnection(host)
+		connection = http.client.HTTPConnection(host)
 		values = json.dumps({
 		  "appointment_date": "2013-01-08",
 		  "bills": [
@@ -473,7 +473,7 @@ class tests (TestCase) :
 		committee_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
 		connection.close()	
 
-		connection = httplib.HTTPConnection(host)
+		connection = http.client.HTTPConnection(host)
 		connection.request("GET", "/api/committees/" + str(committee_id) + "/senators/")
 		response = connection.getresponse()
 
@@ -492,7 +492,7 @@ class tests (TestCase) :
 		committee_id = json.loads(connection.getresponse().read().decode("utf-8"))['id']
 		connection.close()	
 
-		connection = httplib.HTTPConnection(host)
+		connection = http.client.HTTPConnection(host)
 		connection.request("GET", "/api/committees/" + str(committee_id) + "/bills/")
 		response = connection.getresponse()
 
