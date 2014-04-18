@@ -19,12 +19,12 @@ class Migration(SchemaMigration):
         # Changing field 'Picture.link'
         db.alter_column('idb_picture', 'link', self.gf('django.db.models.fields.URLField')(max_length=200, null=True))
         # Removing index on 'Picture', fields ['link']
-        db.delete_index('idb_picture', ['link_id'])
+        # db.delete_index('idb_picture', ['link_id'])
 
 
     def backwards(self, orm):
         # Adding index on 'Picture', fields ['link']
-        db.create_index('idb_picture', ['link_id'])
+        # db.create_index('idb_picture', ['link_id'])
 
         # Deleting field 'Picture.parent'
         db.delete_column('idb_picture', 'parent_id')

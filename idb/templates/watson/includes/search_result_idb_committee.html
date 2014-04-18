@@ -1,0 +1,10 @@
+<article class="well dark-gray">
+    <h1>
+        <a class="sen-link" href="{{result.url}}">{{result.title}}</a>
+        <img class="" src="/static/img/committee.jpg" width="75" height="75">
+    </h1>
+    {% if result.description %}
+        {{result.description|linebreaks}}
+    {% endif %}
+    <div>Description: {{result.object.description}}</div>
+</article>

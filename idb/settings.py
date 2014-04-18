@@ -44,7 +44,7 @@ INSTALLED_APPS = (
     'idb',
     'south',
 	'tastypie',
-    'django_extensions',
+    'watson',
 )
 
 MIDDLEWARE_CLASSES = (

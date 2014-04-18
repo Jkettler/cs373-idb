@@ -2,148 +2,172 @@
 {% load cloudinary %}
 {% block content %}
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script> -->
-<script>
-$(document).ready(function() {
-    //var host = "http://0.0.0.0:1234";
-    var host = "http://texaslawdb.herokuapp.com";
-    var sen_id = -1;
-    var bills = {};
-    var votes = {};
-    /**
-     * Given a string name of a senator, calls the API at /api/senators,
-     * finds the senator with name = name, and returns the id of that senator
-     */
-    function getSenatorID(name)
-    {
-        $.ajax({
-            type: 'GET',
-            async: false,
-            dataType: 'json',
-            url: host + "/api/senators/", 
-            success: function(data) {
-                sen_id = -1;
-                $.each(data, function(senator) {
-                    if (String(this.name).toLowerCase() === String(name).toLowerCase())
-                        sen_id = this.id;
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script> -->
+    <script>
+        $(document).ready(function() {
+
+{#            var host = "http://localhost:5000";#}
+            var host = "http://texaslawdb.herokuapp.com";
+            var sen_id = -1;
+            var bills = {};
+            var votes = {};
+            getSenatorNames();
+            function getSenatorNames() {
+                var names = [];
+                $.ajax({
+                type: 'GET',
+                    async: false,
+                    dataType: 'json',
+                    url: host + "/api/senators/",
+                    success: function(data) {
+                        $.each(data, function(senator) {
+                                names.push(String(this.name));
+                        });
+                    },
+                    error: function() {
+                        console.log("ERROR: something wrong with AJAX call");
+                    }
                 });
-            },
-            error: function() {
-                console.log("ERROR: getSenatorID function AJAX call fail");
+                $("#senator_name").typeahead({ source: names });
             }
-        });
-    }
-
-    function getBills()
-    {
-        $.ajax({
-            type: 'GET',
-            async: false,
-            dataType: 'json',
-            url: host + "/api/bills/", 
-            success: function(data) {
-                $.each(data, function(bill) {
-                    bills[this.id] = this.description; 
-                });
-            },
-            error: function() {
-                console.log("ERROR: getBills function AJAX call fail");
-            }
-        });
-    }
-
-    function getVote(bill_id, sen_id)
-    {
-        $.ajax({
-            type: 'GET',
-            async: false,
-            dataType: 'json',
-            url: host + "/api/bills/" + bill_id + "/votes/", 
-            success: function(data) {
-                $.each(data, function(vote) {
-                    if (this.senator == sen_id)
-                        votes[bill_id] = this.vote;
-                });
-            },
-            error: function() {
-                console.log("ERROR: getVote function AJAX call fail");
-            }
-        });
-    }
-
-    function populate()
-    {
-        var name = $('#senator_name').val();
-
-        //Search for the senator with given name and get their ID /api/senators
-        getSenatorID(name);
-
-        
-        if (sen_id != -1)
-        {
-            $('.member-list-heading').text("Votes for " + name);
-            $('#votes-panel').css("visibility", "visible");
-
-            //Get all of the bills descriptions and bill ids /api/bills
-            getBills();
-
-            //For each bill id, get the votes /api/bills/{id}/votes
-            for (var bill_id in bills)
-                getVote(bill_id, sen_id);
-
-            console.log(votes);
-           // console.log(bills);
-
-            //Insert our votes into the html page
-            var items = [];
-            for (var bill_key in votes)
+            /**
+             * Given a string name of a senator, calls the API at /api/senators,
+             * finds the senator with name = name, and returns the id of that senator
+             */
+            function getSenatorID(name)
             {
-                var votestr;
-                if (votes[bill_key] == 'AYE')
-                    votestr = "<i class=\"fa fa-thumbs-up fa-2x\"></i>";
-                else if (votes[bill_key] == 'NAY')
-                    votestr = "<i class=\"fa fa-thumbs-down fa-2x\"></i>";
-                else if (votes[bill_key] == 'PNV')
-                    votestr = "<i class=\"fa fa-square-o fa-2x\"></i>";
-                else if (votes[bill_key] == 'ABS')
-                    votestr = "<i class=\"fa fa-ban fa-2x\"></i>";   
-
-                items.push("<div class=\"col-md-12\"><a href=\"/bills/" + bill_key +  "/\"><div class=\"well vote-well\"><div class=\"col-xs-10\" style=\"padding: 5px; line-height: initial;\">"+ bills[bill_key] +  "</div><div class=\"col-xs-2 dark-gray\">"+ votestr + "</div></div></a></div>");
+                $.ajax({
+                    type: 'GET',
+                    async: false,
+                    dataType: 'json',
+                    url: host + "/api/senators/",
+                    success: function(data) {
+                        sen_id = -1;
+                        $.each(data, function(senator) {
+                            if (String(this.name).toLowerCase() === String(name).toLowerCase())
+                                sen_id = this.id;
+                        });
+                    },
+                    error: function() {
+                        console.log("ERROR: getSenatorID function AJAX call fail");
+                    }
+                })
             }
-            $('#votes-data').html(items.join(""));
-        }
-        else
-        {
-            $('#votes-panel').css("visibility", "hidden");
-            alert("Invalid senator name; Please enter a valid name");
-        }
-    }
 
-    $('#senator_name').keypress(function(e) {
-        if (e.which == '13') {
-            populate();
-        return false;}
-    });
+            function getBills()
+            {
+                $.ajax({
+                    type: 'GET',
+                    async: false,
+                    dataType: 'json',
+                    url: host + "/api/bills/",
+                    success: function(data) {
+                        $.each(data, function(bill) {
+                            bills[this.id] = this.description;
+                        });
+                    },
+                    error: function() {
+                        console.log("ERROR: getBills function AJAX call fail");
+                    }
+                });
+            }
 
-    $('button').click(function() {
-        populate();
-    });
-});
-</script>
+            function getVote(bill_id, sen_id)
+            {
+                $.ajax({
+                    type: 'GET',
+                    async: false,
+                    dataType: 'json',
+                    url: host + "/api/bills/" + bill_id + "/votes/",
+                    success: function(data) {
+                        $.each(data, function(vote) {
+                            if (this.senator == sen_id)
+                                votes[bill_id] = this.vote;
+                        });
+                    },
+                    error: function() {
+                        console.log("ERROR: getVote function AJAX call fail");
+                    }
+                });
+            }
 
-<div class="apipage">
-    <div class="panel panel-info">
-        <div class="align-mid panel-heading">
-            <h1><b>API Page</b></h1>
-        </div>
-        <div class="panel-body lighter-gray">
-            <form class="well form-inline" style="text-align: center;">  
-                  <input type="text" class="input-small" id="senator_name" placeholder="Senator Name">   
-                  <button type="button" class="btn">View Votes</button>  
-            </form>  
-            <div id="votes-panel" class="panel panel-info votes-panel vote-heading" style="visibility: hidden">
+            function populate()
+            {
+                var name = $('#senator_name').val();
+
+                //Search for the senator with given name and get their ID /api/senators
+                getSenatorID(name);
+
+
+                if (sen_id != -1)
+                {
+                    $('.member-list-heading').text("Votes for " + name);
+                    $('#votes-panel').css("visibility", "visible");
+
+                    //Get all of the bills descriptions and bill ids /api/bills
+                    getBills();
+
+                    //For each bill id, get the votes /api/bills/{id}/votes
+                    for (var bill_id in bills)
+                        getVote(bill_id, sen_id);
+
+                    //Insert our votes into the html page
+                    var items = [];
+                    for (var bill_key in votes)
+                    {
+                        var votestr;
+                        if (votes[bill_key] == 'AYE')
+                            votestr = "<i class=\"fa fa-thumbs-up fa-2x\"></i>";
+                        else if (votes[bill_key] == 'NAY')
+                            votestr = "<i class=\"fa fa-thumbs-down fa-2x\"></i>";
+                        else if (votes[bill_key] == 'PNV')
+                            votestr = "<i class=\"fa fa-square-o fa-2x\"></i>";
+                        else if (votes[bill_key] == 'ABS')
+                            votestr = "<i class=\"fa fa-ban fa-2x\"></i>";
+
+                        items.push("<div class=\"col-md-12\"><a href=\"/bills/" + bill_key +  "/\"><div class=\"well vote-well\"><div class=\"col-xs-10\" style=\"padding: 5px; line-height: initial;\">"+ bills[bill_key] +  "</div><div class=\"col-xs-2 dark-gray\">"+ votestr + "</div></div></a></div>");
+                    }
+                    $('#votes-data').html(items.join(""));
+                }
+                else
+                {
+                    $('#votes-panel').css("visibility", "hidden");
+                    alert("Invalid senator name; Please enter a valid name");
+                }
+            }
+
+            $('#senator_name').keypress(function(e) {
+                if (e.which == '13') {
+                    populate();
+                    return false;}
+            });
+
+            $('button').click(function() {
+                var btn = $(this);
+                btn.button('loading')
+                populate();
+                btn.button('reset')
+            });
+
+
+        });
+
+
+    </script>
+
+    <div class="apipage">
+        <div class="panel panel-info">
+            <div class="align-mid panel-heading">
+                <h1 class="title-color"><b>API Page</b></h1>
+            </div>
+            <div class="panel-body lighter-gray">
+                <form class="well form-inline" style="text-align: center;">
+                    <input type="text" class="input-small" id="senator_name" placeholder="Senator Name" data-provide="typeahead">
+                    <button type="button" class="btn btn-primary" id="submit-button" data-loading-text="Searching...">View Votes</button>
+                </form>
+                <div id="votes-panel" class="panel panel-info votes-panel vote-heading" style="visibility: hidden">
                     <div class="panel-heading row vote-heading">
-                        <h3 class="panel-title col-lg-4 member-list-heading" id="panel_senator_name"> 
+                        <h3 class="panel-title col-lg-4 member-list-heading" id="panel_senator_name">
                         </h3>
                     </div>
                     <div id="votes-panel-body" class="panel-collapse">
@@ -153,8 +177,7 @@ $(document).ready(function() {
                 </div>
             </div>
         </div>
-    </div>       
-</div>
+    </div>
 
 
 {% endblock %}

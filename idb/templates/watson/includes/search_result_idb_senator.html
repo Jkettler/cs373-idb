@@ -1,0 +1,24 @@
+{% load cloudinary %}
+<article class="">
+    <div class="well dark-gray">
+        <h1>
+            <a class="sen-link" href="{{result.url}}">{{result.title}}</a>
+            {% if result.object.photo_url %}
+                <img class="img-circle" src="{{  result.object.photo_url }}" width="50" height="50">
+            {% else %}
+                <img class="img-circle" src="{%  cloudinary_url result.object.twitter type="twitter_name" width="50" height="50" %}.jpg">
+            {% endif %}
+        </h1>
+        {% if result.description %}
+            {{result.description|linebreaks}}
+        {% endif %}
+        <div class="col-md-offset-1">
+            <ul>
+                <li>Party: {{ result.object.party }}</li>
+                <li>Occupation: {{ result.object.occupation }}</li>
+                <li>Legislative Experience: {{ result.object.legislative_experience }}</li>
+                <li>Twitter Handle: {{ result.object.twitter }}</li>
+            </ul>
+        </div>
+    </div>
+</article>
